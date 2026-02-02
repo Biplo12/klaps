@@ -1,15 +1,19 @@
-"use client";
-
 import React from "react";
-import CRTFrame from "./crt-frame";
 
 const Hero: React.FC = () => {
   return (
-    <CRTFrame>
-      <section className="relative flex h-screen w-full items-center justify-center overflow-hidden">
-        <h1 className="">Klatka</h1>
-      </section>
-    </CRTFrame>
+    <section className="flex flex-col items-center justify-center h-screen w-full bg-dark-ink">
+      <div className="flex flex-col items-start justify-start gap-4 max-w-2xl">
+        <h1 className="text-4xl font-bold text-white uppercase">
+          Odkryj klasykę kina w Twoim mieście
+        </h1>
+
+        <h2 className="text-2xl text-primary/75">
+          Kultowe filmy, retrospektywy i wyjątkowe pokazy w kinach studyjnych —
+          wszystko w jednym miejscu.
+        </h2>
+      </div>
+    </section>
   );
 };
 
