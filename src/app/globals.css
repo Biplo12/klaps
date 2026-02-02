@@ -46,8 +46,6 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 
-  --shadow-vhs-tape: 0 0 10px 0 rgb(255 255 255 / 0.5);
-
   --font-limelight: "Limelight", sans-serif;
   --font-bungee: "Bungee", sans-serif;
   --font-bungee-shade: "Bungee Shade", sans-serif;
@@ -92,7 +90,6 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.552 0.016 285.938);
-  --shadow-vhs-tape: 0 0 10px 0 rgb(255 255 255 / 0.5);
 
   --font-limelight: "Limelight", sans-serif;
   --font-bungee: "Bungee", sans-serif;
