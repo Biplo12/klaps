@@ -1,6 +1,6 @@
 import React from "react";
 import { IScreeningWithMovie } from "@/interfaces/IScreenings";
-import { formatGeneres } from "@/lib/utils";
+import { formatGeneres, getTitleSizeClasses } from "@/lib/utils";
 import { HeroPrimaryCTA, HeroSecondaryCTA } from "@/components/cta";
 import MovieMeta from "./movie-meta";
 import { Badge } from "@/components/ui/badge";
@@ -28,7 +28,11 @@ const HeroContent: React.FC<HeroContentProps> = ({ screening }) => {
           {HERO_LABEL_MAIN}
         </Badge>
 
-        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[108px] font-bold text-white uppercase md:bg-black px-0 md:px-8 py-2 md:py-6 md:pb-8 md:pl-0 max-w-fit leading-tight md:leading-36">
+        <h1
+          className={`${getTitleSizeClasses(
+            screening.movie.title
+          )} font-bold text-white uppercase md:bg-black px-0 md:px-8 py-2 md:py-6 md:pb-8 md:pl-0 max-w-fit`}
+        >
           {screening.movie.title}
         </h1>
       </div>
