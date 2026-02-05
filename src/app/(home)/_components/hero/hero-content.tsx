@@ -1,6 +1,6 @@
 import React from "react";
 import { IScreeningWithMovie } from "@/interfaces/IScreenings";
-import { formatGeneres, getTitleSizeClasses } from "@/lib/utils";
+import { cn, formatGeneres, getTitleSizeClasses } from "@/lib/utils";
 import { HeroPrimaryCTA, HeroSecondaryCTA } from "@/components/cta";
 import MovieMeta from "./movie-meta";
 import { Badge } from "@/components/ui/badge";
@@ -22,22 +22,25 @@ const HeroContent: React.FC<HeroContentProps> = ({ screening }) => {
   const movieDetailsHref = `/filmy/${screening.movie.id}`;
 
   return (
-    <div className="z-10 absolute bottom-8 left-4 right-4 md:bottom-auto md:top-1/2 md:left-8 md:right-auto md:-translate-y-1/2 flex flex-col gap-4 md:gap-8">
-      <div className="flex flex-col">
+    <div className="z-10 absolute bottom-8 left-4 right-4 md:bottom-auto md:top-1/2 md:left-8 md:right-auto md:-translate-y-1/2 flex flex-col gap-2 md:gap-4">
+      <div className="flex flex-col gap-4">
         <Badge variant="label" suffix={HERO_LABEL_SUB}>
           {HERO_LABEL_MAIN}
         </Badge>
 
         <h1
-          className={`${getTitleSizeClasses(
-            screening.movie.title
-          )} font-bold text-white uppercase md:bg-black px-0 md:px-8 py-2 md:py-6 md:pb-8 md:pl-0 max-w-fit`}
+          className={cn(
+            "font-bold text-white uppercase max-w-[1150px]",
+            getTitleSizeClasses(screening.movie.title)
+          )}
         >
-          {screening.movie.title}
+          <span className="md:bg-black md:pr-4 md:box-decoration-clone md:inline">
+            {screening.movie.title}
+          </span>
         </h1>
       </div>
 
-      <div className="flex flex-col gap-3 md:gap-4 pl-2 md:pl-4">
+      <div className="flex flex-col gap-3">
         <MovieMeta
           duration={screening.movie.duration}
           productionYear={screening.movie.productionYear}
@@ -48,7 +51,7 @@ const HeroContent: React.FC<HeroContentProps> = ({ screening }) => {
           {screening.movie.description}
         </p>
 
-        <div className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 pt-2">
+        <div className="flex flex-col sm:flex-row flex-wrap gap-3 pt-2">
           <HeroPrimaryCTA href={SCREENINGS_SECTION_ID}>
             {CTA_PRIMARY}
           </HeroPrimaryCTA>
