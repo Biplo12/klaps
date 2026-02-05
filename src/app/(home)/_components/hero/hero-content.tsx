@@ -10,16 +10,17 @@ interface HeroContentProps {
 }
 
 const HERO_BADGE_LABEL = "Teraz w kinie";
-const CTA_BUY_TICKET = "Kup bilet";
+const CTA_MOVIE_DETAILS = "Szczegóły filmu";
 const CTA_SEE_SCREENINGS = "Zobacz seanse";
 const SCREENINGS_SECTION_ID = "#seanse";
 
 const HeroContent: React.FC<HeroContentProps> = ({ screening }) => {
   const formattedGenres = formatGeneres(screening.movie.movies_genres);
+  const movieDetailsHref = `/filmy/${screening.movie.id}`;
 
   return (
     <div className="z-10 absolute top-1/2 left-8 -translate-y-1/2 flex flex-col gap-8">
-      <Badge variant="label" className="ml-4">
+      <Badge variant="label" className="ml-2">
         {HERO_BADGE_LABEL}
       </Badge>
       <h1 className="text-[164px] font-bold text-white uppercase bg-black px-8 pl-0 max-w-fit leading-36">
@@ -38,8 +39,8 @@ const HeroContent: React.FC<HeroContentProps> = ({ screening }) => {
         </p>
 
         <div className="flex flex-wrap gap-4 pt-2">
-          <HeroPrimaryCTA href={SCREENINGS_SECTION_ID}>
-            {CTA_BUY_TICKET}
+          <HeroPrimaryCTA href={movieDetailsHref}>
+            {CTA_MOVIE_DETAILS}
           </HeroPrimaryCTA>
           <HeroSecondaryCTA href={SCREENINGS_SECTION_ID}>
             {CTA_SEE_SCREENINGS}
