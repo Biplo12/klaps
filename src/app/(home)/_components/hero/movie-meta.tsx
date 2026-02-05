@@ -18,15 +18,15 @@ const MovieMeta: React.FC<MovieMetaProps> = ({
 
   return (
     <div
-      className="flex flex-wrap items-baseline gap-x-1 text-white/90 text-xl font-light tracking-wide"
+      className="flex flex-wrap items-baseline gap-x-1 text-[#B3B3B3] text-xl font-light tracking-normal"
       role="list"
       aria-label="Szczegóły filmu"
     >
-      <span className="font-medium text-white">{durationText}</span>
+      <span className="font-medium text-[#B3B3B3]">{durationText}</span>
       <span aria-hidden="true">{META_SEPARATOR}</span>
       <span>{productionYear}</span>
       <span aria-hidden="true">{META_SEPARATOR}</span>
-      <span>{formattedGenres}</span>
+      <span className="uppercase tracking-[0.1em]">{formattedGenres}</span>
     </div>
   );
 };
