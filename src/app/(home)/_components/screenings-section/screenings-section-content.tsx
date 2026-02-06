@@ -5,6 +5,7 @@ import { IScreeningWithMovie } from "@/interfaces/IScreenings";
 import { ICity } from "@/interfaces/ICities";
 import { useScreeningDates } from "@/hooks/use-screening-dates";
 import { useScreeningGenres } from "@/hooks/use-screening-genres";
+import { useCityParam } from "@/hooks/use-city-param";
 import ScreeningsSectionHeader from "./screenings-section-header";
 import ScreeningsSectionList from "./screenings-section-list";
 
@@ -19,6 +20,7 @@ const ScreeningsSectionContent: React.FC<ScreeningsSectionContentProps> = ({
 }) => {
   const { dates, activeDate } = useScreeningDates(screenings);
   const { genres } = useScreeningGenres(screenings);
+  const { selectedCityId } = useCityParam();
 
   return (
     <div className="flex flex-col gap-10">
@@ -26,6 +28,7 @@ const ScreeningsSectionContent: React.FC<ScreeningsSectionContentProps> = ({
       <ScreeningsSectionList
         screenings={screenings}
         selectedDate={activeDate}
+        selectedCityId={selectedCityId}
       />
     </div>
   );

@@ -14,7 +14,7 @@ const ScreeningsSection: React.FC<ScreeningsSectionProps> = ({
 }) => {
   return (
     <section id="seanse" className="bg-black px-8 py-16">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1400px] mx-auto">
         <ScreeningsSectionContent screenings={screenings} cities={cities} />
       </div>
     </section>

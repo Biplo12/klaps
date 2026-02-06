@@ -19,13 +19,13 @@ function ComboboxTrigger({
   return (
     <ComboboxPrimitive.Trigger
       data-slot="combobox-trigger"
-      className={cn("flex items-center", className)}
+      className={cn("flex items-center cursor-pointer", className)}
       {...props}
     >
       {children}
       <span
         data-slot="combobox-trigger-icon"
-        className="text-white/50 pointer-events-none text-xs ml-2"
+        className="text-white/40 pointer-events-none text-[10px] ml-2 transition-colors group-hover/input-group:text-blood-red"
         aria-hidden
       >
         ▼
@@ -64,9 +64,9 @@ function ComboboxInput({
     <div
       data-slot="input-group"
       className={cn(
-        "group/input-group relative flex w-auto items-center bg-black border border-white/30 transition-colors",
+        "group/input-group relative flex w-auto items-center bg-dark-ink border border-white/20 transition-all duration-200",
         "focus-within:border-blood-red",
-        "hover:border-white/50",
+        "hover:border-white/40",
         disabled && "opacity-50 pointer-events-none",
         className
       )}
@@ -74,10 +74,10 @@ function ComboboxInput({
       <ComboboxPrimitive.Input
         data-slot="combobox-input"
         disabled={disabled}
-        className="flex-1 bg-transparent text-white text-sm font-medium uppercase tracking-[0.15em] px-4 py-3 outline-none placeholder:text-white/40 min-w-[180px]"
+        className="flex-1 bg-transparent text-white text-sm font-medium uppercase tracking-wider px-4 py-3 outline-none placeholder:text-white/50 min-w-[180px] cursor-pointer"
         {...props}
       />
-      <div className="flex items-center pr-2">
+      <div className="flex items-center pr-3">
         {showClear && (
           <ComboboxClear
             disabled={disabled}
@@ -85,7 +85,7 @@ function ComboboxInput({
           />
         )}
         {showTrigger && (
-          <ComboboxTrigger className="px-2 py-1 text-white/50 hover:text-white transition-colors" />
+          <ComboboxTrigger className="px-2 py-1 text-white/50 hover:text-blood-red transition-colors" />
         )}
       </div>
       {children}
@@ -96,7 +96,7 @@ function ComboboxInput({
 function ComboboxContent({
   className,
   side = "bottom",
-  sideOffset = 4,
+  sideOffset = 0,
   align = "start",
   alignOffset = 0,
   anchor,
@@ -115,16 +115,15 @@ function ComboboxContent({
         alignOffset={alignOffset}
         anchor={anchor}
         className="isolate z-50"
-        style={{ width: "var(--anchor-width)" }}
+        style={{ width: "calc(var(--anchor-width) + 47px)" }}
       >
         <ComboboxPrimitive.Popup
           data-slot="combobox-content"
           data-chips={!!anchor}
           className={cn(
-            "bg-black text-white border border-white/30",
-            "data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95",
-            "data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2",
-            "group/combobox-content relative max-h-72 w-full origin-(--transform-origin) overflow-hidden shadow-lg duration-100",
+            "bg-dark-ink text-white border border-white/20 border-t",
+            "data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0",
+            "group/combobox-content relative max-h-72 w-full overflow-hidden duration-100",
             className
           )}
           {...props}
@@ -138,7 +137,14 @@ function ComboboxList({ className, ...props }: ComboboxPrimitive.List.Props) {
   return (
     <ComboboxPrimitive.List
       data-slot="combobox-list"
-      className={cn("max-h-64 overflow-y-auto py-1 data-empty:py-0", className)}
+      className={cn(
+        "max-h-64 overflow-y-auto py-2",
+        "[&::-webkit-scrollbar]:w-2",
+        "[&::-webkit-scrollbar-track]:bg-white/5",
+        "[&::-webkit-scrollbar-thumb]:bg-blood-red",
+        "[&::-webkit-scrollbar-thumb]:hover:bg-blood-red/80",
+        className
+      )}
       {...props}
     />
   );
@@ -153,11 +159,12 @@ function ComboboxItem({
     <ComboboxPrimitive.Item
       data-slot="combobox-item"
       className={cn(
-        "relative flex w-full cursor-pointer items-center px-4 py-3 text-sm font-medium uppercase tracking-[0.15em] text-white outline-hidden select-none",
+        "relative flex w-full cursor-pointer items-center px-4 py-2.5 text-sm font-medium uppercase tracking-wider text-white/80 outline-hidden select-none",
+        "hover:bg-white/5 hover:text-white",
         "data-highlighted:bg-blood-red data-highlighted:text-white",
-        "data-selected:bg-white/10",
+        "data-selected:text-blood-red data-selected:bg-transparent",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
-        "transition-colors",
+        "transition-colors duration-150",
         className
       )}
       {...props}

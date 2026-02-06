@@ -1,7 +1,7 @@
 "use client";
 
-import { useCallback } from "react";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { useCallback, useState, useEffect } from "react";
+import { useSearchParams, usePathname } from "next/navigation";
 
 const CITY_PARAM_KEY = "city";
 
@@ -12,13 +12,21 @@ interface UseCityParamReturn {
 
 export const useCityParam = (): UseCityParamReturn => {
   const searchParams = useSearchParams();
-  const router = useRouter();
   const pathname = usePathname();
 
-  const selectedCityId = searchParams.get(CITY_PARAM_KEY) ?? "";
+  const initialCityId = searchParams.get(CITY_PARAM_KEY) ?? "";
+  const [selectedCityId, setSelectedCityId] = useState(initialCityId);
+
+  // Sync state with URL on initial load or external URL changes
+  useEffect(() => {
+    const urlCityId = searchParams.get(CITY_PARAM_KEY) ?? "";
+    setSelectedCityId(urlCityId);
+  }, [searchParams]);
 
   const handleCityChange = useCallback(
     (value: string | null) => {
+      setSelectedCityId(value ?? "");
+
       const params = new URLSearchParams(searchParams.toString());
 
       if (!value) {
@@ -30,9 +38,10 @@ export const useCityParam = (): UseCityParamReturn => {
       const queryString = params.toString();
       const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
 
-      router.push(newUrl, { scroll: false });
+      // Update URL without triggering navigation/rerender
+      window.history.replaceState(null, "", newUrl);
     },
-    [searchParams, router, pathname]
+    [searchParams, pathname]
   );
 
   return {

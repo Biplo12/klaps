@@ -6,23 +6,26 @@ import ScreeningsSectionCard from "./screenings-section-card";
 interface ScreeningsSectionListProps {
   screenings: IScreeningWithMovie[];
   selectedDate: string;
+  selectedCityId: string;
 }
 
 const ScreeningsSectionList: React.FC<ScreeningsSectionListProps> = ({
   screenings,
   selectedDate,
+  selectedCityId,
 }) => {
   if (screenings.length === 0) {
     return <EmptyState message="Brak seansów do wyświetlenia." />;
   }
 
   return (
-    <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 list-none">
-      {screenings.map((screening, index) => (
+    <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-8 list-none">
+      {screenings.map((screening) => (
         <li key={screening.movie.id}>
           <ScreeningsSectionCard
             screening={screening}
             selectedDate={selectedDate}
+            selectedCityId={selectedCityId}
           />
         </li>
       ))}

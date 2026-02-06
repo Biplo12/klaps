@@ -9,7 +9,6 @@ import {
   ComboboxContent,
   ComboboxList,
   ComboboxItem,
-  ComboboxEmpty,
 } from "@/components/ui/combobox";
 
 const ALL_CITIES_OPTION = { id: null, name: "Wszystkie miasta" };
@@ -29,16 +28,24 @@ const CitySelect: React.FC<CitySelectProps> = ({ cities }) => {
     [cities]
   );
 
+  // Find selected city name for display
+  const selectedCityName = useMemo(() => {
+    const selectedOption = options.find(
+      (opt) => (opt.id?.toString() ?? "") === selectedCityId
+    );
+    return selectedOption?.name ?? "";
+  }, [options, selectedCityId]);
+
   return (
     <Combobox value={selectedCityId} onValueChange={handleCityChange}>
       <ComboboxInput
         placeholder="Wybierz miasto"
         showTrigger
-        className="min-w-[220px]"
+        value={selectedCityName}
+        readOnly
       />
       <ComboboxContent>
         <ComboboxList>
-          <ComboboxEmpty>Brak wyników</ComboboxEmpty>
           {options.map((option) => (
             <ComboboxItem
               key={option.id ?? "all"}

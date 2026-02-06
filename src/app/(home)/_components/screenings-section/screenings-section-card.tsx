@@ -13,21 +13,24 @@ import { Button } from "@/components/ui/button";
 interface ScreeningsSectionCardProps {
   screening: IScreeningWithMovie;
   selectedDate: string;
+  selectedCityId: string;
 }
 
 const ScreeningsSectionCard: React.FC<ScreeningsSectionCardProps> = ({
   screening,
   selectedDate,
+  selectedCityId,
 }) => {
   const formattedGenres = formatGeneres(screening.movie.movies_genres);
   const desc = screening.movie.description?.trim() ?? "";
+  const titleId = `screening-card-title-${screening.movie.id}`;
 
   const screeningsOnDate = screening.screenings.filter(
     (s) => getDateString(new Date(s.date)) === selectedDate
   );
 
   return (
-    <article className="group flex flex-col">
+    <article className="group flex flex-col" aria-labelledby={titleId}>
       <div className="relative">
         <Link
           href={`/filmy/${screening.movie.id}`}
@@ -43,13 +46,15 @@ const ScreeningsSectionCard: React.FC<ScreeningsSectionCardProps> = ({
       </div>
 
       <div className="flex flex-col gap-2 pt-4">
-        <Link
-          href={`/filmy/${screening.movie.id}`}
-          id={`screening-card-title-${screening.movie.id}`}
-          className="text-lg font-semibold uppercase tracking-wide text-white hover:text-blood-red transition-colors line-clamp-2 focus-visible:outline focus-visible:ring-2 focus-visible:ring-blood-red focus-visible:ring-offset-2 focus-visible:ring-offset-black w-fit"
-        >
-          {screening.movie.title}
-        </Link>
+        <h3 className="text-lg font-semibold uppercase tracking-wide">
+          <Link
+            href={`/filmy/${screening.movie.id}`}
+            id={titleId}
+            className="text-white hover:text-blood-red transition-colors line-clamp-2 focus-visible:outline focus-visible:ring-2 focus-visible:ring-blood-red focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          >
+            {screening.movie.title}
+          </Link>
+        </h3>
 
         <MovieMeta
           duration={screening.movie.duration}
@@ -60,13 +65,24 @@ const ScreeningsSectionCard: React.FC<ScreeningsSectionCardProps> = ({
 
         <p className="text-sm text-white/70 italic line-clamp-2">{desc}</p>
 
-        <div className="flex flex-wrap gap-2 mt-2">
-          {screeningsOnDate.map((s) => (
-            <Button key={s.id} variant="secondary" size="sm" asChild>
-              <Link href={s.url}>{getHoursFromScreenings([s])[0]}</Link>
-            </Button>
-          ))}
-        </div>
+        {screeningsOnDate.length > 0 && (
+          <div
+            className={`flex flex-wrap gap-2 mt-2 ${
+              !selectedCityId ? "sr-only" : ""
+            }`}
+          >
+            {screeningsOnDate.map((s) => (
+              <Button key={s.id} variant="secondary" size="sm" asChild>
+                <Link
+                  href={s.url}
+                  aria-label={`Seans o ${getHoursFromScreenings([s])[0]}`}
+                >
+                  {getHoursFromScreenings([s])[0]}
+                </Link>
+              </Button>
+            ))}
+          </div>
+        )}
       </div>
     </article>
   );
