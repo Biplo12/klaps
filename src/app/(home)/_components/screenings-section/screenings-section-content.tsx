@@ -3,8 +3,8 @@
 import React from "react";
 import { IScreeningWithMovie } from "@/interfaces/IScreenings";
 import { ICity } from "@/interfaces/ICities";
+import { IGenre } from "@/interfaces/IMovies";
 import { useScreeningDates } from "@/hooks/use-screening-dates";
-import { useScreeningGenres } from "@/hooks/use-screening-genres";
 import { useCityParam } from "@/hooks/use-city-param";
 import {
   ScreeningsTransitionProvider,
@@ -17,13 +17,13 @@ import ScreeningsSectionList from "./screenings-section-list";
 interface ScreeningsSectionContentProps {
   screenings: IScreeningWithMovie[];
   cities: ICity[];
+  genres: IGenre[];
 }
 
 const ScreeningsSectionContentInner: React.FC<
   ScreeningsSectionContentProps
-> = ({ screenings, cities }) => {
-  const { dates, activeDate } = useScreeningDates(screenings);
-  const { genres } = useScreeningGenres(screenings);
+> = ({ screenings, cities, genres }) => {
+  const { activeDate } = useScreeningDates(screenings);
   const { selectedCity } = useCityParam(cities);
   const { isPending } = useScreeningsTransition();
 
@@ -35,11 +35,7 @@ const ScreeningsSectionContentInner: React.FC<
       )}
       aria-busy={isPending}
     >
-      <ScreeningsSectionHeader
-        screenings={screenings}
-        cities={cities}
-        genres={genres}
-      />
+      <ScreeningsSectionHeader cities={cities} genres={genres} />
 
       <ScreeningsSectionList
         screenings={screenings}

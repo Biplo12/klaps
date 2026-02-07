@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import Hero from "./_components/hero";
 import ScreeningsSection from "./_components/screenings-section";
+import ScreeningsSectionLoader from "./_components/screenings-section/screenings-section-loader";
 
 type SearchParams = {
   city?: string;
@@ -17,9 +17,8 @@ export default async function Home({ searchParams }: HomeProps) {
   const params = await searchParams;
 
   return (
-    <>
-      <Hero />
+    <Suspense fallback={<ScreeningsSectionLoader />}>
       <ScreeningsSection searchParams={params} />
-    </>
+    </Suspense>
   );
 }

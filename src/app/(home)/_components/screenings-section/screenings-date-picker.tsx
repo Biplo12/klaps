@@ -8,22 +8,27 @@ const ScreeningsDatePicker: React.FC = () => {
   const { dateFrom, daysOptions, handleDateChange } = useDateParam();
 
   return (
-    <RadioGroup
-      value={dateFrom ?? undefined}
-      onValueChange={handleDateChange}
-      className="flex flex-wrap gap-2"
-    >
-      {daysOptions.map((option) => (
-        <RadioGroupItem
-          key={option.value}
-          value={option.value}
-          variant="tag"
-          size="sm"
-        >
-          {option.label}
-        </RadioGroupItem>
-      ))}
-    </RadioGroup>
+    <div className="flex flex-col gap-3">
+      <span className="text-sm uppercase tracking-wider text-white/50">
+        Data
+      </span>
+      <RadioGroup
+        value={dateFrom ?? undefined}
+        onValueChange={handleDateChange}
+        className="flex flex-wrap gap-2"
+      >
+        {daysOptions.map((option) => (
+          <RadioGroupItem
+            key={option.value}
+            value={option.value}
+            variant="tag"
+            size="sm"
+          >
+            {option.label}
+          </RadioGroupItem>
+        ))}
+      </RadioGroup>
+    </div>
   );
 };
 

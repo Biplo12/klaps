@@ -2,11 +2,11 @@
 
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
-import type { GenreOption } from "@/hooks/use-screening-genres";
+import { IGenre } from "@/interfaces/IMovies";
 import { useScreeningsTransition } from "@/contexts/screenings-transition-context";
 
 const GENRE_PARAM_KEY = "genre";
-const ALL_GENRES_OPTION: GenreOption = { id: 0, name: "Wszystkie" };
+const ALL_GENRES_LABEL = "Wszystkie";
 
 interface GenreRadioOption {
   value: string;
@@ -19,7 +19,7 @@ interface UseGenreParamReturn {
   options: GenreRadioOption[];
 }
 
-export const useGenreParam = (genres: GenreOption[]): UseGenreParamReturn => {
+export const useGenreParam = (genres: IGenre[]): UseGenreParamReturn => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -27,7 +27,7 @@ export const useGenreParam = (genres: GenreOption[]): UseGenreParamReturn => {
 
   const options = useMemo<GenreRadioOption[]>(
     () => [
-      { value: "", label: ALL_GENRES_OPTION.name },
+      { value: "", label: ALL_GENRES_LABEL },
       ...genres.map((g) => ({ value: g.id.toString(), label: g.name })),
     ],
     [genres]
