@@ -34,7 +34,7 @@ const ScreeningsSectionHeader: React.FC<ScreeningsSectionHeaderProps> = ({
           <span className="text-sm uppercase tracking-wider text-white/50">
             Data
           </span>
-          <ScreeningsDatePicker screenings={screenings} />
+          <ScreeningsDatePicker />
         </div>
       )}
 

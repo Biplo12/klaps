@@ -10,6 +10,7 @@ const ALL_CITIES_OPTION: CityOption = {
   value: null,
   label: "Wszystkie miasta",
 };
+
 const CITY_PARAM_KEY = "city";
 
 interface UseCityParamReturn {
@@ -52,6 +53,10 @@ export const useCityParam = (cities: ICity[]): UseCityParamReturn => {
       const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
 
       window.history.replaceState(null, "", newUrl);
+
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
     },
     [searchParams, pathname]
   );

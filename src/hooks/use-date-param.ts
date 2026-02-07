@@ -1,76 +1,60 @@
 "use client";
 
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useMemo } from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { formatDateLabel } from "@/lib/utils";
 
 const DATE_FROM_PARAM_KEY = "dateFrom";
 const DATE_TO_PARAM_KEY = "dateTo";
+const DAYS_TO_RENDER = 7;
+
+type DateOption = {
+  value: string;
+  label: string;
+};
 
 interface UseDateParamReturn {
-  dateFrom: string;
-  dateTo: string;
+  dateFrom: string | null;
+  dateTo: string | null;
   handleDateChange: (value: string | null) => void;
+  daysOptions: DateOption[];
 }
 
-export const useDateParam = (defaultDate?: string): UseDateParamReturn => {
-  const searchParams = useSearchParams();
+export const useDateParam = (): UseDateParamReturn => {
   const pathname = usePathname();
-  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const initialDateFrom =
-    searchParams.get(DATE_FROM_PARAM_KEY) ?? defaultDate ?? "";
-  const initialDateTo =
-    searchParams.get(DATE_TO_PARAM_KEY) ?? defaultDate ?? "";
+  const todayString = new Date().toISOString().split("T")[0];
 
-  const [dateFrom, setDateFrom] = useState(initialDateFrom);
-  const [dateTo, setDateTo] = useState(initialDateTo);
+  const dateFrom = searchParams.get(DATE_FROM_PARAM_KEY) ?? todayString;
+  const dateTo = searchParams.get(DATE_TO_PARAM_KEY) ?? todayString;
 
-  useEffect(() => {
-    const urlDateFrom = searchParams.get(DATE_FROM_PARAM_KEY);
-    const urlDateTo = searchParams.get(DATE_TO_PARAM_KEY);
-
-    if (urlDateFrom && urlDateTo) {
-      setDateFrom(urlDateFrom);
-      setDateTo(urlDateTo);
-    } else if (defaultDate) {
-      setDateFrom(defaultDate);
-      setDateTo(defaultDate);
-
-      const params = new URLSearchParams(searchParams.toString());
-      params.set(DATE_FROM_PARAM_KEY, defaultDate);
-      params.set(DATE_TO_PARAM_KEY, defaultDate);
-      const queryString = params.toString();
-      const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
-      window.history.replaceState(null, "", newUrl);
-    }
-  }, [searchParams, defaultDate, pathname]);
+  const daysRange = useMemo(() => {
+    const today = new Date();
+    return Array.from({ length: DAYS_TO_RENDER }, (_, index) => {
+      const date = new Date(today);
+      date.setDate(today.getDate() + index);
+      const dateString = date.toISOString().split("T")[0];
+      return {
+        value: dateString,
+        label: formatDateLabel(dateString),
+      };
+    });
+  }, []);
 
   const handleDateChange = useCallback(
     (value: string | null) => {
-      setDateFrom(value ?? "");
-      setDateTo(value ?? "");
-
       const params = new URLSearchParams(searchParams.toString());
-
-      if (!value) {
-        params.delete(DATE_FROM_PARAM_KEY);
-        params.delete(DATE_TO_PARAM_KEY);
-      } else {
-        params.set(DATE_FROM_PARAM_KEY, value);
-        params.set(DATE_TO_PARAM_KEY, value);
-      }
+      params.set(DATE_FROM_PARAM_KEY, value ?? "");
+      params.set(DATE_TO_PARAM_KEY, value ?? "");
 
       const queryString = params.toString();
       const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
 
-      router.replace(newUrl);
+      window.history.replaceState(null, "", newUrl);
     },
-    [searchParams, pathname, router]
+    [searchParams, pathname]
   );
 
-  return {
-    dateFrom,
-    dateTo,
-    handleDateChange,
-  };
+  return { dateFrom, dateTo, daysOptions: daysRange, handleDateChange };
 };

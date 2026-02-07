@@ -1,53 +1,60 @@
 "use client";
 
-import { useCallback, useState, useEffect } from "react";
 import { useSearchParams, usePathname } from "next/navigation";
+import { useCallback, useMemo } from "react";
+import type { GenreOption } from "@/hooks/use-screening-genres";
 
 const GENRE_PARAM_KEY = "genre";
+const ALL_GENRES_OPTION: GenreOption = { id: 0, name: "Wszystkie" };
 
-interface UseGenreParamReturn {
-  selectedGenreId: string;
-  handleGenreChange: (value: string | null) => void;
+interface GenreRadioOption {
+  value: string;
+  label: string;
 }
 
-export const useGenreParam = (): UseGenreParamReturn => {
+interface UseGenreParamReturn {
+  selectedGenre: string;
+  handleGenreChange: (value: string) => void;
+  options: GenreRadioOption[];
+}
+
+export const useGenreParam = (genres: GenreOption[]): UseGenreParamReturn => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
-  const [selectedGenreId, setSelectedGenreId] = useState(
-    searchParams.get(GENRE_PARAM_KEY) ?? ""
+  const options = useMemo<GenreRadioOption[]>(
+    () => [
+      { value: "", label: ALL_GENRES_OPTION.name },
+      ...genres.map((g) => ({ value: g.id.toString(), label: g.name })),
+    ],
+    [genres]
   );
 
-  // Sync state with URL on external URL changes
-  useEffect(() => {
-    const urlGenreId = searchParams.get(GENRE_PARAM_KEY) ?? "";
-    setSelectedGenreId(urlGenreId);
-  }, [searchParams]);
+  const selectedGenre = useMemo(() => {
+    const genreParam = searchParams.get(GENRE_PARAM_KEY);
+    if (!genreParam) return "";
+    const match = options.find((o) => o.value === genreParam);
+    return match ? match.value : "";
+  }, [options, searchParams]);
 
   const handleGenreChange = useCallback(
-    (value: string | null) => {
-      const newValue = value ?? "";
-      setSelectedGenreId(newValue);
-
+    (value: string) => {
       const params = new URLSearchParams(searchParams.toString());
-
       if (!value) {
         params.delete(GENRE_PARAM_KEY);
       } else {
         params.set(GENRE_PARAM_KEY, value);
       }
-
       const queryString = params.toString();
       const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
-
-      // Update URL without page reload
       window.history.replaceState(null, "", newUrl);
     },
     [searchParams, pathname]
   );
 
   return {
-    selectedGenreId,
+    selectedGenre,
     handleGenreChange,
+    options,
   };
 };
