@@ -28,7 +28,7 @@ function ComboboxTrigger({
     <ComboboxPrimitive.Trigger
       data-slot="combobox-trigger"
       className={cn(
-        "[&_svg:not([class*='size-'])]:size-4 text-white",
+        "[&_svg:not([class*='size-'])]:size-4 text-white hover:text-blood-red hover:bg-transparent",
         className
       )}
       {...props}
@@ -36,7 +36,7 @@ function ComboboxTrigger({
       {children}
       <ChevronDownIcon
         data-slot="combobox-trigger-icon"
-        className="text-white pointer-events-none size-4"
+        className="text-white pointer-events-none size-4 hover:text-blood-red hover:bg-transparent"
       />
     </ComboboxPrimitive.Trigger>
   );
@@ -47,7 +47,7 @@ function ComboboxClear({ className, ...props }: ComboboxPrimitive.Clear.Props) {
     <ComboboxPrimitive.Clear
       data-slot="combobox-clear"
       render={<InputGroupButton variant="ghost" size="icon-xs" />}
-      className={cn(className)}
+      className={cn("hover:bg-transparent text-white", className)}
       {...props}
     >
       <XIcon className="pointer-events-none" />
@@ -69,7 +69,7 @@ function ComboboxInput({
   return (
     <InputGroup
       className={cn(
-        "w-auto rounded-none border-2 border-blood-red bg-transparent shadow-none hover:bg-blood-red/10 transition-colors",
+        "w-auto rounded-none border-2 border-blood-red bg-transparent shadow-none hover:bg-blood-red/10 transition-colors has-[[data-slot=input-group-control]:focus-visible]:border-blood-red has-[[data-slot=input-group-control]:focus-visible]:ring-0",
         className
       )}
     >
@@ -89,7 +89,7 @@ function ComboboxInput({
             variant="ghost"
             asChild
             data-slot="input-group-button"
-            className="group-has-data-[slot=combobox-clear]/input-group:hidden data-pressed:bg-transparent text-white hover:text-blood-red"
+            className="group-has-data-[slot=combobox-clear]/input-group:hidden data-pressed:bg-transparent text-white hover:text-blood-red hover:bg-transparent"
             disabled={disabled}
           >
             <ComboboxTrigger />
@@ -251,7 +251,7 @@ function ComboboxChips({
     <ComboboxPrimitive.Chips
       data-slot="combobox-chips"
       className={cn(
-        "rounded-none border-2 border-blood-red bg-transparent text-white focus-within:border-blood-red focus-within:ring-blood-red/30 has-aria-invalid:ring-destructive/20 has-aria-invalid:border-destructive flex min-h-9 flex-wrap items-center gap-1.5 bg-clip-padding px-2.5 py-1.5 text-sm shadow-none transition-[color,box-shadow] focus-within:ring-[3px] has-aria-invalid:ring-[3px] has-data-[slot=combobox-chip]:px-1.5",
+        "rounded-none border-2 border-blood-red bg-transparent text-white focus-within:border-blood-red has-aria-invalid:border-destructive flex min-h-9 flex-wrap items-center gap-1.5 bg-clip-padding px-2.5 py-1.5 text-sm shadow-none transition-colors has-data-[slot=combobox-chip]:px-1.5",
         className
       )}
       {...props}

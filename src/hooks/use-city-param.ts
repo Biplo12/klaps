@@ -1,27 +1,31 @@
 "use client";
 
 import { useCallback, useMemo } from "react";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
 import { ICity } from "@/interfaces/ICities";
 
-const ALL_CITIES_OPTION = { id: null, name: "Wszystkie miasta" };
+export type CityOption = { value: number | null; label: string };
+
+const ALL_CITIES_OPTION: CityOption = {
+  value: null,
+  label: "Wszystkie miasta",
+};
 const CITY_PARAM_KEY = "city";
 
 interface UseCityParamReturn {
-  selectedCity: ICity | null;
-  handleCityChange: (value: number | null) => void;
-  options: { id: number | null; name: string }[];
+  selectedCity: CityOption | null;
+  handleCityChange: (option: CityOption | null) => void;
+  options: CityOption[];
 }
 
 export const useCityParam = (cities: ICity[]): UseCityParamReturn => {
-  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const options = useMemo(
+  const options = useMemo<CityOption[]>(
     () => [
       ALL_CITIES_OPTION,
-      ...cities.map((c) => ({ id: c.id, name: c.name })),
+      ...cities.map((c) => ({ value: c.id, label: c.name })),
     ],
     [cities]
   );
@@ -30,26 +34,26 @@ export const useCityParam = (cities: ICity[]): UseCityParamReturn => {
     const cityParam = searchParams.get(CITY_PARAM_KEY);
     if (!cityParam) return null;
 
-    return cities.find((c) => c.id.toString() === cityParam) ?? null;
-  }, [cities, searchParams]);
+    return options.find((o) => o.value?.toString() === cityParam) ?? null;
+  }, [options, searchParams]);
 
   const handleCityChange = useCallback(
-    (value: number | null) => {
-      console.log({ value });
+    (option: CityOption | null) => {
+      const cityValue = option?.value;
       const params = new URLSearchParams(searchParams.toString());
 
-      if (!value) {
+      if (!cityValue) {
         params.delete(CITY_PARAM_KEY);
       } else {
-        params.set(CITY_PARAM_KEY, value.toString());
+        params.set(CITY_PARAM_KEY, cityValue.toString());
       }
 
       const queryString = params.toString();
       const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
 
-      router.replace(newUrl);
+      window.history.replaceState(null, "", newUrl);
     },
-    [searchParams, pathname, router]
+    [searchParams, pathname]
   );
 
   return {

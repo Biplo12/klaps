@@ -5,12 +5,12 @@ import { formatGeneres, getDateString } from "@/lib/utils";
 import MoviePoster from "@/components/common/movie-poster";
 import MovieMeta from "../hero/movie-meta";
 import ScreeningHours from "./screening-hours";
-import { ICity } from "@/interfaces/ICities";
+import type { CityOption } from "@/hooks/use-city-param";
 
 interface ScreeningsSectionCardProps {
   screening: IScreeningWithMovie;
   selectedDate: string;
-  selectedCity: ICity | null;
+  selectedCity: CityOption | null;
 }
 
 const ScreeningsSectionCard: React.FC<ScreeningsSectionCardProps> = ({

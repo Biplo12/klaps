@@ -10,7 +10,7 @@ import {
   ComboboxItem,
   ComboboxEmpty,
 } from "@/components/ui/combobox";
-import { useCityParam } from "@/hooks/use-city-param";
+import { useCityParam, type CityOption } from "@/hooks/use-city-param";
 
 interface CitySelectProps {
   cities: ICity[];
@@ -22,20 +22,19 @@ const CitySelect: React.FC<CitySelectProps> = ({ cities }) => {
   return (
     <Combobox
       items={options}
-      value={selectedCity?.id}
+      value={selectedCity}
       onValueChange={handleCityChange}
     >
       <ComboboxInput placeholder="Wybierz miasto" showTrigger showClear />
 
       <ComboboxContent>
+        <ComboboxEmpty>Nie znaleziono miasta</ComboboxEmpty>
         <ComboboxList>
-          {options?.map((option, index) => (
-            <ComboboxItem key={index} value={option.id}>
-              {option.name}
+          {(option: CityOption) => (
+            <ComboboxItem key={option.value ?? "all"} value={option}>
+              {option.label}
             </ComboboxItem>
-          ))}
-
-          <ComboboxEmpty>Nie znaleziono miasta</ComboboxEmpty>
+          )}
         </ComboboxList>
       </ComboboxContent>
     </Combobox>

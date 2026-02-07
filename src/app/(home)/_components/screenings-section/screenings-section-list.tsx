@@ -2,12 +2,12 @@ import React from "react";
 import EmptyState from "@/components/common/empty-state";
 import { IScreeningWithMovie } from "@/interfaces/IScreenings";
 import ScreeningsSectionCard from "./screenings-section-card";
-import { ICity } from "@/interfaces/ICities";
+import type { CityOption } from "@/hooks/use-city-param";
 
 interface ScreeningsSectionListProps {
   screenings: IScreeningWithMovie[];
   selectedDate: string;
-  selectedCity: ICity | null;
+  selectedCity: CityOption | null;
 }
 
 const ScreeningsSectionList: React.FC<ScreeningsSectionListProps> = ({
