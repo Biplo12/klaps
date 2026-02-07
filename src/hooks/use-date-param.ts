@@ -3,6 +3,7 @@
 import { useCallback, useMemo } from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { formatDateLabel } from "@/lib/utils";
+import { useScreeningsTransition } from "@/contexts/screenings-transition-context";
 
 const DATE_FROM_PARAM_KEY = "dateFrom";
 const DATE_TO_PARAM_KEY = "dateTo";
@@ -24,6 +25,7 @@ export const useDateParam = (): UseDateParamReturn => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { startTransition } = useScreeningsTransition();
 
   const todayString = new Date().toISOString().split("T")[0];
 
@@ -52,9 +54,11 @@ export const useDateParam = (): UseDateParamReturn => {
       const queryString = params.toString();
       const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
 
-      router.replace(newUrl, { scroll: false });
+      startTransition(() => {
+        router.replace(newUrl, { scroll: false });
+      });
     },
-    [searchParams, pathname, router]
+    [searchParams, pathname, router, startTransition]
   );
 
   return { dateFrom, dateTo, daysOptions: daysRange, handleDateChange };

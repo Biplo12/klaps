@@ -3,6 +3,7 @@
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
 import type { GenreOption } from "@/hooks/use-screening-genres";
+import { useScreeningsTransition } from "@/contexts/screenings-transition-context";
 
 const GENRE_PARAM_KEY = "genre";
 const ALL_GENRES_OPTION: GenreOption = { id: 0, name: "Wszystkie" };
@@ -22,6 +23,7 @@ export const useGenreParam = (genres: GenreOption[]): UseGenreParamReturn => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
+  const { startTransition } = useScreeningsTransition();
 
   const options = useMemo<GenreRadioOption[]>(
     () => [
@@ -48,9 +50,11 @@ export const useGenreParam = (genres: GenreOption[]): UseGenreParamReturn => {
       }
       const queryString = params.toString();
       const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
-      router.replace(newUrl, { scroll: false });
+      startTransition(() => {
+        router.replace(newUrl, { scroll: false });
+      });
     },
-    [searchParams, pathname, router]
+    [searchParams, pathname, router, startTransition]
   );
 
   return {

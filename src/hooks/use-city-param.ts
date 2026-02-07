@@ -3,6 +3,7 @@
 import { useCallback, useMemo } from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { ICity } from "@/interfaces/ICities";
+import { useScreeningsTransition } from "@/contexts/screenings-transition-context";
 
 export type CityOption = { value: number | null; label: string };
 
@@ -23,6 +24,7 @@ export const useCityParam = (cities: ICity[]): UseCityParamReturn => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { startTransition } = useScreeningsTransition();
 
   const options = useMemo<CityOption[]>(
     () => [
@@ -53,13 +55,15 @@ export const useCityParam = (cities: ICity[]): UseCityParamReturn => {
       const queryString = params.toString();
       const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
 
-      router.replace(newUrl, { scroll: false });
+      startTransition(() => {
+        router.replace(newUrl, { scroll: false });
+      });
 
       if (document.activeElement instanceof HTMLElement) {
         document.activeElement.blur();
       }
     },
-    [searchParams, pathname, router]
+    [searchParams, pathname, router, startTransition]
   );
 
   return {
