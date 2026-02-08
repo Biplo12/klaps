@@ -13,7 +13,7 @@ const StudioCinemasSection: React.FC<StudioCinemasSectionProps> = ({
 }) => {
   return (
     <section className="bg-black px-8 py-24 md:py-32">
-      <div className="max-w-[1400px] mx-auto">
+      <div className="max-w-[1400px] mx-auto flex flex-col gap-16 md:gap-12">
         <StudioCinemasHeader />
         <StudioCinemasList cinemas={cinemas} />
 
