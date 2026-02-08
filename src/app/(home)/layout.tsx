@@ -1,6 +1,7 @@
 import Hero from "./_components/hero";
-import ManifestoSection from "./_components/manifesto-section";
+import MissionSection from "./_components/mission-section";
 import StudioCinemasSection from "./_components/studio-cinemas-section";
+import SectionDivider from "@/components/ui/section-divider";
 import { getCinemas } from "@/lib/cinemas";
 
 export default async function HomeLayout({
@@ -13,8 +14,10 @@ export default async function HomeLayout({
     <>
       <Hero />
       {children}
+      <SectionDivider />
+      <MissionSection />
+      <SectionDivider />
       <StudioCinemasSection cinemas={cinemas} />
-      <ManifestoSection />
     </>
   );
 }
