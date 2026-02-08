@@ -10,11 +10,9 @@ const CinemaLinkItem: React.FC<CinemaLinkItemProps> = ({ cinema }) => {
     <li>
       <a
         href={`/kina/${cinema.id}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group flex items-baseline justify-between gap-4 py-3 transition-colors duration-200 hover:text-red-800 focus-visible:text-red-800 focus-visible:outline-none"
+        className="group flex items-baseline justify-between gap-4 py-3 transition-colors duration-200 hover:text-blood-red focus-visible:text-blood-red focus-visible:outline-none"
       >
-        <span className="text-neutral-300 text-base md:text-lg leading-snug group-hover:text-red-800 group-focus-visible:text-red-800 transition-colors duration-200">
+        <span className="text-neutral-300 text-base md:text-lg leading-snug group-hover:text-blood-red group-focus-visible:text-blood-red transition-colors duration-200">
           {cinema.name}
         </span>
         <span className="hidden md:block text-neutral-600 text-sm leading-snug shrink-0">

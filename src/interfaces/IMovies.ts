@@ -46,3 +46,13 @@ export interface IMovie {
   updatedAt: string;
   movies_genres: IMovieGenre[];
 }
+
+export interface PaginatedResponse<T> {
+  data: readonly T[];
+  meta: {
+    total: number;
+    page: number;
+    limit: number;
+    totalPages: number;
+  };
+}
