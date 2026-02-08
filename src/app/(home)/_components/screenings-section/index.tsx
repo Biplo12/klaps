@@ -22,7 +22,7 @@ const ScreeningsSection = async ({ searchParams }: ScreeningsSectionProps) => {
       genreId: params?.genre,
       dateFrom: params?.dateFrom,
       dateTo: params?.dateTo,
-      limit: 300,
+      limit: 12,
     }),
     getCities(),
     getGenres(),

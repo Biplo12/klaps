@@ -11,6 +11,7 @@ import {
 import { cn } from "@/lib/utils";
 import ScreeningsSectionHeader from "./screenings-section-header";
 import ScreeningsSectionList from "./screenings-section-list";
+import ScreeningsSectionCta from "./screenings-section-cta";
 
 interface ScreeningsSectionContentProps {
   screenings: IScreeningWithMovie[];
@@ -32,6 +33,7 @@ const ScreeningsSectionContentInner: React.FC<
     >
       <ScreeningsSectionHeader cities={cities} genres={genres} />
       <ScreeningsSectionList screenings={screenings} />
+      <ScreeningsSectionCta />
     </div>
   );
 };
