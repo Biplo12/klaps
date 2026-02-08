@@ -26,7 +26,10 @@ const MultiCitySection: React.FC<MultiCitySectionProps> = ({ movies }) => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <MultiCityList movies={movies} />
-          <MultiCityPoster movie={mostPlayedMovie} />
+          <MultiCityPoster
+            movie={mostPlayedMovie}
+            runnersUp={movies.slice(1, 4)}
+          />
         </div>
       </div>
     </section>
