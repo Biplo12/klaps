@@ -1,30 +1,32 @@
 import React from "react";
 import Link from "next/link";
 import { IScreeningWithMovie } from "@/interfaces/IScreenings";
-import { formatGeneres, getDateString } from "@/lib/utils";
+import { formatGeneres } from "@/lib/utils";
 import MoviePoster from "@/components/common/movie-poster";
 import MovieMeta from "../hero/movie-meta";
-import ScreeningHours from "./screening-hours";
-import type { CityOption } from "@/hooks/use-city-param";
+import ScreeningHoverOverlay from "./screening-hover-overlay";
+import ScreeningSummary from "./screening-summary";
 
 interface ScreeningsSectionCardProps {
   screening: IScreeningWithMovie;
-  selectedDate: string;
-  selectedCity: CityOption | null;
 }
+
+const getScreeningSummary = (screening: IScreeningWithMovie) => {
+  const screeningsCount = screening.screenings.length;
+  const uniqueCinemas = new Set(
+    screening.screenings.map((s) => s.cinemaName).filter(Boolean)
+  );
+  const cinemasCount = uniqueCinemas.size;
+
+  return { screeningsCount, cinemasCount };
+};
 
 const ScreeningsSectionCard: React.FC<ScreeningsSectionCardProps> = ({
   screening,
-  selectedDate,
-  selectedCity,
 }) => {
   const formattedGenres = formatGeneres(screening.movie.movies_genres);
   const desc = screening.movie.description?.trim() ?? "";
-  const titleId = `screening-card-title-${screening.movie.id}`;
-
-  const screeningsOnDate = screening.screenings.filter(
-    (s) => getDateString(new Date(s.date)) === selectedDate
-  );
+  const { screeningsCount, cinemasCount } = getScreeningSummary(screening);
 
   return (
     <article className="group flex flex-col">
@@ -32,6 +34,7 @@ const ScreeningsSectionCard: React.FC<ScreeningsSectionCardProps> = ({
         <Link
           href={`/filmy/${screening.movie.id}`}
           className="block overflow-hidden border border-white/10 transition-transform duration-300 group-hover:scale-[1.02] w-full aspect-2/3 focus-visible:outline focus-visible:ring-2 focus-visible:ring-blood-red focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          aria-label={`${screening.movie.title} — ${screeningsCount} seansów`}
         >
           <MoviePoster
             posterUrl={screening.movie.posterUrl ?? ""}
@@ -39,6 +42,8 @@ const ScreeningsSectionCard: React.FC<ScreeningsSectionCardProps> = ({
             height={330}
             className="w-full h-full object-cover min-w-full min-h-full"
           />
+
+          <ScreeningHoverOverlay />
         </Link>
       </div>
 
@@ -46,7 +51,6 @@ const ScreeningsSectionCard: React.FC<ScreeningsSectionCardProps> = ({
         <h3 className="text-lg font-semibold uppercase tracking-wide">
           <Link
             href={`/filmy/${screening.movie.id}`}
-            id={titleId}
             className="text-white hover:text-blood-red transition-colors line-clamp-2 focus-visible:outline focus-visible:ring-2 focus-visible:ring-blood-red focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           >
             {screening.movie.title}
@@ -62,7 +66,10 @@ const ScreeningsSectionCard: React.FC<ScreeningsSectionCardProps> = ({
 
         <p className="text-sm text-white/70 italic line-clamp-2">{desc}</p>
 
-        {selectedCity && <ScreeningHours screenings={screeningsOnDate} />}
+        <ScreeningSummary
+          screeningsCount={screeningsCount}
+          cinemasCount={cinemasCount}
+        />
       </div>
     </article>
   );

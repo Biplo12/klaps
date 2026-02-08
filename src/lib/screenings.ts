@@ -16,7 +16,8 @@ export const getScreenings = async (
     params: {
       cityId: params.cityId ?? "",
       genreId: params.genreId ?? "",
-      date: params.dateFrom ?? "",
+      dateFrom: params.dateFrom ?? "",
+      dateTo: params.dateTo ?? "",
       limit: params.limit?.toString() ?? "10",
     },
   });

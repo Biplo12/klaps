@@ -4,8 +4,6 @@ import React from "react";
 import { IScreeningWithMovie } from "@/interfaces/IScreenings";
 import { ICity } from "@/interfaces/ICities";
 import { IGenre } from "@/interfaces/IMovies";
-import { useScreeningDates } from "@/hooks/use-screening-dates";
-import { useCityParam } from "@/hooks/use-city-param";
 import {
   ScreeningsTransitionProvider,
   useScreeningsTransition,
@@ -23,8 +21,6 @@ interface ScreeningsSectionContentProps {
 const ScreeningsSectionContentInner: React.FC<
   ScreeningsSectionContentProps
 > = ({ screenings, cities, genres }) => {
-  const { activeDate } = useScreeningDates(screenings);
-  const { selectedCity } = useCityParam(cities);
   const { isPending } = useScreeningsTransition();
 
   return (
@@ -37,11 +33,7 @@ const ScreeningsSectionContentInner: React.FC<
     >
       <ScreeningsSectionHeader cities={cities} genres={genres} />
 
-      <ScreeningsSectionList
-        screenings={screenings}
-        selectedDate={activeDate}
-        selectedCity={selectedCity}
-      />
+      <ScreeningsSectionList screenings={screenings} />
     </div>
   );
 };

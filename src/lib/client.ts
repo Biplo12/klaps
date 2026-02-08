@@ -16,6 +16,8 @@ export async function apiFetch<T>(
       });
     }
 
+    console.log(url.toString());
+
     const res = await fetch(url.toString(), {
       ...options,
       headers: {
@@ -26,13 +28,14 @@ export async function apiFetch<T>(
     });
 
     if (!res.ok) {
-      console.error(res.statusText);
-      throw new Error(`API error ${res.status}`);
+      const errorBody = await res.text();
+      console.error(res.statusText, errorBody);
+      throw new Error(`API error ${res.status}: ${errorBody}`);
     }
 
     return res.json();
   } catch (error) {
     console.error(error);
-    throw new Error("Failed to fetch data");
+    throw new Error(`Failed to fetch data: ${error}`);
   }
 }
