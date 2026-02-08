@@ -1,9 +1,9 @@
 import React from "react";
-import AboutSection from "../about-section";
+import ContentSection from "@/components/common/content-section";
 
 const SummarySection: React.FC = () => {
   return (
-    <AboutSection id="podsumowanie" title="Podsumowanie">
+    <ContentSection id="podsumowanie" title="Podsumowanie">
       <p>
         Klatka to projekt, który wyrasta z&nbsp;prostej obserwacji: wartościowe
         seanse kinowe odbywają się każdego dnia, ale informacja o&nbsp;nich jest
@@ -22,7 +22,7 @@ const SummarySection: React.FC = () => {
         Jeśli kiedykolwiek żałowałeś, że dowiedziałeś się o&nbsp;pokazie
         ulubionego filmu dzień po seansie, Klatka jest właśnie dla Ciebie.
       </p>
-    </AboutSection>
+    </ContentSection>
   );
 };
 

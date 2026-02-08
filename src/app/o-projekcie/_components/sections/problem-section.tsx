@@ -1,10 +1,10 @@
 import React from "react";
-import AboutSection from "../about-section";
+import ContentSection from "@/components/common/content-section";
 import AboutBorderedList from "../about-bordered-list";
 
 const ProblemSection: React.FC = () => {
   return (
-    <AboutSection id="problem" title="Problem, na który odpowiada projekt">
+    <ContentSection id="problem" title="Problem, na który odpowiada projekt">
       <p>
         Współczesny widz filmowy funkcjonuje w&nbsp;środowisku nadmiaru treści.
         Platformy streamingowe oferują tysiące tytułów, a&nbsp;algorytmy
@@ -41,7 +41,7 @@ const ProblemSection: React.FC = () => {
         ich w&nbsp;formie czytelnej, uporządkowanej i&nbsp;pozbawionej nadmiaru
         bodźców.
       </p>
-    </AboutSection>
+    </ContentSection>
   );
 };
 

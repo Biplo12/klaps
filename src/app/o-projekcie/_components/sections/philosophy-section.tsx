@@ -1,10 +1,10 @@
 import React from "react";
-import AboutSection from "../about-section";
+import ContentSection from "@/components/common/content-section";
 import AboutBorderedList from "../about-bordered-list";
 
 const PhilosophySection: React.FC = () => {
   return (
-    <AboutSection id="filozofia" title="Filozofia projektu">
+    <ContentSection id="filozofia" title="Filozofia projektu">
       <p>Klatka opiera się na kilku prostych zasadach:</p>
 
       <AboutBorderedList
@@ -38,7 +38,7 @@ const PhilosophySection: React.FC = () => {
         Celem nie jest edukowanie widza ani narzucanie gustu, lecz umożliwienie
         świadomego wyboru.
       </p>
-    </AboutSection>
+    </ContentSection>
   );
 };
 

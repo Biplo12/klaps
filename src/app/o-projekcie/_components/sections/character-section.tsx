@@ -1,10 +1,10 @@
 import React from "react";
-import AboutSection from "../about-section";
+import ContentSection from "@/components/common/content-section";
 import AboutBorderedList from "../about-bordered-list";
 
 const CharacterSection: React.FC = () => {
   return (
-    <AboutSection id="charakter" title="Charakter projektu">
+    <ContentSection id="charakter" title="Charakter projektu">
       <p>Klatka jest projektem:</p>
 
       <AboutBorderedList
@@ -32,7 +32,7 @@ const CharacterSection: React.FC = () => {
         To narzędzie, które ma służyć widzom, a&nbsp;nie ich zatrzymywać na
         stronie.
       </p>
-    </AboutSection>
+    </ContentSection>
   );
 };
 

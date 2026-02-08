@@ -1,12 +1,12 @@
 import React from "react";
 
-type ContactSectionProps = {
+type ContentSectionProps = {
   id: string;
   title: string;
   children: React.ReactNode;
 };
 
-const ContactSection: React.FC<ContactSectionProps> = ({
+const ContentSection: React.FC<ContentSectionProps> = ({
   id,
   title,
   children,
@@ -24,4 +24,4 @@ const ContactSection: React.FC<ContactSectionProps> = ({
   );
 };
 
-export default ContactSection;
+export default ContentSection;

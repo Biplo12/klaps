@@ -1,9 +1,9 @@
 import React from "react";
-import AboutSection from "../about-section";
+import ContentSection from "@/components/common/content-section";
 
 const IntroSection: React.FC = () => {
   return (
-    <AboutSection id="czym-jest" title="Czym jest Klatka?">
+    <ContentSection id="czym-jest" title="Czym jest Klatka?">
       <p>
         Klatka to niezależny, ogólnopolski przewodnik po repertuarze kinowym,
         skupiony na seansach specjalnych, klasyce oraz filmach spoza bieżącego,
@@ -28,7 +28,7 @@ const IntroSection: React.FC = () => {
         wznowieniach klasyków oraz wydarzeniach specjalnych. To repertuar, który
         często ginie wśród premier i&nbsp;masowych tytułów.
       </p>
-    </AboutSection>
+    </ContentSection>
   );
 };
 

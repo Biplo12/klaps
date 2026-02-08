@@ -26,7 +26,7 @@ const ContactSidebar: React.FC = () => {
 
         <Separator className="bg-neutral-800" />
 
-        <ContactSidebarNote text="Prosimy o zwięzły opis sprawy w temacie wiadomości — ułatwi nam to szybszą odpowiedź." />
+        <ContactSidebarNote text="Prosimy o zwięzły opis sprawy w temacie wiadomości. Ułatwi nam to szybszą odpowiedź." />
       </div>
     </aside>
   );

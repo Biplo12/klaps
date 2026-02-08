@@ -1,10 +1,10 @@
 import React from "react";
-import AboutSection from "../about-section";
+import ContentSection from "@/components/common/content-section";
 import AboutBorderedList from "../about-bordered-list";
 
 const ScopeSection: React.FC = () => {
   return (
-    <AboutSection id="zakres" title="Zakres projektu">
+    <ContentSection id="zakres" title="Zakres projektu">
       <p className="text-white/80 font-medium">Klatka obejmuje:</p>
 
       <AboutBorderedList
@@ -35,7 +35,7 @@ const ScopeSection: React.FC = () => {
         zajmuje. Jeśli wyświetlany jest przez jeden wieczór w&nbsp;trzech kinach
         w&nbsp;Polsce – wtedy właśnie Klatka jest potrzebna.
       </p>
-    </AboutSection>
+    </ContentSection>
   );
 };
 

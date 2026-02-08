@@ -1,5 +1,6 @@
 import Hero from "./_components/hero";
 import MissionSection from "./_components/mission-section";
+import HowItWorksSection from "./_components/how-it-works-section";
 import MultiCitySection from "./_components/multi-city-section";
 import StudioCinemasSection from "./_components/studio-cinemas-section";
 import SectionDivider from "@/components/ui/section-divider";
@@ -25,6 +26,8 @@ export default async function HomeLayout({
       <SectionDivider />
       <SectionDivider />
       <MissionSection />
+      <SectionDivider />
+      <HowItWorksSection />
       <SectionDivider />
       <StudioCinemasSection cinemas={cinemas} />
       <MultiCitySection movies={multiCityMovies} />

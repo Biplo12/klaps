@@ -1,11 +1,11 @@
 import React from "react";
-import AboutSection from "../about-section";
+import ContentSection from "@/components/common/content-section";
 import AboutBorderedList from "../about-bordered-list";
 import AboutDetailItem from "../about-detail-item";
 
 const GoalsSection: React.FC = () => {
   return (
-    <AboutSection id="cele" title="Cele projektu">
+    <ContentSection id="cele" title="Cele projektu">
       <p className="text-white/80 font-medium">Cele krótkoterminowe:</p>
 
       <AboutBorderedList
@@ -66,7 +66,7 @@ const GoalsSection: React.FC = () => {
           />,
         ]}
       />
-    </AboutSection>
+    </ContentSection>
   );
 };
 

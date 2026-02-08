@@ -1,9 +1,9 @@
 import React from "react";
-import AboutSection from "../about-section";
+import ContentSection from "@/components/common/content-section";
 
 const WhyCinemaSection: React.FC = () => {
   return (
-    <AboutSection
+    <ContentSection
       id="dlaczego-kino"
       title="Dlaczego kino i dlaczego stare filmy?"
     >
@@ -27,7 +27,7 @@ const WhyCinemaSection: React.FC = () => {
         o&nbsp;pamięć kulturową. Bez takich inicjatyw historia kina stopniowo
         przestaje być doświadczeniem, a&nbsp;staje się jedynie archiwum.
       </p>
-    </AboutSection>
+    </ContentSection>
   );
 };
 

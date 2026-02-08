@@ -1,10 +1,10 @@
 import React from "react";
-import AboutSection from "../about-section";
+import ContentSection from "@/components/common/content-section";
 import AboutBorderedList from "../about-bordered-list";
 
 const AudienceSection: React.FC = () => {
   return (
-    <AboutSection id="grupa-docelowa" title="Grupa docelowa">
+    <ContentSection id="grupa-docelowa" title="Grupa docelowa">
       <p>Projekt kierowany jest do:</p>
 
       <AboutBorderedList
@@ -19,7 +19,7 @@ const AudienceSection: React.FC = () => {
           "Widzów zmęczonych algorytmicznym podawaniem treści",
         ]}
       />
-    </AboutSection>
+    </ContentSection>
   );
 };
 
