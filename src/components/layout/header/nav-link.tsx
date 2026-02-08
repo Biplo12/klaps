@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 interface NavLinkProps {
@@ -17,13 +20,23 @@ const NavLink: React.FC<NavLinkProps> = ({
   tabIndex,
   className,
 }) => {
+  const pathname = usePathname();
+  const isHashLink = href.startsWith("#");
+  const isActive =
+    !isHashLink &&
+    (href === "/" ? pathname === "/" : pathname.startsWith(href));
+
   return (
     <Link
       href={href}
       onClick={onClick}
       tabIndex={tabIndex}
       className={cn(
-        "font-medium uppercase tracking-[0.2em] text-white/80 hover:text-blood-red transition-colors focus-visible:outline focus-visible:ring-2 focus-visible:ring-blood-red focus-visible:ring-offset-2 focus-visible:ring-offset-black",
+        "relative font-medium uppercase tracking-[0.2em] transition-colors duration-300 focus-visible:outline focus-visible:ring-2 focus-visible:ring-blood-red focus-visible:ring-offset-2 focus-visible:ring-offset-black",
+        "after:absolute after:left-0 after:bottom-0 after:h-px after:bg-blood-red after:transition-all after:duration-300",
+        isActive
+          ? "text-blood-red after:w-full"
+          : "text-white/70 hover:text-white after:w-0 hover:after:w-full",
         className
       )}
     >
