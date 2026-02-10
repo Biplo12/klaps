@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { getMovies } from "@/lib/movies";
 import SectionHeader from "@/components/common/section-header";
-import MoviesList from "./_components/movies-list";
+import MoviesGrid from "./_components/movies-grid";
 import MoviesPagination from "./_components/movies-pagination";
 
 export const dynamic = "force-dynamic";
@@ -12,9 +12,10 @@ type MoviesPageProps = {
 
 const MoviesPage = async ({ searchParams }: MoviesPageProps) => {
   const params = await searchParams;
-  const currentPage = Math.max(1, Number(params.page) || 1);
+  const { page } = await params;
+
   const { data: movies, meta } = await getMovies({
-    page: currentPage,
+    page: page ? Number(page) : 1,
     limit: 24,
   });
 
@@ -26,7 +27,9 @@ const MoviesPage = async ({ searchParams }: MoviesPageProps) => {
           title="Filmy"
           description="Klasyka, retrospektywy i seanse specjalne w kinach studyjnych w całej Polsce."
         />
-        <MoviesList movies={movies} />
+
+        <MoviesGrid movies={movies} />
+
         {meta.totalPages > 1 && (
           <MoviesPagination
             currentPage={meta.page}

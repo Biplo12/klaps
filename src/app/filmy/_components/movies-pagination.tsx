@@ -1,7 +1,13 @@
 import React from "react";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 interface MoviesPaginationProps {
   currentPage: number;
@@ -42,66 +48,64 @@ const MoviesPagination: React.FC<MoviesPaginationProps> = ({
   currentPage,
   totalPages,
 }) => {
+  if (totalPages <= 1) return null;
+
   const visiblePages = getVisiblePages(currentPage, totalPages);
+  const hasPrevious = currentPage > 1;
+  const hasNext = currentPage < totalPages;
 
   return (
-    <nav className="flex items-center justify-center gap-2">
-      {currentPage > 1 ? (
-        <Link
-          href={`/filmy?page=${currentPage - 1}`}
-          className="flex items-center justify-center size-10 text-neutral-400 hover:text-white transition-colors duration-300"
-        >
-          <ChevronLeft className="size-5" />
-        </Link>
-      ) : (
-        <span className="flex items-center justify-center size-10 text-neutral-700 pointer-events-none">
-          <ChevronLeft className="size-5" />
-        </span>
-      )}
+    <Pagination>
+      <PaginationContent className="gap-1">
+        <PaginationItem>
+          <PaginationPrevious
+            href={hasPrevious ? `/filmy?page=${currentPage - 1}` : undefined}
+            aria-disabled={!hasPrevious}
+            tabIndex={hasPrevious ? 0 : -1}
+            className={
+              !hasPrevious ? "pointer-events-none text-neutral-700" : undefined
+            }
+            aria-label="Przejdź do poprzedniej strony"
+          />
+        </PaginationItem>
 
-      {visiblePages.map((page, index) => {
-        if (page === "dots") {
+        {visiblePages.map((page, index) => {
+          if (page === "dots") {
+            return (
+              <PaginationItem key={`dots-${index}`}>
+                <PaginationEllipsis />
+              </PaginationItem>
+            );
+          }
+
+          const isActive = page === currentPage;
+
           return (
-            <span
-              key={`dots-${index}`}
-              className="flex items-center justify-center size-10 text-neutral-600 text-sm"
-            >
-              ...
-            </span>
+            <PaginationItem key={page}>
+              <PaginationLink
+                href={`/filmy?page=${page}`}
+                isActive={isActive}
+                aria-label={`Przejdź do strony ${page}`}
+              >
+                {page}
+              </PaginationLink>
+            </PaginationItem>
           );
-        }
+        })}
 
-        const isActive = page === currentPage;
-
-        return (
-          <Link
-            key={page}
-            href={`/filmy?page=${page}`}
-            className={cn(
-              "flex items-center justify-center size-10 text-sm uppercase tracking-wider font-semibold transition-colors duration-300",
-              isActive
-                ? "bg-blood-red text-white"
-                : "text-neutral-400 hover:text-white hover:bg-white/5"
-            )}
-          >
-            {page}
-          </Link>
-        );
-      })}
-
-      {currentPage < totalPages ? (
-        <Link
-          href={`/filmy?page=${currentPage + 1}`}
-          className="flex items-center justify-center size-10 text-neutral-400 hover:text-white transition-colors duration-300"
-        >
-          <ChevronRight className="size-5" />
-        </Link>
-      ) : (
-        <span className="flex items-center justify-center size-10 text-neutral-700 pointer-events-none">
-          <ChevronRight className="size-5" />
-        </span>
-      )}
-    </nav>
+        <PaginationItem>
+          <PaginationNext
+            href={hasNext ? `/filmy?page=${currentPage + 1}` : undefined}
+            aria-disabled={!hasNext}
+            tabIndex={hasNext ? 0 : -1}
+            className={
+              !hasNext ? "pointer-events-none text-neutral-700" : undefined
+            }
+            aria-label="Przejdź do następnej strony"
+          />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
   );
 };
 

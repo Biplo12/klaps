@@ -16,6 +16,7 @@ const CinemasPage = async () => {
           title="Kina studyjne w Polsce"
           description="Miejsca, w których kino jest czymś więcej niż rozrywką."
         />
+
         <CinemasList cinemas={cinemas} />
       </div>
     </main>

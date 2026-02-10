@@ -9,9 +9,10 @@ import {
   useScreeningsTransition,
 } from "@/contexts/screenings-transition-context";
 import { cn } from "@/lib/utils";
+import EmptyState from "@/components/common/empty-state";
 import ScreeningsSectionHeader from "./screenings-section-header";
-import ScreeningsSectionList from "./screenings-section-list";
 import ScreeningsSectionCta from "./screenings-section-cta";
+import MoviesGrid from "@/app/filmy/_components/movies-grid";
 
 interface ScreeningsSectionContentProps {
   screenings: IScreeningWithMovie[];
@@ -24,6 +25,8 @@ const ScreeningsSectionContentInner: React.FC<
 > = ({ screenings, cities, genres }) => {
   const { isPending } = useScreeningsTransition();
 
+  const movies = screenings.map((screening) => screening.movie);
+
   return (
     <div
       className={cn(
@@ -32,7 +35,14 @@ const ScreeningsSectionContentInner: React.FC<
       )}
     >
       <ScreeningsSectionHeader cities={cities} genres={genres} />
-      <ScreeningsSectionList screenings={screenings} />
+      {screenings.length === 0 && <EmptyState />}
+
+      <MoviesGrid
+        screenings={screenings}
+        movies={movies}
+        showDescription={true}
+      />
+
       <ScreeningsSectionCta />
     </div>
   );

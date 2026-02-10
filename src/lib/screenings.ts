@@ -64,3 +64,13 @@ export const deduplicateScreenings = (
     return !isDuplicate;
   });
 };
+
+export const getScreeningSummary = (screening: IScreeningWithMovie) => {
+  const screeningsCount = screening.screenings.length;
+  const uniqueCinemas = new Set(
+    screening.screenings.map((s) => s.cinemaName).filter(Boolean)
+  );
+  const cinemasCount = uniqueCinemas.size;
+
+  return { screeningsCount, cinemasCount };
+};
