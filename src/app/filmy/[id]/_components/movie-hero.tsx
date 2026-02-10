@@ -3,6 +3,7 @@ import { IMovie } from "@/interfaces/IMovies";
 import { formatGeneres, formatDuration } from "@/lib/utils";
 import MoviePoster from "@/components/common/movie-poster";
 import NoMoviePoster from "@/components/common/no-movie-poster";
+import MovieMeta from "@/app/(home)/_components/hero/movie-meta";
 
 type MovieHeroProps = {
   movie: IMovie;
@@ -13,49 +14,44 @@ type DetailItem = {
   value: string;
 };
 
-const formatPremiereDate = (dateStr: string): string => {
-  const date = new Date(dateStr);
-  return date.toLocaleDateString("pl-PL", {
+const formatPremiereDate = (dateStr: string): string =>
+  new Date(dateStr).toLocaleDateString("pl-PL", {
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
   });
-};
 
 const getDetails = (movie: IMovie): DetailItem[] => {
   const allGenres = movie.movies_genres.map((g) => g.genre.name).join(", ");
 
-  return [
+  const details: (DetailItem | null)[] = [
     { label: "Rok produkcji", value: movie.productionYear.toString() },
-    ...(movie.duration > 0
-      ? [{ label: "Czas trwania", value: formatDuration(movie.duration) }]
-      : []),
-    ...(allGenres ? [{ label: "Gatunek", value: allGenres }] : []),
-    ...(movie.language
-      ? [{ label: "Język", value: movie.language.toUpperCase() }]
-      : []),
-    ...(movie.worldPremiereDate
-      ? [
-          {
-            label: "Premiera światowa",
-            value: formatPremiereDate(movie.worldPremiereDate),
-          },
-        ]
-      : []),
-    ...(movie.polishPremiereDate
-      ? [
-          {
-            label: "Premiera w Polsce",
-            value: formatPremiereDate(movie.polishPremiereDate),
-          },
-        ]
-      : []),
+    movie.duration > 0
+      ? { label: "Czas trwania", value: formatDuration(movie.duration) }
+      : null,
+    allGenres ? { label: "Gatunek", value: allGenres } : null,
+    movie.language
+      ? { label: "Język", value: movie.language.toUpperCase() }
+      : null,
+    movie.worldPremiereDate
+      ? {
+          label: "Premiera światowa",
+          value: formatPremiereDate(movie.worldPremiereDate),
+        }
+      : null,
+    movie.polishPremiereDate
+      ? {
+          label: "Premiera w Polsce",
+          value: formatPremiereDate(movie.polishPremiereDate),
+        }
+      : null,
   ];
+
+  return details.filter((d): d is DetailItem => d !== null);
 };
 
 const MovieHero: React.FC<MovieHeroProps> = ({ movie }) => {
   const formattedGenres = formatGeneres(movie.movies_genres);
-  const formattedDuration = formatDuration(movie.duration);
   const details = getDetails(movie);
 
   return (
@@ -89,21 +85,12 @@ const MovieHero: React.FC<MovieHeroProps> = ({ movie }) => {
             )}
           </div>
 
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-neutral-400 text-base md:text-lg">
-            <span>{movie.productionYear}</span>
-            {movie.duration > 0 && (
-              <>
-                <span className="text-neutral-700">|</span>
-                <span>{formattedDuration}</span>
-              </>
-            )}
-            {formattedGenres && (
-              <>
-                <span className="text-neutral-700">|</span>
-                <span>{formattedGenres}</span>
-              </>
-            )}
-          </div>
+          <MovieMeta
+            duration={movie.duration}
+            productionYear={movie.productionYear}
+            formattedGenres={formattedGenres}
+            className="text-base md:text-lg"
+          />
 
           {movie.description && (
             <p className="text-neutral-400 text-base md:text-lg leading-relaxed max-w-2xl">
@@ -113,19 +100,23 @@ const MovieHero: React.FC<MovieHeroProps> = ({ movie }) => {
         </div>
       </div>
 
-      <dl className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {details.map((detail) => (
-          <div
-            key={detail.label}
-            className="flex flex-col gap-1 border-l-4 border-l-blood-red pl-4"
-          >
-            <dt className="text-neutral-500 text-sm uppercase tracking-widest">
-              {detail.label}
-            </dt>
-            <dd className="text-white text-base md:text-lg">{detail.value}</dd>
-          </div>
-        ))}
-      </dl>
+      {details.length > 0 && (
+        <dl className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {details.map((detail) => (
+            <div
+              key={detail.label}
+              className="flex flex-col gap-1 border-l-4 border-l-blood-red pl-4"
+            >
+              <dt className="text-neutral-500 text-sm uppercase tracking-widest">
+                {detail.label}
+              </dt>
+              <dd className="text-white text-base md:text-lg">
+                {detail.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      )}
     </div>
   );
 };

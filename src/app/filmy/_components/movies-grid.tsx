@@ -2,7 +2,6 @@ import React from "react";
 import { IMovie } from "@/interfaces/IMovies";
 import MovieCard from "./movie-card";
 import EmptyState from "@/components/common/empty-state";
-import { getScreeningSummary } from "@/lib/screenings";
 import { IScreeningWithMovie } from "@/interfaces/IScreenings";
 
 interface MoviesGridProps {

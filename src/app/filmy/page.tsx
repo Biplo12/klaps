@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { getMovies } from "@/lib/movies";
 import SectionHeader from "@/components/common/section-header";
 import MoviesGrid from "./_components/movies-grid";
-import MoviesPagination from "./_components/movies-pagination";
+import PaginatedNav from "@/components/common/paginated-nav";
 
 export const dynamic = "force-dynamic";
 
@@ -30,12 +30,11 @@ const MoviesPage = async ({ searchParams }: MoviesPageProps) => {
 
         <MoviesGrid movies={movies} />
 
-        {meta.totalPages > 1 && (
-          <MoviesPagination
-            currentPage={meta.page}
-            totalPages={meta.totalPages}
-          />
-        )}
+        <PaginatedNav
+          currentPage={meta.page}
+          totalPages={meta.totalPages}
+          buildHref={(page) => `/filmy?page=${page}`}
+        />
       </div>
     </main>
   );

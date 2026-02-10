@@ -9,9 +9,10 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-interface MoviesPaginationProps {
+interface PaginatedNavProps {
   currentPage: number;
   totalPages: number;
+  buildHref: (page: number) => string;
 }
 
 const getVisiblePages = (
@@ -44,9 +45,10 @@ const getVisiblePages = (
   return pages;
 };
 
-const MoviesPagination: React.FC<MoviesPaginationProps> = ({
+const PaginatedNav: React.FC<PaginatedNavProps> = ({
   currentPage,
   totalPages,
+  buildHref,
 }) => {
   if (totalPages <= 1) return null;
 
@@ -59,7 +61,7 @@ const MoviesPagination: React.FC<MoviesPaginationProps> = ({
       <PaginationContent className="gap-1">
         <PaginationItem>
           <PaginationPrevious
-            href={hasPrevious ? `/filmy?page=${currentPage - 1}` : undefined}
+            href={hasPrevious ? buildHref(currentPage - 1) : undefined}
             aria-disabled={!hasPrevious}
             tabIndex={hasPrevious ? 0 : -1}
             className={
@@ -83,7 +85,7 @@ const MoviesPagination: React.FC<MoviesPaginationProps> = ({
           return (
             <PaginationItem key={page}>
               <PaginationLink
-                href={`/filmy?page=${page}`}
+                href={buildHref(page)}
                 isActive={isActive}
                 aria-label={`Przejdź do strony ${page}`}
               >
@@ -95,7 +97,7 @@ const MoviesPagination: React.FC<MoviesPaginationProps> = ({
 
         <PaginationItem>
           <PaginationNext
-            href={hasNext ? `/filmy?page=${currentPage + 1}` : undefined}
+            href={hasNext ? buildHref(currentPage + 1) : undefined}
             aria-disabled={!hasNext}
             tabIndex={hasNext ? 0 : -1}
             className={
@@ -109,4 +111,4 @@ const MoviesPagination: React.FC<MoviesPaginationProps> = ({
   );
 };
 
-export default MoviesPagination;
+export default PaginatedNav;
