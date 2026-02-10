@@ -7,10 +7,11 @@ export interface IScreening {
   showtimeId: number;
   cinemaId: number;
   cinemaName?: string;
+  cityName?: string;
+  street?: string;
   date: string;
   isDubbing: number;
   isSubtitled: number;
-  cityName?: string;
 }
 
 export interface IScreeningWithMovie {

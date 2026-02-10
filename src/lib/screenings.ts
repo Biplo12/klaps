@@ -1,4 +1,4 @@
-import { IScreeningWithMovie } from "@/interfaces/IScreenings";
+import { IScreening, IScreeningWithMovie } from "@/interfaces/IScreenings";
 import { apiFetch } from "./client";
 
 interface GetScreeningsParams {
@@ -7,6 +7,7 @@ interface GetScreeningsParams {
   genreId?: string | null;
   dateFrom?: string | null;
   dateTo?: string | null;
+  movieId?: string | null;
   limit?: number;
 }
 
@@ -20,6 +21,7 @@ export const getScreenings = async (
       genreId: params.genreId ?? "",
       dateFrom: params.dateFrom ?? "",
       dateTo: params.dateTo ?? "",
+      movieId: params.movieId ?? "",
       limit: params.limit?.toString() ?? "10",
     },
   });
@@ -37,4 +39,28 @@ export const getRandomScreening = async (): Promise<IScreeningWithMovie> => {
   }
 
   return screening;
+};
+
+export const groupScreeningsByCinema = (
+  screenings: IScreening[]
+): IScreening[][] => {
+  const grouped = new Map<number, IScreening[]>();
+
+  for (const screening of screenings) {
+    const existing = grouped.get(screening.cinemaId) ?? [];
+    existing.push(screening);
+    grouped.set(screening.cinemaId, existing);
+  }
+
+  return Array.from(grouped.values());
+};
+
+export const deduplicateScreenings = (
+  screenings: IScreening[]
+): IScreening[] => {
+  return screenings.filter((screening, index, self) => {
+    const isDuplicate =
+      self.findIndex((t) => t.showtimeId === screening.showtimeId) !== index;
+    return !isDuplicate;
+  });
 };
