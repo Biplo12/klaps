@@ -3,6 +3,7 @@ import {
   IScreeningGroup,
   IRandomScreening,
 } from "@/interfaces/IScreenings";
+import { PaginatedResponse } from "@/interfaces/IMovies";
 import { apiFetch } from "./client";
 
 interface GetScreeningsParams {
@@ -12,6 +13,10 @@ interface GetScreeningsParams {
   dateFrom?: string | null;
   dateTo?: string | null;
   limit?: number;
+}
+
+interface GetPaginatedScreeningsParams extends GetScreeningsParams {
+  page?: number;
 }
 
 interface GetMovieScreeningsParams {
@@ -47,6 +52,27 @@ export const getMovieScreenings = async (
   });
 
   return screenings;
+};
+
+export const getPaginatedScreenings = async (
+  params: GetPaginatedScreeningsParams = {},
+): Promise<PaginatedResponse<IScreeningGroup>> => {
+  const response = await apiFetch<PaginatedResponse<IScreeningGroup>>(
+    "/screenings",
+    {
+      params: {
+        cityId: params.cityId ?? "",
+        cinemaId: params.cinemaId ?? "",
+        genreId: params.genreId ?? "",
+        dateFrom: params.dateFrom ?? "",
+        dateTo: params.dateTo ?? "",
+        page: (params.page ?? 1).toString(),
+        limit: (params.limit ?? 24).toString(),
+      },
+    },
+  );
+
+  return response;
 };
 
 export const getRandomScreening = async (): Promise<IRandomScreening> => {

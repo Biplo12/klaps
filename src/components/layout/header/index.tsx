@@ -11,7 +11,7 @@ import MobileNav from "./mobile-nav";
 
 const NAV_LINKS = [
   { href: "/", label: "Strona główna" },
-  { href: "#seanse", label: "Seanse" },
+  { href: "/screenings", label: "Seanse" },
   { href: "/filmy", label: "Filmy" },
   { href: "/kina", label: "Kina" },
   { href: "/cities", label: "Miasta" },
