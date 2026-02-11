@@ -12,8 +12,10 @@ const CinemaHeader: React.FC<CinemaHeaderProps> = ({ cinema }) => {
       <SectionHeader title={cinema.name} />
 
       <div className="flex flex-col gap-1">
-        <span className="text-neutral-400 text-lg">{cinema.street}</span>
-        <span className="text-neutral-400 text-lg">{cinema.cityName}</span>
+        {cinema.street && (
+          <span className="text-neutral-400 text-lg">{cinema.street}</span>
+        )}
+        <span className="text-neutral-400 text-lg">{cinema.city.name}</span>
       </div>
     </div>
   );

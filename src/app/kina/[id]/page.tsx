@@ -17,7 +17,7 @@ const CinemaPage = async ({ params }: CinemaPageProps) => {
 
   const [cinema, screenings] = await Promise.all([
     getCinemaById(id),
-    getScreenings({ cinemaId: id }),
+    getScreenings({ cinemaId: id, limit: 100 }),
   ]);
 
   return (
@@ -41,7 +41,7 @@ export const generateMetadata = async ({
 
   return {
     title: `${cinema.name} — Klatka`,
-    description: `Kino studyjne ${cinema.name} w ${cinema.cityName}. Sprawdź aktualne seanse.`,
+    description: `Kino studyjne ${cinema.name} w ${cinema.city.name}. Sprawdź aktualne seanse.`,
   };
 };
 

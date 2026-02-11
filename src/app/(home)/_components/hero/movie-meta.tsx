@@ -4,7 +4,7 @@ import { cn, formatDuration } from "@/lib/utils";
 const META_SEPARATOR = " · ";
 
 interface MovieMetaProps {
-  duration: number;
+  duration: number | null;
   productionYear: number;
   formattedGenres: string;
   className?: string;
@@ -16,7 +16,7 @@ const MovieMeta: React.FC<MovieMetaProps> = ({
   formattedGenres,
   className,
 }) => {
-  const durationText = formatDuration(duration);
+  const durationText = duration ? formatDuration(duration) : null;
 
   return (
     <div

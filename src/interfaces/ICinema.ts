@@ -1,13 +1,23 @@
+import { ICity } from "./ICities";
+
+export interface ICinemaSummary {
+  id: number;
+  name: string;
+  street: string | null;
+  city: ICity;
+}
+
 export interface ICinema {
   id: number;
-  filmwebId: number;
   name: string;
-  cityName: string;
-  url: string;
-  filmwebCityId: number;
-  longitude: number;
-  latitude: number;
-  street: string;
-  createdAt: string;
-  updatedAt: string;
+  street: string | null;
+  city: ICity;
+  latitude: number | null;
+  longitude: number | null;
+  filmwebUrl: string;
+}
+
+export interface ICinemaGroup {
+  city: ICity;
+  cinemas: Omit<ICinemaSummary, "city">[];
 }

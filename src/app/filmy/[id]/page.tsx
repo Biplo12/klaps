@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { getMovieById } from "@/lib/movies";
-import { getScreenings } from "@/lib/screenings";
+import { getMovieScreenings } from "@/lib/screenings";
 import SectionDivider from "@/components/ui/section-divider";
 import MovieHero from "./_components/movie-hero";
 import MovieScreenings from "./_components/movie-screenings";
@@ -15,12 +15,10 @@ type MoviePageProps = {
 const MoviePage = async ({ params }: MoviePageProps) => {
   const { id } = await params;
 
-  const [movie, screeningsData] = await Promise.all([
+  const [movie, screenings] = await Promise.all([
     getMovieById(Number(id)),
-    getScreenings({ movieId: id, limit: 100 }),
+    getMovieScreenings({ movieId: id, limit: 1000 }),
   ]);
-
-  const screenings = screeningsData?.[0]?.screenings ?? [];
 
   return (
     <main className="bg-black min-h-screen px-8 py-24 md:py-32">

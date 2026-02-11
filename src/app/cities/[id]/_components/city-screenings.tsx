@@ -4,21 +4,21 @@ import SectionHeader from "@/components/common/section-header";
 import MoviesGrid from "@/app/filmy/_components/movies-grid";
 import EmptyState from "@/components/common/empty-state";
 
-interface CinemaScreeningsProps {
+interface CityScreeningsProps {
   screenings: IScreeningGroup[];
 }
 
-const CinemaScreenings: React.FC<CinemaScreeningsProps> = ({ screenings }) => {
-  const movies = screenings.map((s) => s.movie);
+const CityScreenings: React.FC<CityScreeningsProps> = ({ screenings }) => {
+  const movies = screenings?.map((s) => s.movie) ?? [];
 
   return (
     <section className="flex flex-col gap-10">
-      <SectionHeader prefix="Seanse dla kina" title="Aktualne seanse" />
+      <SectionHeader prefix="Seanse w mieście" title="Aktualne seanse" />
 
-      {screenings.length === 0 ? (
+      {screenings?.length === 0 ? (
         <EmptyState
           headline="Brak seansów"
-          description="Aktualnie nie ma zaplanowanych seansów w tym kinie."
+          description="Aktualnie nie ma zaplanowanych seansów w tym mieście."
         />
       ) : (
         <MoviesGrid
@@ -31,4 +31,4 @@ const CinemaScreenings: React.FC<CinemaScreeningsProps> = ({ screenings }) => {
   );
 };
 
-export default CinemaScreenings;
+export default CityScreenings;

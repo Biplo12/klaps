@@ -1,7 +1,11 @@
+import { IScreeningGroup } from "./IScreenings";
+
 export interface ICity {
   id: number;
-  filmwebId: number;
   name: string;
   nameDeclinated: string;
-  areacode: number;
+}
+
+export interface ICityDetails extends ICity {
+  screenings: IScreeningGroup[];
 }

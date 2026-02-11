@@ -1,10 +1,10 @@
 import React from "react";
-import { ICinema } from "@/interfaces/ICinema";
+import { ICinemaSummary } from "@/interfaces/ICinema";
 import CinemaLinkItem from "./cinema-link-item";
 
 interface CinemasCityGroupProps {
   cityName: string;
-  cinemas: ICinema[];
+  cinemas: Omit<ICinemaSummary, "city">[];
 }
 
 const CinemasCityGroup: React.FC<CinemasCityGroupProps> = ({

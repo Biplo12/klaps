@@ -1,20 +1,29 @@
-import { IMovie } from "./IMovies";
+import { ICinemaSummary } from "./ICinema";
+import { IMovieHero, IMovieSummary } from "./IMovies";
 
 export interface IScreening {
   id: number;
-  url: string;
-  movieId: number;
-  showtimeId: number;
-  cinemaId: number;
-  cinemaName?: string;
-  cityName?: string;
-  street?: string;
   date: string;
-  isDubbing: number;
-  isSubtitled: number;
+  time: string;
+  dateTime: string;
+  ticketUrl: string | null;
+  isDubbing: boolean;
+  isSubtitled: boolean;
+  cinema: ICinemaSummary;
 }
 
-export interface IScreeningWithMovie {
-  movie: IMovie;
+export interface IScreeningGroup {
+  movie: IMovieSummary;
+  summary: {
+    screeningsCount: number;
+    cinemasCount: number;
+    citiesCount: number;
+    cities: string[];
+  };
   screenings: IScreening[];
+}
+
+export interface IRandomScreening {
+  movie: IMovieHero;
+  screening: IScreening;
 }

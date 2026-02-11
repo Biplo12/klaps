@@ -1,16 +1,13 @@
 import React from "react";
-import { ICinema } from "@/interfaces/ICinema";
+import { ICinemaGroup } from "@/interfaces/ICinema";
 import CinemasCityGroup from "./cinemas-city-group";
-import { groupCinemasByCity } from "@/lib/cinemas";
 
 interface CinemasListProps {
-  cinemas: ICinema[];
+  cinemaGroups: ICinemaGroup[];
 }
 
-const CinemasList: React.FC<CinemasListProps> = ({ cinemas }) => {
-  const groupedCinemas = groupCinemasByCity(cinemas);
-
-  if (cinemas.length === 0) {
+const CinemasList: React.FC<CinemasListProps> = ({ cinemaGroups }) => {
+  if (cinemaGroups.length === 0) {
     return (
       <p className="text-neutral-500 text-base">Brak kin do wyświetlenia.</p>
     );
@@ -18,11 +15,11 @@ const CinemasList: React.FC<CinemasListProps> = ({ cinemas }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-y-14 md:gap-y-16 md:gap-x-20">
-      {Array.from(groupedCinemas.entries()).map(([cityName, cityCinemas]) => (
+      {cinemaGroups.map((group) => (
         <CinemasCityGroup
-          key={cityName}
-          cityName={cityName}
-          cinemas={cityCinemas}
+          key={group.city.id}
+          cityName={group.city.name}
+          cinemas={group.cinemas}
         />
       ))}
     </div>

@@ -18,7 +18,7 @@ const MultiCityPosterDetails: React.FC<MultiCityPosterDetailsProps> = ({
         {movie.title}
       </h3>
       <span className="text-neutral-500 text-sm">
-        {movie.year} · {movie.citiesCount} miast
+        {movie.productionYear} · {movie.citiesCount} miast
       </span>
       <p className="text-neutral-500 text-sm leading-relaxed max-w-xs">
         Wyświetlany w&nbsp;{movie.citiesCount} miastach jednocześnie &nbsp;— od

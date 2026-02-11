@@ -1,14 +1,15 @@
 import React from "react";
+import Link from "next/link";
 import { ICinemaSummary } from "@/interfaces/ICinema";
 
-interface CinemaLinkItemProps {
+interface CityCinemaItemProps {
   cinema: Omit<ICinemaSummary, "city">;
 }
 
-const CinemaLinkItem: React.FC<CinemaLinkItemProps> = ({ cinema }) => {
+const CityCinemaItem: React.FC<CityCinemaItemProps> = ({ cinema }) => {
   return (
     <li>
-      <a
+      <Link
         href={`/kina/${cinema.id}`}
         className="group flex items-baseline justify-between gap-4 py-3 transition-colors duration-200 hover:text-blood-red focus-visible:text-blood-red focus-visible:outline-none"
       >
@@ -20,9 +21,9 @@ const CinemaLinkItem: React.FC<CinemaLinkItemProps> = ({ cinema }) => {
             {cinema.street}
           </span>
         )}
-      </a>
+      </Link>
     </li>
   );
 };
 
-export default CinemaLinkItem;
+export default CityCinemaItem;

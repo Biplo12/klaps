@@ -14,7 +14,7 @@ export default async function HomeLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [cinemas, multiCityMovies] = await Promise.all([
+  const [cinemasResponse, multiCityMovies] = await Promise.all([
     getCinemas({ limit: 16 }),
     getMultiCityMovies({ limit: 8 }),
   ]);
@@ -28,7 +28,7 @@ export default async function HomeLayout({
       <SectionDivider />
       <MissionSection />
       <SectionDivider />
-      <StudioCinemasSection cinemas={cinemas} />
+      <StudioCinemasSection cinemaGroups={cinemasResponse.data} />
       <SectionDivider />
       <MultiCitySection movies={multiCityMovies} />
     </>

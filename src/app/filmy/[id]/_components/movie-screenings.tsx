@@ -4,12 +4,9 @@ import React, { useState, useMemo } from "react";
 import { IScreening } from "@/interfaces/IScreenings";
 import EmptyState from "@/components/common/empty-state";
 import MovieScreeningRow from "./movie-screening-row";
-import {
-  deduplicateScreenings,
-  groupScreeningsByCinema,
-} from "@/lib/screenings";
-import { Button } from "@/components/ui/button";
-import { getDateString, formatDateLabel } from "@/lib/utils";
+import { groupScreeningsByCinema } from "@/lib/screenings";
+import { getDateString } from "@/lib/utils";
+import DateTabs from "@/components/common/date-tabs";
 
 type MovieScreeningsProps = {
   screenings: IScreening[];
@@ -19,8 +16,7 @@ const getUniqueDates = (screenings: IScreening[]): string[] => {
   const dates = new Set<string>();
 
   for (const screening of screenings) {
-    const dateKey = getDateString(new Date(screening.date));
-    dates.add(dateKey);
+    dates.add(screening.date);
   }
 
   return Array.from(dates).sort();
@@ -35,22 +31,21 @@ const getDefaultDate = (availableDates: string[]): string => {
 };
 
 const MovieScreenings: React.FC<MovieScreeningsProps> = ({ screenings }) => {
-  const deduplicatedScreenings = deduplicateScreenings(screenings);
   const availableDates = useMemo(
-    () => getUniqueDates(deduplicatedScreenings),
-    [deduplicatedScreenings]
+    () => getUniqueDates(screenings),
+    [screenings]
   );
 
-  const [selectedDate, setSelectedDate] = useState<string>(() =>
+  const [selectedDate, setSelectedDate] = useState<string | null>(() =>
     getDefaultDate(availableDates)
   );
 
   const filteredScreenings = useMemo(
     () =>
-      deduplicatedScreenings.filter(
-        (s) => getDateString(new Date(s.date)) === selectedDate
-      ),
-    [deduplicatedScreenings, selectedDate]
+      selectedDate
+        ? screenings.filter((s) => s.date === selectedDate)
+        : screenings,
+    [screenings, selectedDate]
   );
 
   const groupedScreenings = useMemo(
@@ -58,7 +53,7 @@ const MovieScreenings: React.FC<MovieScreeningsProps> = ({ screenings }) => {
     [filteredScreenings]
   );
 
-  if (deduplicatedScreenings.length === 0) {
+  if (screenings.length === 0) {
     return (
       <section className="flex flex-col gap-6">
         <h2 className="text-white text-2xl md:text-3xl font-bold uppercase tracking-wide">
@@ -72,7 +67,7 @@ const MovieScreenings: React.FC<MovieScreeningsProps> = ({ screenings }) => {
     );
   }
 
-  const handleDateSelect = (date: string) => {
+  const handleDateChange = (date: string | null) => {
     setSelectedDate(date);
   };
 
@@ -82,29 +77,12 @@ const MovieScreenings: React.FC<MovieScreeningsProps> = ({ screenings }) => {
         Seanse
       </h2>
 
-      <nav
-        className="flex flex-wrap gap-2"
-        role="tablist"
-        aria-label="Wybierz datę seansu"
-      >
-        {availableDates.map((date) => {
-          const isSelected = date === selectedDate;
-
-          return (
-            <Button
-              key={date}
-              variant={isSelected ? "tag-active" : "tag"}
-              size="sm"
-              role="tab"
-              aria-selected={isSelected}
-              aria-label={`Pokaż seanse na ${formatDateLabel(date)}`}
-              onClick={() => handleDateSelect(date)}
-            >
-              {formatDateLabel(date)}
-            </Button>
-          );
-        })}
-      </nav>
+      <DateTabs
+        dates={availableDates}
+        selectedDate={selectedDate}
+        onDateChange={handleDateChange}
+        label="Data seansów"
+      />
 
       {groupedScreenings.length === 0 ? (
         <EmptyState
@@ -115,7 +93,7 @@ const MovieScreenings: React.FC<MovieScreeningsProps> = ({ screenings }) => {
         <div className="flex flex-col border-t border-white/10">
           {groupedScreenings.map((cinemaScreenings) => (
             <MovieScreeningRow
-              key={cinemaScreenings[0].cinemaId}
+              key={cinemaScreenings[0].cinema.id}
               screenings={cinemaScreenings}
             />
           ))}

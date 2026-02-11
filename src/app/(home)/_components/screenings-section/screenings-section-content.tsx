@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { IScreeningWithMovie } from "@/interfaces/IScreenings";
+import { IScreeningGroup } from "@/interfaces/IScreenings";
 import { ICity } from "@/interfaces/ICities";
 import { IGenre } from "@/interfaces/IMovies";
 import {
@@ -15,7 +15,7 @@ import ScreeningsSectionCta from "./screenings-section-cta";
 import MoviesGrid from "@/app/filmy/_components/movies-grid";
 
 interface ScreeningsSectionContentProps {
-  screenings: IScreeningWithMovie[];
+  screenings: IScreeningGroup[];
   cities: ICity[];
   genres: IGenre[];
 }

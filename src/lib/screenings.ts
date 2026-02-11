@@ -1,4 +1,8 @@
-import { IScreening, IScreeningWithMovie } from "@/interfaces/IScreenings";
+import {
+  IScreening,
+  IScreeningGroup,
+  IRandomScreening,
+} from "@/interfaces/IScreenings";
 import { apiFetch } from "./client";
 
 interface GetScreeningsParams {
@@ -7,21 +11,24 @@ interface GetScreeningsParams {
   genreId?: string | null;
   dateFrom?: string | null;
   dateTo?: string | null;
-  movieId?: string | null;
+  limit?: number;
+}
+
+interface GetMovieScreeningsParams {
+  movieId: string;
   limit?: number;
 }
 
 export const getScreenings = async (
-  params: GetScreeningsParams = {}
-): Promise<IScreeningWithMovie[]> => {
-  const screenings = await apiFetch<IScreeningWithMovie[]>("/screenings", {
+  params: GetScreeningsParams = {},
+): Promise<IScreeningGroup[]> => {
+  const screenings = await apiFetch<IScreeningGroup[]>("/screenings", {
     params: {
       cityId: params.cityId ?? "",
       cinemaId: params.cinemaId ?? "",
       genreId: params.genreId ?? "",
       dateFrom: params.dateFrom ?? "",
       dateTo: params.dateTo ?? "",
-      movieId: params.movieId ?? "",
       limit: params.limit?.toString() ?? "10",
     },
   });
@@ -29,9 +36,22 @@ export const getScreenings = async (
   return screenings;
 };
 
-export const getRandomScreening = async (): Promise<IScreeningWithMovie> => {
-  const screening = await apiFetch<IScreeningWithMovie>(
-    "/screenings/random-screening"
+export const getMovieScreenings = async (
+  params: GetMovieScreeningsParams,
+): Promise<IScreening[]> => {
+  const screenings = await apiFetch<IScreening[]>("/screenings", {
+    params: {
+      movieId: params.movieId,
+      limit: params.limit?.toString() ?? "100",
+    },
+  });
+
+  return screenings;
+};
+
+export const getRandomScreening = async (): Promise<IRandomScreening> => {
+  const screening = await apiFetch<IRandomScreening>(
+    "/screenings/random-screening",
   );
 
   if (!screening) {
@@ -42,35 +62,15 @@ export const getRandomScreening = async (): Promise<IScreeningWithMovie> => {
 };
 
 export const groupScreeningsByCinema = (
-  screenings: IScreening[]
+  screenings: IScreening[],
 ): IScreening[][] => {
   const grouped = new Map<number, IScreening[]>();
 
   for (const screening of screenings) {
-    const existing = grouped.get(screening.cinemaId) ?? [];
+    const existing = grouped.get(screening.cinema.id) ?? [];
     existing.push(screening);
-    grouped.set(screening.cinemaId, existing);
+    grouped.set(screening.cinema.id, existing);
   }
 
   return Array.from(grouped.values());
-};
-
-export const deduplicateScreenings = (
-  screenings: IScreening[]
-): IScreening[] => {
-  return screenings.filter((screening, index, self) => {
-    const isDuplicate =
-      self.findIndex((t) => t.showtimeId === screening.showtimeId) !== index;
-    return !isDuplicate;
-  });
-};
-
-export const getScreeningSummary = (screening: IScreeningWithMovie) => {
-  const screeningsCount = screening.screenings.length;
-  const uniqueCinemas = new Set(
-    screening.screenings.map((s) => s.cinemaName).filter(Boolean)
-  );
-  const cinemasCount = uniqueCinemas.size;
-
-  return { screeningsCount, cinemasCount };
 };

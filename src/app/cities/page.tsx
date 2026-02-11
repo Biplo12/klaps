@@ -1,32 +1,32 @@
 import { Metadata } from "next";
 import { getCinemas } from "@/lib/cinemas";
 import SectionHeader from "@/components/common/section-header";
-import CinemasList from "./_components/cinemas-list";
+import CitiesList from "./_components/cities-list";
 
 export const dynamic = "force-dynamic";
 
-const CinemasPage = async () => {
+const CitiesPage = async () => {
   const { data: cinemaGroups } = await getCinemas({ limit: 200 });
 
   return (
     <main className="bg-black min-h-screen px-8 py-24 md:py-32">
       <div className="max-w-[1400px] mx-auto flex flex-col gap-16">
         <SectionHeader
-          prefix="Lista kin"
-          title="Kina studyjne w Polsce"
-          description="Miejsca, w których kino jest czymś więcej niż rozrywką."
+          prefix="Miasta"
+          title="Miasta z kinami studyjnymi"
+          description="Wybierz miasto i sprawdź, jakie seanse czekają na Ciebie w Twoim regionie."
         />
 
-        <CinemasList cinemaGroups={cinemaGroups} />
+        <CitiesList cinemaGroups={cinemaGroups} />
       </div>
     </main>
   );
 };
 
 export const metadata: Metadata = {
-  title: "Kina studyjne w Polsce — Klatka",
+  title: "Miasta - Klatka",
   description:
-    "Pełna lista kin studyjnych w Polsce. Znajdź kino niezależne w swoim mieście.",
+    "Lista miast z kinami studyjnymi w Polsce. Znajdź kino niezależne w swoim mieście i sprawdź aktualne seanse.",
 };
 
-export default CinemasPage;
+export default CitiesPage;

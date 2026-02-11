@@ -18,10 +18,10 @@ const MobileNav: React.FC<MobileNavProps> = ({ links, isOpen, onClose }) => {
     <nav
       id="mobile-menu"
       className={cn(
-        "lg:hidden fixed top-[72px] left-0 right-0 bottom-0 bg-black flex flex-col items-center justify-center gap-8 transition-all duration-300",
+        "lg:hidden fixed top-0 left-0 right-0 bottom-0 z-40 bg-black flex flex-col items-center justify-center gap-8 transition-all duration-300 pt-[72px]",
         isOpen
-          ? "opacity-100 visible"
-          : "opacity-0 invisible pointer-events-none"
+          ? "translate-y-0 visible"
+          : "-translate-y-full invisible pointer-events-none",
       )}
       aria-label="Nawigacja mobilna"
       aria-hidden={!isOpen}

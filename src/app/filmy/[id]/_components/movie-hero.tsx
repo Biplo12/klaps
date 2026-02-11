@@ -1,6 +1,6 @@
 import React from "react";
 import { IMovie } from "@/interfaces/IMovies";
-import { formatGeneres, formatDuration } from "@/lib/utils";
+import { formatGenres, formatDuration } from "@/lib/utils";
 import MoviePoster from "@/components/common/movie-poster";
 import NoMoviePoster from "@/components/common/no-movie-poster";
 import MovieMeta from "@/app/(home)/_components/hero/movie-meta";
@@ -22,11 +22,11 @@ const formatPremiereDate = (dateStr: string): string =>
   });
 
 const getDetails = (movie: IMovie): DetailItem[] => {
-  const allGenres = movie.movies_genres.map((g) => g.genre.name).join(", ");
+  const allGenres = movie.genres.map((g) => g.name).join(", ");
 
   const details: (DetailItem | null)[] = [
     { label: "Rok produkcji", value: movie.productionYear.toString() },
-    movie.duration > 0
+    movie.duration
       ? { label: "Czas trwania", value: formatDuration(movie.duration) }
       : null,
     allGenres ? { label: "Gatunek", value: allGenres } : null,
@@ -51,7 +51,7 @@ const getDetails = (movie: IMovie): DetailItem[] => {
 };
 
 const MovieHero: React.FC<MovieHeroProps> = ({ movie }) => {
-  const formattedGenres = formatGeneres(movie.movies_genres);
+  const formattedGenres = formatGenres(movie.genres);
   const details = getDetails(movie);
 
   return (
@@ -62,6 +62,7 @@ const MovieHero: React.FC<MovieHeroProps> = ({ movie }) => {
             {movie.posterUrl ? (
               <MoviePoster
                 posterUrl={movie.posterUrl}
+                title={movie.title}
                 width={320}
                 height={480}
                 className="w-full h-full object-cover"

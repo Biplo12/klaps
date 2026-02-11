@@ -20,7 +20,7 @@ const MultiCityItem: React.FC<MultiCityItemProps> = ({ movie }) => {
         href={`/filmy/${movie.id}`}
         className="text-white text-lg md:text-xl font-semibold transition-colors duration-200 hover:text-blood-red"
       >
-        {movie.title} ({movie.year})
+        {movie.title} ({movie.productionYear})
       </Link>
       <span className="text-neutral-500 text-sm whitespace-nowrap">
         {movie.citiesCount} {formattedCityLabel}

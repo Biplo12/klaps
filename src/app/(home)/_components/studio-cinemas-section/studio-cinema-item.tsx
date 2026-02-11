@@ -1,9 +1,12 @@
 import React from "react";
-import { ICinema } from "@/interfaces/ICinema";
 import Link from "next/link";
 
 interface StudioCinemaItemProps {
-  cinema: ICinema;
+  cinema: {
+    id: number;
+    name: string;
+    cityName: string;
+  };
 }
 
 const StudioCinemaItem: React.FC<StudioCinemaItemProps> = ({ cinema }) => {

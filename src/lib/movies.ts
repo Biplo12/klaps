@@ -1,5 +1,6 @@
 import {
   IMovie,
+  IMovieSummary,
   IMultiCityMovie,
   PaginatedResponse,
 } from "@/interfaces/IMovies";
@@ -27,8 +28,8 @@ export const getMultiCityMovies = async (
 
 export const getMovies = async (
   params: GetMoviesParams = {}
-): Promise<PaginatedResponse<IMovie>> => {
-  const response = await apiFetch<PaginatedResponse<IMovie>>("/movies", {
+): Promise<PaginatedResponse<IMovieSummary>> => {
+  const response = await apiFetch<PaginatedResponse<IMovieSummary>>("/movies", {
     params: {
       page: (params.page ?? 1).toString(),
       limit: (params.limit ?? 20).toString(),

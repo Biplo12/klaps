@@ -1,9 +1,14 @@
 import React from "react";
 import StudioCinemaItem from "./studio-cinema-item";
-import { ICinema } from "@/interfaces/ICinema";
+
+type StudioCinema = {
+  id: number;
+  name: string;
+  cityName: string;
+};
 
 interface StudioCinemasListProps {
-  cinemas: ICinema[];
+  cinemas: StudioCinema[];
 }
 
 const StudioCinemasList: React.FC<StudioCinemasListProps> = ({ cinemas }) => {

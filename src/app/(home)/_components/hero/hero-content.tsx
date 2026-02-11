@@ -1,13 +1,13 @@
 import React from "react";
-import { IScreeningWithMovie } from "@/interfaces/IScreenings";
-import { cn, formatGeneres, getTitleSizeClasses } from "@/lib/utils";
+import { IRandomScreening } from "@/interfaces/IScreenings";
+import { cn, formatGenres, getTitleSizeClasses } from "@/lib/utils";
 import MovieMeta from "./movie-meta";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 interface HeroContentProps {
-  screening: IScreeningWithMovie;
+  screening: IRandomScreening;
 }
 
 const HERO_LABEL_MAIN = "TERAZ W KINIE";
@@ -19,7 +19,7 @@ const TRUST_LINE =
   "Aktualne seanse z kin studyjnych w Polsce. Dane z publicznych źródeł.";
 
 const HeroContent: React.FC<HeroContentProps> = ({ screening }) => {
-  const formattedGenres = formatGeneres(screening.movie.movies_genres);
+  const formattedGenres = formatGenres(screening.movie.genres);
   const movieDetailsHref = `/filmy/${screening.movie.id}`;
 
   return (

@@ -1,16 +1,23 @@
 import React from "react";
 import StudioCinemasList from "./studio-cinemas-list";
 import LinkWithArrow from "@/components/ui/read-more-link";
-import { ICinema } from "@/interfaces/ICinema";
 import SectionHeader from "@/components/common/section-header";
+import { ICinemaGroup } from "@/interfaces/ICinema";
 
 interface StudioCinemasSectionProps {
-  cinemas: ICinema[];
+  cinemaGroups: ICinemaGroup[];
 }
 
 const StudioCinemasSection: React.FC<StudioCinemasSectionProps> = ({
-  cinemas,
+  cinemaGroups,
 }) => {
+  const flatCinemas = cinemaGroups.flatMap((group) =>
+    group.cinemas.map((cinema) => ({
+      ...cinema,
+      cityName: group.city.name,
+    }))
+  );
+
   return (
     <section className="bg-black px-8 py-24 md:py-32">
       <div className="max-w-[1400px] mx-auto flex flex-col gap-16">
@@ -19,7 +26,7 @@ const StudioCinemasSection: React.FC<StudioCinemasSectionProps> = ({
           title="Kina studyjne w Polsce"
           description="Miejsca, w których kino jest czymś więcej niż rozrywką."
         />
-        <StudioCinemasList cinemas={cinemas} />
+        <StudioCinemasList cinemas={flatCinemas} />
 
         <LinkWithArrow href="/kina" label="Zobacz wszystkie kina" />
       </div>

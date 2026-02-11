@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { IScreeningWithMovie } from "@/interfaces/IScreenings";
+import { IScreeningGroup } from "@/interfaces/IScreenings";
 
 interface UseScreeningDatesReturn {
   dates: string[];
@@ -22,11 +22,11 @@ const generateUpcomingDates = (daysCount: number): string[] => {
 };
 
 export const useScreeningDates = (
-  screenings: IScreeningWithMovie[]
+  screenings: IScreeningGroup[]
 ): UseScreeningDatesReturn => {
   const dates = useMemo(() => {
     const screeningDates = screenings.flatMap((s) =>
-      s.screenings.map((screening) => screening.date.split("T")[0])
+      s.screenings.map((screening) => screening.date)
     );
 
     const upcomingDates = generateUpcomingDates(7);

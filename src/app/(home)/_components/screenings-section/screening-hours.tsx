@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { IScreening } from "@/interfaces/IScreenings";
-import { getHoursFromScreenings, sortHoursChronologically } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 interface ScreeningHoursProps {
@@ -13,30 +12,24 @@ const ScreeningHours: React.FC<ScreeningHoursProps> = ({ screenings }) => {
     return null;
   }
 
-  const sortedScreenings = [...screenings].sort((a, b) => {
-    const timeA = getHoursFromScreenings([a])[0];
-    const timeB = getHoursFromScreenings([b])[0];
-    const sorted = sortHoursChronologically([timeA, timeB]);
-    return sorted[0] === timeA ? -1 : 1;
-  });
+  const sortedScreenings = [...screenings].sort((a, b) =>
+    a.dateTime.localeCompare(b.dateTime)
+  );
 
   return (
     <div className="flex flex-wrap gap-2 mt-2">
-      {sortedScreenings.map((screening) => {
-        const time = getHoursFromScreenings([screening])[0];
-
-        return (
-          <Button key={screening.id} variant="secondary" size="sm" asChild>
-            <Link
-              href={screening.url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {time}
-            </Link>
-          </Button>
-        );
-      })}
+      {sortedScreenings.map((screening) => (
+        <Button key={screening.id} variant="secondary" size="sm" asChild>
+          <Link
+            href={screening.ticketUrl ?? "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Kup bilet na seans o ${screening.time}`}
+          >
+            {screening.time}
+          </Link>
+        </Button>
+      ))}
     </div>
   );
 };

@@ -28,7 +28,7 @@ const MoviesPage = async ({ searchParams }: MoviesPageProps) => {
           description="Klasyka, retrospektywy i seanse specjalne w kinach studyjnych w całej Polsce."
         />
 
-        <MoviesGrid movies={movies} />
+        <MoviesGrid movies={movies} showHoverOverlay={false} />
 
         <PaginatedNav
           currentPage={meta.page}
