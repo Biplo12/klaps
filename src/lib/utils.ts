@@ -13,7 +13,9 @@ export const formatGenres = (genres: IGenre[], max: number = 2) => {
     .join("/");
 };
 
-export const formatDuration = (duration: number) => {
+export const formatDuration = (duration: number | null): string => {
+  if (!duration) return "";
+
   const hours = Math.floor(duration / 60);
   const minutes = duration % 60;
 
@@ -26,12 +28,15 @@ export const createDateByDaysIncrement = (days: number) => {
   return getDateString(date);
 };
 
-export const formatDatePL = (dateStr: string): string =>
-  new Date(dateStr).toLocaleDateString("pl-PL", {
+export const formatDatePL = (dateStr: string | null): string => {
+  if (!dateStr) return "";
+
+  return new Date(dateStr).toLocaleDateString("pl-PL", {
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
   });
+};
 
 export const getTodayDatePL = () => formatDatePL(new Date().toISOString());
 

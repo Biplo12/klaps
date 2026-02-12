@@ -1,13 +1,20 @@
 import React from "react";
 import MovieDetailsItem from "./movie-details-item";
-import { MovieDetailItem } from "./movie-details-types";
+
+type MovieDetailItem = {
+  label: string;
+  value: string;
+};
 
 type MovieDetailsGroupProps = {
   title: string;
   items: MovieDetailItem[];
 };
 
-const MovieDetailsGroup: React.FC<MovieDetailsGroupProps> = ({ title, items }) => {
+const MovieDetailsGroup: React.FC<MovieDetailsGroupProps> = ({
+  title,
+  items,
+}) => {
   if (items.length === 0) return null;
 
   return (
@@ -17,7 +24,11 @@ const MovieDetailsGroup: React.FC<MovieDetailsGroupProps> = ({ title, items }) =
       </h2>
       <dl className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {items.map((item) => (
-          <MovieDetailsItem key={item.label} label={item.label} value={item.value} />
+          <MovieDetailsItem
+            key={item.label}
+            label={item.label}
+            value={item.value}
+          />
         ))}
       </dl>
     </div>

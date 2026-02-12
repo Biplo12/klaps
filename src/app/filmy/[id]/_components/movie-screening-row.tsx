@@ -2,13 +2,16 @@ import React from "react";
 import Link from "next/link";
 import { IScreening } from "@/interfaces/IScreenings";
 import { Button } from "@/components/ui/button";
+import { formatDatePL } from "@/lib/utils";
 
 type MovieScreeningRowProps = {
   screenings: IScreening[];
+  showDate?: boolean;
 };
 
 const MovieScreeningRow: React.FC<MovieScreeningRowProps> = ({
   screenings,
+  showDate = false,
 }) => {
   const firstScreening = screenings[0];
 
@@ -17,6 +20,15 @@ const MovieScreeningRow: React.FC<MovieScreeningRowProps> = ({
   const sortedScreenings = [...screenings].sort((a, b) =>
     a.dateTime.localeCompare(b.dateTime)
   );
+
+  const groupedByDate = showDate
+    ? sortedScreenings.reduce<Record<string, IScreening[]>>((acc, s) => {
+        (acc[s.date] ??= []).push(s);
+        return acc;
+      }, {})
+    : null;
+
+  const dateKeys = groupedByDate ? Object.keys(groupedByDate).sort() : [];
 
   return (
     <div className="flex flex-col gap-4 py-6 border-b border-white/10 last:border-b-0">
@@ -39,20 +51,51 @@ const MovieScreeningRow: React.FC<MovieScreeningRowProps> = ({
         )}
       </div>
 
-      <div className="flex flex-wrap gap-2">
-        {sortedScreenings.map((screening) => (
-          <Button key={screening.id} variant="secondary" size="sm" asChild>
-            <Link
-              href={screening.ticketUrl ?? "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Kup bilet na seans o ${screening.time}`}
-            >
-              {screening.time}
-            </Link>
-          </Button>
-        ))}
-      </div>
+      {showDate && groupedByDate ? (
+        <div className="flex flex-col gap-4">
+          {dateKeys.map((date) => (
+            <div key={date} className="flex flex-col gap-2">
+              <span className="text-neutral-400 text-sm tabular-nums">
+                {formatDatePL(date)}
+              </span>
+
+              <div className="flex flex-wrap gap-2">
+                {groupedByDate[date]!.map((screening) => (
+                  <Button
+                    key={screening.id}
+                    variant="secondary"
+                    size="sm"
+                    asChild
+                  >
+                    <Link
+                      href={screening.ticketUrl ?? "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {screening.time}
+                    </Link>
+                  </Button>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-wrap gap-2">
+          {sortedScreenings.map((screening) => (
+            <Button key={screening.id} variant="secondary" size="sm" asChild>
+              <Link
+                href={screening.ticketUrl ?? "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Kup bilet na seans o ${screening.time}`}
+              >
+                {screening.time}
+              </Link>
+            </Button>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

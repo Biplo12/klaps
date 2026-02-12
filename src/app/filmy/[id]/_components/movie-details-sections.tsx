@@ -2,19 +2,15 @@ import React from "react";
 import { IMovie } from "@/interfaces/IMovies";
 import { formatDatePL, formatDuration, formatNames } from "@/lib/utils";
 import MovieDetailsGroup from "./movie-details-group";
-import { MovieDetailItem } from "./movie-details-types";
 
 type MovieDetailsSectionsProps = {
   movie: IMovie;
 };
 
-const item = (
-  label: string,
-  value: string | null | undefined
-): MovieDetailItem | null => (value ? { label, value } : null);
-
-const compact = (items: (MovieDetailItem | null)[]): MovieDetailItem[] =>
-  items.filter((i): i is MovieDetailItem => i !== null);
+type MovieDetailItem = {
+  label: string;
+  value: string;
+};
 
 const MovieDetailsSections: React.FC<MovieDetailsSectionsProps> = ({
   movie,
@@ -25,30 +21,30 @@ const MovieDetailsSections: React.FC<MovieDetailsSectionsProps> = ({
   const countries = formatNames(movie.countries ?? movie.countryOfOrigin);
   const genres = formatNames(movie.genres);
 
-  const credits = compact([
-    item("Rezyser", directors),
-    item("Aktorzy", actors),
-    item("Autorzy scenariusza", scriptwriters),
-  ]);
+  const credits: MovieDetailItem[] = [
+    { label: "Rezyser", value: directors ?? "" },
+    { label: "Aktorzy", value: actors ?? "" },
+    { label: "Autorzy scenariusza", value: scriptwriters ?? "" },
+  ];
 
-  const movieInfo = compact([
-    item("Rok produkcji", movie.productionYear.toString()),
-    item(
-      "Czas trwania",
-      movie.duration ? formatDuration(movie.duration) : null
-    ),
-    item("Gatunek", genres),
-    item("Kraj pochodzenia", countries),
-    item("Jezyk", movie.language?.toUpperCase()),
-    item(
-      "Premiera swiatowa",
-      movie.worldPremiereDate ? formatDatePL(movie.worldPremiereDate) : null
-    ),
-    item(
-      "Premiera w Polsce",
-      movie.polishPremiereDate ? formatDatePL(movie.polishPremiereDate) : null
-    ),
-  ]);
+  const movieInfo: MovieDetailItem[] = [
+    { label: "Rok produkcji", value: movie.productionYear.toString() },
+    {
+      label: "Czas trwania",
+      value: formatDuration(movie.duration),
+    },
+    { label: "Gatunek", value: genres ?? "" },
+    { label: "Kraj pochodzenia", value: countries ?? "" },
+    { label: "Jezyk", value: movie.language?.toUpperCase() ?? "" },
+    {
+      label: "Premiera swiatowa",
+      value: formatDatePL(movie.worldPremiereDate),
+    },
+    {
+      label: "Premiera w Polsce",
+      value: formatDatePL(movie.polishPremiereDate),
+    },
+  ];
 
   if (credits.length === 0 && movieInfo.length === 0) return null;
 
