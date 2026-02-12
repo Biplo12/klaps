@@ -1,6 +1,6 @@
 import React from "react";
 import { IMovie } from "@/interfaces/IMovies";
-import { formatGenres, formatDuration } from "@/lib/utils";
+import { formatGenres } from "@/lib/utils";
 import MoviePoster from "@/components/common/movie-poster";
 import NoMoviePoster from "@/components/common/no-movie-poster";
 import MovieMeta from "@/app/(home)/_components/hero/movie-meta";
@@ -9,50 +9,8 @@ type MovieHeroProps = {
   movie: IMovie;
 };
 
-type DetailItem = {
-  label: string;
-  value: string;
-};
-
-const formatPremiereDate = (dateStr: string): string =>
-  new Date(dateStr).toLocaleDateString("pl-PL", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  });
-
-const getDetails = (movie: IMovie): DetailItem[] => {
-  const allGenres = movie.genres.map((g) => g.name).join(", ");
-
-  const details: (DetailItem | null)[] = [
-    { label: "Rok produkcji", value: movie.productionYear.toString() },
-    movie.duration
-      ? { label: "Czas trwania", value: formatDuration(movie.duration) }
-      : null,
-    allGenres ? { label: "Gatunek", value: allGenres } : null,
-    movie.language
-      ? { label: "Język", value: movie.language.toUpperCase() }
-      : null,
-    movie.worldPremiereDate
-      ? {
-          label: "Premiera światowa",
-          value: formatPremiereDate(movie.worldPremiereDate),
-        }
-      : null,
-    movie.polishPremiereDate
-      ? {
-          label: "Premiera w Polsce",
-          value: formatPremiereDate(movie.polishPremiereDate),
-        }
-      : null,
-  ];
-
-  return details.filter((d): d is DetailItem => d !== null);
-};
-
 const MovieHero: React.FC<MovieHeroProps> = ({ movie }) => {
   const formattedGenres = formatGenres(movie.genres);
-  const details = getDetails(movie);
 
   return (
     <div className="flex flex-col gap-12">
@@ -100,24 +58,6 @@ const MovieHero: React.FC<MovieHeroProps> = ({ movie }) => {
           )}
         </div>
       </div>
-
-      {details.length > 0 && (
-        <dl className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {details.map((detail) => (
-            <div
-              key={detail.label}
-              className="flex flex-col gap-1 border-l-4 border-l-blood-red pl-4"
-            >
-              <dt className="text-neutral-500 text-sm uppercase tracking-widest">
-                {detail.label}
-              </dt>
-              <dd className="text-white text-base md:text-lg">
-                {detail.value}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      )}
     </div>
   );
 };

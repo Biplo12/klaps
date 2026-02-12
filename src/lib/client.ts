@@ -16,8 +16,6 @@ export async function apiFetch<T>(
       });
     }
 
-    console.log(url.toString());
-
     const res = await fetch(url.toString(), {
       ...options,
       headers: {

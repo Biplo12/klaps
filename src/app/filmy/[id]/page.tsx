@@ -3,6 +3,7 @@ import { getMovieById } from "@/lib/movies";
 import { getMovieScreenings } from "@/lib/screenings";
 import SectionDivider from "@/components/ui/section-divider";
 import MovieHero from "./_components/movie-hero";
+import MovieDetailsSections from "./_components/movie-details-sections";
 import MovieScreenings from "./_components/movie-screenings";
 import MovieTrailer from "./_components/movie-trailer";
 
@@ -24,6 +25,9 @@ const MoviePage = async ({ params }: MoviePageProps) => {
     <main className="bg-black min-h-screen px-8 py-24 md:py-32">
       <div className="max-w-[1400px] mx-auto flex flex-col gap-16">
         <MovieHero movie={movie} />
+
+        <SectionDivider />
+        <MovieDetailsSections movie={movie} />
 
         {movie.videoUrl && (
           <>

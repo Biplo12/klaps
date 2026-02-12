@@ -26,12 +26,24 @@ export const createDateByDaysIncrement = (days: number) => {
   return getDateString(date);
 };
 
-export const getTodayDatePL = () =>
-  new Date().toLocaleDateString("pl-PL", {
+export const formatDatePL = (dateStr: string): string =>
+  new Date(dateStr).toLocaleDateString("pl-PL", {
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
   });
+
+export const getTodayDatePL = () => formatDatePL(new Date().toISOString());
+
+export const formatNames = (
+  entities: { name: string }[] | null | undefined
+): string | null => {
+  const result = entities
+    ?.map((e) => e.name.trim())
+    .filter(Boolean)
+    .join(", ");
+  return result || null;
+};
 
 export const getDateString = (date: Date) =>
   date.toISOString().split("T")[0] ?? "";

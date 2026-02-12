@@ -3,6 +3,19 @@ export interface IGenre {
   name: string;
 }
 
+export interface IMoviePerson {
+  id?: number;
+  filmwebId?: number;
+  name: string;
+  url?: string;
+}
+
+export interface IMovieCountry {
+  id?: number;
+  name: string;
+  countryCode?: string;
+}
+
 export interface IMovieSummary {
   id: number;
   title: string;
@@ -31,6 +44,12 @@ export interface IMovie {
   videoUrl: string | null;
   worldPremiereDate: string | null;
   polishPremiereDate: string | null;
+  directors?: IMoviePerson[] | null;
+  actors?: IMoviePerson[] | null;
+  countries?: IMovieCountry[] | null;
+  scriptwriters?: IMoviePerson[] | null;
+  countryOfOrigin?: IMovieCountry[] | null;
+  screenwriters?: IMoviePerson[] | null;
   genres: IGenre[];
   ratings: {
     users: { score: number; votes: number } | null;

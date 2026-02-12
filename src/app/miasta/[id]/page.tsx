@@ -16,12 +16,12 @@ type CityPageProps = {
 const CityPage = async ({ params }: CityPageProps) => {
   const { id } = await params;
 
-  const [city, cinemasResponse] = await Promise.all([
+  const [cityData, cinemasResponse] = await Promise.all([
     getCityById(Number(id)),
     getCinemas({ cityId: id, limit: 100 }),
   ]);
 
-  const { screenings } = city;
+  const { screenings, city } = cityData;
 
   const cinemasCount = cinemasResponse.data.flatMap((g) => g.cinemas).length;
   const moviesCount = screenings?.length ?? 0;
@@ -56,7 +56,7 @@ export const generateMetadata = async ({
   params,
 }: CityPageProps): Promise<Metadata> => {
   const { id } = await params;
-  const city = await getCityById(Number(id));
+  const { city } = await getCityById(Number(id));
 
   return {
     title: `Kina studyjne w ${city.nameDeclinated} - Klatka`,

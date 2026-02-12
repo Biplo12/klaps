@@ -7,5 +7,6 @@ export interface ICity {
 }
 
 export interface ICityDetails extends ICity {
+  city: ICity;
   screenings: IScreeningGroup[];
 }
