@@ -23,6 +23,7 @@ export const useSearchParam = (): UseSearchParamReturn => {
   const [searchQuery, setSearchQuery] = useState(paramValue);
 
   useEffect(() => {
+    if (timeoutRef.current) return;
     setSearchQuery(paramValue);
   }, [paramValue]);
 
@@ -35,6 +36,8 @@ export const useSearchParam = (): UseSearchParamReturn => {
       }
 
       timeoutRef.current = setTimeout(() => {
+        timeoutRef.current = null;
+
         const params = new URLSearchParams(searchParams.toString());
 
         if (value.trim()) {
