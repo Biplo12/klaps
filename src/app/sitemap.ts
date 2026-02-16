@@ -5,6 +5,8 @@ import { getCinemas } from "@/lib/cinemas";
 import { getCities } from "@/lib/cities";
 import { getGenres } from "@/lib/genres";
 
+export const dynamic = "force-dynamic";
+
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   const [moviesResponse, cinemasResponse, cities, genres] = await Promise.all([
     getMovies({ page: 1, limit: 1000 }),
