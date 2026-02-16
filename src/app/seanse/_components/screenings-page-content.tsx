@@ -9,6 +9,7 @@ interface ScreeningsPageContentProps {
     genre?: string;
     dateFrom?: string;
     dateTo?: string;
+    search?: string;
     page?: string;
   };
 }
@@ -25,6 +26,7 @@ const ScreeningsPageContent = async ({
       genreId: searchParams.genre,
       dateFrom: searchParams.dateFrom,
       dateTo: searchParams.dateTo,
+      search: searchParams.search,
       page: currentPage,
       limit: 24,
     }),

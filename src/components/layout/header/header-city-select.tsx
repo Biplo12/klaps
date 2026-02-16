@@ -23,7 +23,7 @@ interface HeaderCitySelectProps {
 const PLACEHOLDER = "Wszystkie miasta";
 
 const sizeStyles: Record<HeaderCitySelectSize, string> = {
-  sm: "h-8 min-w-[160px] max-w-[200px] border border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/40 [&_input]:text-[11px]",
+  sm: "h-8 min-w-[200px] max-w-[240px] border border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/40 [&_input]:text-[11px]",
   md: "h-10 min-w-[220px] border-2 border-blood-red bg-transparent hover:bg-blood-red/10 [&_input]:text-sm",
 };
 

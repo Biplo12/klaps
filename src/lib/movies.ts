@@ -13,6 +13,8 @@ interface GetMultiCityMoviesParams {
 interface GetMoviesParams {
   page?: number;
   limit?: number;
+  search?: string | null;
+  genreId?: string | null;
 }
 
 export const getMultiCityMovies = async (
@@ -33,6 +35,8 @@ export const getMovies = async (
     params: {
       page: (params.page ?? 1).toString(),
       limit: (params.limit ?? 20).toString(),
+      search: params.search ?? "",
+      genreId: params.genreId ?? "",
     },
   });
   return response;

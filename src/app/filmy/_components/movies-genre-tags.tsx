@@ -9,12 +9,12 @@ import { cn } from "@/lib/utils";
 
 const VISIBLE_COUNT = 10;
 
-interface ScreeningsGenreTagsProps {
+interface MoviesGenreTagsProps {
   genres: IGenre[];
   className?: string;
 }
 
-const ScreeningsGenreTags: React.FC<ScreeningsGenreTagsProps> = ({
+const MoviesGenreTags: React.FC<MoviesGenreTagsProps> = ({
   genres,
   className,
 }) => {
@@ -75,4 +75,4 @@ const ScreeningsGenreTags: React.FC<ScreeningsGenreTagsProps> = ({
   );
 };
 
-export default ScreeningsGenreTags;
+export default MoviesGenreTags;

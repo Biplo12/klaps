@@ -13,6 +13,7 @@ interface GetScreeningsParams {
   genreId?: string | null;
   dateFrom?: string | null;
   dateTo?: string | null;
+  search?: string | null;
   limit?: number;
 }
 
@@ -38,6 +39,7 @@ export const getScreenings = async (
       genreId: params.genreId ?? "",
       dateFrom: params.dateFrom ?? "",
       dateTo: params.dateTo ?? "",
+      search: params.search ?? "",
       limit: params.limit?.toString() ?? "10",
     },
   });
@@ -73,6 +75,7 @@ export const getPaginatedScreenings = async (
       genreId: params.genreId ?? "",
       dateFrom: params.dateFrom ?? "",
       dateTo: params.dateTo ?? "",
+      search: params.search ?? "",
       page: (params.page ?? 1).toString(),
       limit: (params.limit ?? 24).toString(),
     },

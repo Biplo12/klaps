@@ -1,23 +1,38 @@
 import { Metadata } from "next";
 import { getMovies } from "@/lib/movies";
+import { getGenres } from "@/lib/genres";
 import SectionHeader from "@/components/common/section-header";
 import MoviesGrid from "./_components/movies-grid";
+import MoviesPageFilters from "./_components/movies-page-filters";
 import PaginatedNav from "@/components/common/paginated-nav";
 
 export const dynamic = "force-dynamic";
 
 type MoviesPageProps = {
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<{ page?: string; search?: string; genre?: string }>;
 };
 
 const MoviesPage = async ({ searchParams }: MoviesPageProps) => {
   const params = await searchParams;
-  const { page } = await params;
+  const { page, search, genre } = params;
 
-  const { data: movies, meta } = await getMovies({
-    page: page ? Number(page) : 1,
-    limit: 24,
-  });
+  const [{ data: movies, meta }, genres] = await Promise.all([
+    getMovies({
+      page: page ? Number(page) : 1,
+      limit: 24,
+      search,
+      genreId: genre,
+    }),
+    getGenres(),
+  ]);
+
+  const buildPaginationHref = (targetPage: number) => {
+    const urlParams = new URLSearchParams();
+    urlParams.set("page", targetPage.toString());
+    if (search) urlParams.set("search", search);
+    if (genre) urlParams.set("genre", genre);
+    return `/filmy?${urlParams.toString()}`;
+  };
 
   return (
     <main className="bg-black min-h-screen px-8 py-24 md:py-32">
@@ -28,12 +43,14 @@ const MoviesPage = async ({ searchParams }: MoviesPageProps) => {
           description="Klasyka, retrospektywy i seanse specjalne w kinach studyjnych w całej Polsce."
         />
 
+        <MoviesPageFilters genres={genres} />
+
         <MoviesGrid movies={movies} showHoverOverlay={false} />
 
         <PaginatedNav
           currentPage={meta.page}
           totalPages={meta.totalPages}
-          buildHref={(page) => `/filmy?page=${page}`}
+          buildHref={buildPaginationHref}
         />
       </div>
     </main>

@@ -10,6 +10,7 @@ interface ScreeningsSectionProps {
     genre?: string;
     dateFrom?: string;
     dateTo?: string;
+    search?: string;
   };
 }
 
@@ -23,6 +24,7 @@ const ScreeningsSection = async ({ searchParams }: ScreeningsSectionProps) => {
       genreId: params?.genre,
       dateFrom: params?.dateFrom,
       dateTo: params?.dateTo,
+      search: params?.search,
       limit: 12,
     }),
     getGenres(),

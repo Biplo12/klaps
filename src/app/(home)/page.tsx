@@ -8,6 +8,7 @@ type SearchParams = {
   genre?: string;
   dateFrom?: string;
   dateTo?: string;
+  search?: string;
 };
 
 interface HomeProps {
