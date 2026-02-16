@@ -18,7 +18,7 @@ const UsageSection: React.FC = () => {
 
       <p>
         Serwis nie wymaga rejestracji ani logowania. Wszystkie informacje są
-        dostępne bezpłatnie i&nbsp;bez ograniczeń. Klatka działa jako
+        dostępne bezpłatnie i&nbsp;bez ograniczeń. Klaps działa jako
         przeglądarka repertuarowa. Wchodzisz, sprawdzasz co grają
         i&nbsp;wybierasz seans.
       </p>

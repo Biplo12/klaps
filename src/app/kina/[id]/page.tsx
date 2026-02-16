@@ -52,7 +52,7 @@ export const generateMetadata = async ({
   const cinema = await getCinemaById(id);
 
   return {
-    title: `${cinema.name} — Klatka`,
+    title: `${cinema.name} — Klaps`,
     description: `Kino studyjne ${cinema.name} w ${cinema.city.name}. Sprawdź aktualne seanse.`,
   };
 };

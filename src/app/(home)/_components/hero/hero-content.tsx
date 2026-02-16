@@ -1,6 +1,6 @@
 import React from "react";
 import { IRandomScreening } from "@/interfaces/IScreenings";
-import { cn, formatGenres, getTitleSizeClasses } from "@/lib/utils";
+import { cn, getTitleSizeClasses } from "@/lib/utils";
 import MovieMeta from "./movie-meta";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
@@ -19,7 +19,6 @@ const TRUST_LINE =
   "Aktualne seanse z kin studyjnych w Polsce. Dane z publicznych źródeł.";
 
 const HeroContent: React.FC<HeroContentProps> = ({ screening }) => {
-  const formattedGenres = formatGenres(screening.movie.genres);
   const movieDetailsHref = `/filmy/${screening.movie.id}`;
 
   return (
@@ -45,7 +44,8 @@ const HeroContent: React.FC<HeroContentProps> = ({ screening }) => {
         <MovieMeta
           duration={screening.movie.duration}
           productionYear={screening.movie.productionYear}
-          formattedGenres={formattedGenres}
+          genres={screening.movie.genres}
+          buildGenreHref={(genre) => `/seanse?genre=${genre.id}`}
         />
 
         <p className="text-base md:text-xl lg:text-2xl text-white font-light italic max-w-[650px] line-clamp-3">

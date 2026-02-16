@@ -36,7 +36,7 @@ const ProblemSection: React.FC = () => {
       </p>
 
       <p>
-        Klatka powstaje jako odpowiedź na ten problem. Jej zadaniem jest
+        Klaps powstaje jako odpowiedź na ten problem. Jego zadaniem jest
         zebranie rozproszonych informacji w&nbsp;jednym miejscu i&nbsp;podanie
         ich w&nbsp;formie czytelnej, uporządkowanej i&nbsp;pozbawionej nadmiaru
         bodźców.

@@ -15,7 +15,7 @@ const DataSourcesSection: React.FC = () => {
       <p>
         Nie korzystamy z&nbsp;zamkniętych baz danych ani komercyjnych API.
         Wszystkie informacje, które prezentujemy, są dostępne publicznie na
-        stronach poszczególnych kin. Klatka jedynie zbiera je w&nbsp;jednym
+        stronach poszczególnych kin. Klaps jedynie zbiera je w&nbsp;jednym
         miejscu i&nbsp;prezentuje w&nbsp;ujednoliconej formie.
       </p>
 

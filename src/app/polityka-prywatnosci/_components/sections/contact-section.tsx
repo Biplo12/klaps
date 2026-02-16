@@ -7,7 +7,7 @@ const ContactSection: React.FC = () => {
     <ContentSection id="kontakt" title="Kontakt">
       <p>
         W&nbsp;przypadku jakichkolwiek pytań dotyczących niniejszej polityki
-        prywatności lub przetwarzania danych w&nbsp;serwisie Klatka, prosimy
+        prywatności lub przetwarzania danych w&nbsp;serwisie Klaps, prosimy
         o&nbsp;kontakt pod adresem e-mail:{" "}
         <a
           href={`mailto:${CONTACT_EMAIL}`}

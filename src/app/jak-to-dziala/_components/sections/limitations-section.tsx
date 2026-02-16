@@ -5,7 +5,7 @@ const LimitationsSection: React.FC = () => {
   return (
     <ContentSection id="ograniczenia" title="Czego nie robimy?">
       <p>
-        Klatka nie jest portalem filmowym w&nbsp;tradycyjnym tego słowa
+        Klaps nie jest portalem filmowym w&nbsp;tradycyjnym tego słowa
         znaczeniu. Nie publikujemy recenzji, nie tworzymy rankingów, nie
         przyznajemy ocen i&nbsp;nie prowadzimy rekomendacji opartych
         o&nbsp;algorytmy.

@@ -5,7 +5,7 @@ import AboutBorderedList from "../about-bordered-list";
 const CharacterSection: React.FC = () => {
   return (
     <ContentSection id="charakter" title="Charakter projektu">
-      <p>Klatka jest projektem:</p>
+      <p>Klaps jest projektem:</p>
 
       <AboutBorderedList
         items={[

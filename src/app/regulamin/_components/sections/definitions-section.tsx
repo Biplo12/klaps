@@ -7,7 +7,7 @@ const DefinitionsSection: React.FC = () => {
     <ContentSection id="definicje" title="Definicje">
       <p>
         <span className="text-white/80 font-medium">Serwis</span> oznacza stronę
-        internetową Klatka dostępną pod adresem {SITE_DOMAIN} wraz ze wszystkimi
+        internetową Klaps dostępną pod adresem {SITE_DOMAIN} wraz ze wszystkimi
         jej podstronami.
       </p>
 

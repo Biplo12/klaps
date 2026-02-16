@@ -17,9 +17,9 @@ const PrivacyPolicyPage = () => {
 };
 
 export const metadata: Metadata = {
-  title: "Polityka prywatności - Klatka",
+  title: "Polityka prywatności - Klaps",
   description:
-    "Polityka prywatności serwisu Klatka. Informacje o przetwarzaniu danych, plikach cookies i prawach użytkowników.",
+    "Polityka prywatności serwisu Klaps. Informacje o przetwarzaniu danych, plikach cookies i prawach użytkowników.",
 };
 
 export default PrivacyPolicyPage;

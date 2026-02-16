@@ -14,9 +14,9 @@ const TermsPage = () => {
 };
 
 export const metadata: Metadata = {
-  title: "Regulamin — Klatka",
+  title: "Regulamin — Klaps",
   description:
-    "Regulamin korzystania z serwisu Klatka. Zasady, odpowiedzialność, prawa autorskie i dane kontaktowe.",
+    "Regulamin korzystania z serwisu Klaps. Zasady, odpowiedzialność, prawa autorskie i dane kontaktowe.",
 };
 
 export default TermsPage;

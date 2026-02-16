@@ -21,15 +21,15 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Klatka - Repertuar seansów specjalnych i klasyki filmowej",
-    template: "%s - Klatka",
+    default: "Klaps - Repertuar seansów specjalnych i klasyki filmowej",
+    template: "%s - Klaps",
   },
   description:
     "Ogólnopolski przewodnik po seansach specjalnych, klasyce i retrospektywach w kinach studyjnych. Sprawdź co grają.",
   openGraph: {
     type: "website",
     locale: "pl_PL",
-    siteName: "Klatka",
+    siteName: "Klaps",
   },
 };
 

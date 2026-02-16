@@ -26,7 +26,7 @@ const HomePage = async ({ searchParams }: HomeProps) => {
 };
 
 export const metadata: Metadata = {
-  title: "Klatka - Repertuar seansów specjalnych i klasyki filmowej",
+  title: "Klaps - Repertuar seansów specjalnych i klasyki filmowej",
   description:
     "Ogólnopolski przewodnik po seansach specjalnych, klasyce i retrospektywach w kinach studyjnych. Sprawdź co grają.",
 };

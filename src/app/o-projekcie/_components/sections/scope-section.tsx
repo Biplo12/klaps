@@ -5,7 +5,7 @@ import AboutBorderedList from "../about-bordered-list";
 const ScopeSection: React.FC = () => {
   return (
     <ContentSection id="zakres" title="Zakres projektu">
-      <p className="text-white/80 font-medium">Klatka obejmuje:</p>
+      <p className="text-white/80 font-medium">Klaps obejmuje:</p>
 
       <AboutBorderedList
         items={[
@@ -17,7 +17,7 @@ const ScopeSection: React.FC = () => {
         ]}
       />
 
-      <p className="text-white/80 font-medium mt-4">Czego Klatka nie robi?</p>
+      <p className="text-white/80 font-medium mt-4">Czego Klaps nie robi?</p>
 
       <AboutBorderedList
         items={[
@@ -31,9 +31,9 @@ const ScopeSection: React.FC = () => {
 
       <p>
         Granica jest prosta: jeśli film można obejrzeć w&nbsp;każdym
-        multipleksie przez najbliższe trzy tygodnie – Klatka się nim nie
+        multipleksie przez najbliższe trzy tygodnie – Klaps się nim nie
         zajmuje. Jeśli wyświetlany jest przez jeden wieczór w&nbsp;trzech kinach
-        w&nbsp;Polsce – wtedy właśnie Klatka jest potrzebna.
+        w&nbsp;Polsce – wtedy właśnie Klaps jest potrzebny.
       </p>
     </ContentSection>
   );

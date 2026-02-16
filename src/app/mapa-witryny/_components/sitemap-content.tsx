@@ -1,6 +1,6 @@
 import React from "react";
 import { ICinemaGroup } from "@/interfaces/ICinema";
-import { IMovieSummary } from "@/interfaces/IMovies";
+import { IGenre, IMovieSummary } from "@/interfaces/IMovies";
 import SitemapLinkGroup from "./sitemap-link-group";
 
 type SitemapLink = {
@@ -22,6 +22,7 @@ const STATIC_GROUPS: SitemapGroup[] = [
       { href: "/filmy", label: "Filmy" },
       { href: "/kina", label: "Kina" },
       { href: "/miasta", label: "Miasta" },
+      { href: "/gatunki", label: "Gatunki" },
     ],
   },
   {
@@ -42,11 +43,13 @@ const STATIC_GROUPS: SitemapGroup[] = [
 interface SitemapContentProps {
   cinemaGroups: ICinemaGroup[];
   movies: readonly IMovieSummary[];
+  genres: IGenre[];
 }
 
 const SitemapContent: React.FC<SitemapContentProps> = ({
   cinemaGroups,
   movies,
+  genres,
 }) => {
   const sortedGroups = [...cinemaGroups].sort((a, b) =>
     a.city.name.localeCompare(b.city.name, "pl")
@@ -78,7 +81,23 @@ const SitemapContent: React.FC<SitemapContentProps> = ({
     })),
   };
 
-  const allGroups = [...STATIC_GROUPS, citiesGroup, cinemasGroup, moviesGroup];
+  const genresGroup: SitemapGroup = {
+    heading: "Gatunki",
+    links: [...genres]
+      .sort((a, b) => a.name.localeCompare(b.name, "pl"))
+      .map((genre) => ({
+        href: `/gatunki/${genre.id}`,
+        label: genre.name,
+      })),
+  };
+
+  const allGroups = [
+    ...STATIC_GROUPS,
+    genresGroup,
+    citiesGroup,
+    cinemasGroup,
+    moviesGroup,
+  ];
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-y-14 md:gap-x-20">

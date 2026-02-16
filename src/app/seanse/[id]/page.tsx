@@ -62,7 +62,7 @@ export const generateMetadata = async ({
     : `${movie.title} (${movie.productionYear}) - seans w ${screening.cinema.name}, ${screening.cinema.city.name}.`;
 
   return {
-    title: `${movie.title} - Seans - Klatka`,
+    title: `${movie.title} - Seans - Klaps`,
     description,
   };
 };

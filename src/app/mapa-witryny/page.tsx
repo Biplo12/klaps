@@ -1,15 +1,17 @@
 import { Metadata } from "next";
 import { getCinemas } from "@/lib/cinemas";
 import { getMovies } from "@/lib/movies";
+import { getGenres } from "@/lib/genres";
 import SectionHeader from "@/components/common/section-header";
 import SitemapContent from "./_components/sitemap-content";
 
 export const dynamic = "force-dynamic";
 
 const SitemapPage = async () => {
-  const [{ data: cinemaGroups }, { data: movies }] = await Promise.all([
+  const [{ data: cinemaGroups }, { data: movies }, genres] = await Promise.all([
     getCinemas({ limit: 500 }),
     getMovies({ limit: 1000 }),
+    getGenres(),
   ]);
 
   return (
@@ -18,19 +20,23 @@ const SitemapPage = async () => {
         <SectionHeader
           prefix="Mapa witryny"
           title="Wszystkie podstrony"
-          description="Przeglądaj wszystkie dostępne strony serwisu Klatka w jednym miejscu."
+          description="Przeglądaj wszystkie dostępne strony serwisu Klaps w jednym miejscu."
         />
 
-        <SitemapContent cinemaGroups={cinemaGroups} movies={movies} />
+        <SitemapContent
+          cinemaGroups={cinemaGroups}
+          movies={movies}
+          genres={genres}
+        />
       </div>
     </main>
   );
 };
 
 export const metadata: Metadata = {
-  title: "Mapa witryny - Klatka",
+  title: "Mapa witryny - Klaps",
   description:
-    "Mapa witryny serwisu Klatka. Przeglądaj wszystkie dostępne strony i podstrony w jednym miejscu.",
+    "Mapa witryny serwisu Klaps. Przeglądaj wszystkie dostępne strony i podstrony w jednym miejscu.",
 };
 
 export default SitemapPage;

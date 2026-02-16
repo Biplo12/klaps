@@ -5,7 +5,7 @@ import AboutBorderedList from "../about-bordered-list";
 const PhilosophySection: React.FC = () => {
   return (
     <ContentSection id="filozofia" title="Filozofia projektu">
-      <p>Klatka opiera się na kilku prostych zasadach:</p>
+      <p>Klaps opiera się na kilku prostych zasadach:</p>
 
       <AboutBorderedList
         items={[

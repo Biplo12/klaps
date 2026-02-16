@@ -5,7 +5,7 @@ const CookiesSection: React.FC = () => {
   return (
     <ContentSection id="pliki-cookies" title="Pliki cookies">
       <p>
-        Serwis Klatka może wykorzystywać pliki cookies (ciasteczka), czyli
+        Serwis Klaps może wykorzystywać pliki cookies (ciasteczka), czyli
         niewielkie pliki tekstowe zapisywane na urządzeniu użytkownika.
       </p>
 

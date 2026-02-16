@@ -5,7 +5,7 @@ const DataScopeSection: React.FC = () => {
   return (
     <ContentSection id="zakres-danych" title="Zakres przetwarzanych danych">
       <p>
-        Serwis Klatka nie wymaga rejestracji, logowania ani podawania
+        Serwis Klaps nie wymaga rejestracji, logowania ani podawania
         jakichkolwiek danych osobowych. Nie zbieramy imion, nazwisk, adresów
         e-mail ani innych danych identyfikujących użytkowników.
       </p>

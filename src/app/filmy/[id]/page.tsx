@@ -65,10 +65,10 @@ export const generateMetadata = async ({
 
   const description = movie.description
     ? movie.description.slice(0, 160)
-    : `${movie.title} (${movie.productionYear}) - szczegóły filmu w serwisie Klatka.`;
+    : `${movie.title} (${movie.productionYear}) - szczegóły filmu w serwisie Klaps.`;
 
   return {
-    title: `${movie.title} - Klatka`,
+    title: `${movie.title} - Klaps`,
     description,
   };
 };

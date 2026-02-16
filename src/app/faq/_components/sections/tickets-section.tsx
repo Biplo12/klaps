@@ -5,9 +5,9 @@ import FaqItem from "../faq-item";
 const TicketsSection: React.FC = () => {
   return (
     <ContentSection id="bilety" title="Bilety">
-      <FaqItem question="Czy mogę kupić bilety przez Klatkę?">
+      <FaqItem question="Czy mogę kupić bilety przez Klaps?">
         <p>
-          Nie. Klatka nie pośredniczy w&nbsp;sprzedaży biletów ani rezerwacji
+          Nie. Klaps nie pośredniczy w&nbsp;sprzedaży biletów ani rezerwacji
           miejsc. Serwis wyłącznie agreguje i&nbsp;prezentuje informacje
           o&nbsp;seansach.
         </p>
@@ -23,7 +23,7 @@ const TicketsSection: React.FC = () => {
 
       <FaqItem question="Czy ceny biletów podane w serwisie są aktualne?">
         <p>
-          Serwis Klatka nie prezentuje cen biletów. Informacje o&nbsp;cenach
+          Serwis Klaps nie prezentuje cen biletów. Informacje o&nbsp;cenach
           dostępne są bezpośrednio na stronach poszczególnych kin.
         </p>
       </FaqItem>

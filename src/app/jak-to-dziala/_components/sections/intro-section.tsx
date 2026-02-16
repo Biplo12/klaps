@@ -5,7 +5,7 @@ const IntroSection: React.FC = () => {
   return (
     <ContentSection id="wprowadzenie" title="Na czym to polega?">
       <p>
-        Klatka działa w&nbsp;prosty sposób: zbieramy informacje o&nbsp;seansach
+        Klaps działa w&nbsp;prosty sposób: zbieramy informacje o&nbsp;seansach
         z&nbsp;kin studyjnych i&nbsp;wybranych kin sieciowych w&nbsp;całej
         Polsce, filtrujemy je pod kątem pokazów specjalnych, klasyki
         i&nbsp;retrospektyw, a&nbsp;następnie prezentujemy w&nbsp;jednym,

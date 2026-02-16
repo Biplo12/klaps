@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
-export const alt = "Klatka - Repertuar seansów specjalnych i klasyki filmowej";
+export const alt = "Klaps - Repertuar seansów specjalnych i klasyki filmowej";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -62,7 +62,7 @@ const OgImage = () => {
               textTransform: "uppercase",
             }}
           >
-            Klatka
+            Klaps
           </span>
 
           <div

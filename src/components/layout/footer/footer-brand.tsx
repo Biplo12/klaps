@@ -8,7 +8,7 @@ const FooterBrand: React.FC = () => {
         href="/"
         className="inline-block self-start text-5xl md:text-6xl font-monoton uppercase text-blood-red drop-shadow-[0_0_1px_rgba(255,255,255,0.3)] transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blood-red focus-visible:ring-offset-2 focus-visible:ring-offset-dark-ink rounded-sm"
       >
-        Klatka
+        Klaps
       </Link>
 
       <p className="text-xs uppercase tracking-[0.25em] text-white/40 font-oswald font-light max-w-xs">

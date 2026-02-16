@@ -1,6 +1,5 @@
 import React from "react";
 import { IMovie } from "@/interfaces/IMovies";
-import { formatGenres } from "@/lib/utils";
 import MoviePoster from "@/components/common/movie-poster";
 import NoMoviePoster from "@/components/common/no-movie-poster";
 import MovieMeta from "@/app/(home)/_components/hero/movie-meta";
@@ -10,7 +9,6 @@ type MovieHeroProps = {
 };
 
 const MovieHero: React.FC<MovieHeroProps> = ({ movie }) => {
-  const formattedGenres = formatGenres(movie.genres);
 
   return (
     <div className="flex flex-col gap-12">
@@ -47,7 +45,7 @@ const MovieHero: React.FC<MovieHeroProps> = ({ movie }) => {
           <MovieMeta
             duration={movie.duration}
             productionYear={movie.productionYear}
-            formattedGenres={formattedGenres}
+            genres={movie.genres}
             className="text-base md:text-lg"
           />
 

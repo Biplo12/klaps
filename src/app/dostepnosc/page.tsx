@@ -14,9 +14,9 @@ const AccessibilityPage = () => {
 };
 
 export const metadata: Metadata = {
-  title: "Dostępność - Klatka",
+  title: "Dostępność - Klaps",
   description:
-    "Deklaracja dostępności serwisu Klatka. Informacje o zgodności ze standardami, obsługiwanych technologiach i sposobach kontaktu.",
+    "Deklaracja dostępności serwisu Klaps. Informacje o zgodności ze standardami, obsługiwanych technologiach i sposobach kontaktu.",
 };
 
 export default AccessibilityPage;

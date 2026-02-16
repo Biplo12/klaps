@@ -14,9 +14,9 @@ const HowItWorksPage = () => {
 };
 
 export const metadata: Metadata = {
-  title: "Jak to działa — Klatka",
+  title: "Jak to działa — Klaps",
   description:
-    "Dowiedz się skąd Klatka pobiera repertuar, jak filtruje seanse i jak korzystać z serwisu.",
+    "Dowiedz się skąd Klaps pobiera repertuar, jak filtruje seanse i jak korzystać z serwisu.",
 };
 
 export default HowItWorksPage;

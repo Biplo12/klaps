@@ -10,7 +10,7 @@ const CompatibilitySection: React.FC = () => {
       </p>
 
       <p>
-        Klatka jest testowana i&nbsp;wspierana w&nbsp;najnowszych wersjach
+        Klaps jest testowany i&nbsp;wspierany w&nbsp;najnowszych wersjach
         popularnych przeglądarek: Chrome, Firefox, Safari oraz Edge.
       </p>
 

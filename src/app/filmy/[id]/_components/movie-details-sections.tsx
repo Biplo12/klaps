@@ -2,6 +2,7 @@ import React from "react";
 import { IMovie } from "@/interfaces/IMovies";
 import { formatDatePL, formatDuration, formatNames } from "@/lib/utils";
 import MovieDetailsGroup from "./movie-details-group";
+import MovieGenreLinks from "./movie-genre-links";
 
 type MovieDetailsSectionsProps = {
   movie: IMovie;
@@ -19,7 +20,6 @@ const MovieDetailsSections: React.FC<MovieDetailsSectionsProps> = ({
   const actors = formatNames(movie.actors);
   const scriptwriters = formatNames(movie.scriptwriters ?? movie.screenwriters);
   const countries = formatNames(movie.countries ?? movie.countryOfOrigin);
-  const genres = formatNames(movie.genres);
 
   const credits: MovieDetailItem[] = [
     { label: "Rezyser", value: directors ?? "" },
@@ -33,7 +33,6 @@ const MovieDetailsSections: React.FC<MovieDetailsSectionsProps> = ({
       label: "Czas trwania",
       value: formatDuration(movie.duration),
     },
-    { label: "Gatunek", value: genres ?? "" },
     { label: "Kraj pochodzenia", value: countries ?? "" },
     { label: "Jezyk", value: movie.language?.toUpperCase() ?? "" },
     {
@@ -51,6 +50,7 @@ const MovieDetailsSections: React.FC<MovieDetailsSectionsProps> = ({
   return (
     <section className="flex flex-col gap-10">
       <MovieDetailsGroup title="Tworcy i obsada" items={credits} />
+      <MovieGenreLinks genres={movie.genres} />
       <MovieDetailsGroup title="Informacje o filmie" items={movieInfo} />
     </section>
   );

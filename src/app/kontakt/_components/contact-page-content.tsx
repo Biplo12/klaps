@@ -10,7 +10,7 @@ const ContactPageContent: React.FC = () => {
       <div className="flex flex-col gap-20 flex-1 min-w-0">
         <ContentSection id="o-kontakcie" title="Jak się z nami skontaktować?">
           <p>
-            Klatka to projekt rozwijany niezależnie, z&nbsp;myślą
+            Klaps to projekt rozwijany niezależnie, z&nbsp;myślą
             o&nbsp;miłośnikach kina studyjnego i&nbsp;klasyki filmowej. Jeśli
             chcesz się z&nbsp;nami skontaktować, napisz. Odpowiadamy na
             wiadomości w&nbsp;ciągu kilku dni roboczych.
@@ -46,7 +46,7 @@ const ContactPageContent: React.FC = () => {
 
         <ContentSection id="uwagi" title="Zgłoszenia i uwagi">
           <p>
-            Klatka jest projektem w&nbsp;ciągłym rozwoju. Jeśli masz pomysł na
+            Klaps jest projektem w&nbsp;ciągłym rozwoju. Jeśli masz pomysł na
             usprawnienie serwisu, sugestię dotyczącą funkcjonalności lub chcesz
             podzielić się opinią na temat działania strony, Twoja wiadomość jest
             mile widziana.

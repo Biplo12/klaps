@@ -5,7 +5,7 @@ const SummarySection: React.FC = () => {
   return (
     <ContentSection id="podsumowanie" title="Podsumowanie">
       <p>
-        Klatka to projekt, który wyrasta z&nbsp;prostej obserwacji: wartościowe
+        Klaps to projekt, który wyrasta z&nbsp;prostej obserwacji: wartościowe
         seanse kinowe odbywają się każdego dnia, ale informacja o&nbsp;nich jest
         rozproszona, trudno dostępna i&nbsp;łatwa do przeoczenia.
       </p>
@@ -20,7 +20,7 @@ const SummarySection: React.FC = () => {
 
       <p>
         Jeśli kiedykolwiek żałowałeś, że dowiedziałeś się o&nbsp;pokazie
-        ulubionego filmu dzień po seansie, Klatka jest właśnie dla Ciebie.
+        ulubionego filmu dzień po seansie, Klaps jest właśnie dla Ciebie.
       </p>
     </ContentSection>
   );

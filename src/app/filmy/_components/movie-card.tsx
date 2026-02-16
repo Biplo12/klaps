@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { IMovieSummary } from "@/interfaces/IMovies";
-import { formatGenres } from "@/lib/utils";
 import MoviePoster from "@/components/common/movie-poster";
 import ScreeningHoverOverlay from "@/app/(home)/_components/screenings-section/screening-hover-overlay";
 import MovieMeta from "@/app/(home)/_components/hero/movie-meta";
@@ -22,12 +21,11 @@ const MovieCard: React.FC<MovieCardProps> = ({
   showDescription = false,
   showHoverOverlay = true,
 }) => {
-  const formattedGenres = formatGenres(movie.genres);
   const desc =
     "description" in movie
-      ? ((
+      ? (
           movie as IMovieSummary & { description?: string | null }
-        ).description?.trim() ?? "")
+        ).description?.trim() ?? ""
       : "";
 
   return (
@@ -62,7 +60,8 @@ const MovieCard: React.FC<MovieCardProps> = ({
         <MovieMeta
           duration={movie.duration}
           productionYear={movie.productionYear}
-          formattedGenres={formattedGenres}
+          genres={movie.genres}
+          buildGenreHref={(genre) => `/seanse?genre=${genre.id}`}
           className="text-sm"
         />
 

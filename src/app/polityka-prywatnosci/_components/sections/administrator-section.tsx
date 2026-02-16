@@ -7,7 +7,7 @@ const AdministratorSection: React.FC = () => {
     <ContentSection id="administrator" title="Administrator danych">
       <p>
         Administratorem danych przetwarzanych w&nbsp;związku z&nbsp;korzystaniem
-        z&nbsp;serwisu Klatka jest twórca serwisu.
+        z&nbsp;serwisu Klaps jest twórca serwisu.
       </p>
 
       <p>

@@ -40,7 +40,7 @@ const ScreeningsPage = async ({ searchParams }: ScreeningsPageProps) => {
 };
 
 export const metadata: Metadata = {
-  title: "Seanse - Klatka",
+  title: "Seanse - Klaps",
   description:
     "Pełna lista seansów specjalnych i klasyki filmowej w kinach studyjnych w całej Polsce. Filtruj po mieście, dacie i gatunku.",
 };

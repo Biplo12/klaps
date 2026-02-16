@@ -15,6 +15,7 @@ const FOOTER_NAV_GROUPS: FooterLinkGroup[] = [
       { href: "/filmy", label: "Filmy" },
       { href: "/kina", label: "Kina" },
       { href: "/miasta", label: "Miasta" },
+      { href: "/gatunki", label: "Gatunki" },
     ],
   },
   {

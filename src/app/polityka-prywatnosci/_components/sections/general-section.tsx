@@ -7,12 +7,12 @@ const GeneralSection: React.FC = () => {
     <ContentSection id="postanowienia-ogolne" title="Postanowienia ogólne">
       <p>
         Niniejsza polityka prywatności określa zasady przetwarzania danych
-        osobowych oraz wykorzystywania plików cookies w&nbsp;serwisie Klatka,
+        osobowych oraz wykorzystywania plików cookies w&nbsp;serwisie Klaps,
         dostępnym pod adresem {SITE_DOMAIN}.
       </p>
 
       <p>
-        Serwis Klatka jest projektem niezależnym, prowadzonym niekomercyjnie.
+        Serwis Klaps jest projektem niezależnym, prowadzonym niekomercyjnie.
         Ochrona prywatności użytkowników jest dla nas priorytetem. Dokładamy
         wszelkich starań, aby przetwarzanie danych odbywało się zgodnie
         z&nbsp;obowiązującymi przepisami, w&nbsp;tym z&nbsp;Rozporządzeniem

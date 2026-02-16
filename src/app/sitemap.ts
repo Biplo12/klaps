@@ -3,12 +3,14 @@ import { SITE_URL } from "@/lib/site-config";
 import { getMovies } from "@/lib/movies";
 import { getCinemas } from "@/lib/cinemas";
 import { getCities } from "@/lib/cities";
+import { getGenres } from "@/lib/genres";
 
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
-  const [moviesResponse, cinemasResponse, cities] = await Promise.all([
+  const [moviesResponse, cinemasResponse, cities, genres] = await Promise.all([
     getMovies({ page: 1, limit: 1000 }),
     getCinemas({ limit: 1000 }),
     getCities(),
+    getGenres(),
   ]);
 
   const staticPages: MetadataRoute.Sitemap = [
@@ -17,6 +19,7 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     { url: `${SITE_URL}/filmy`, changeFrequency: "daily", priority: 0.8 },
     { url: `${SITE_URL}/kina`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${SITE_URL}/miasta`, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${SITE_URL}/gatunki`, changeFrequency: "weekly", priority: 0.7 },
     { url: `${SITE_URL}/o-projekcie`, changeFrequency: "monthly", priority: 0.3 },
     { url: `${SITE_URL}/jak-to-dziala`, changeFrequency: "monthly", priority: 0.3 },
     { url: `${SITE_URL}/kontakt`, changeFrequency: "monthly", priority: 0.3 },
@@ -50,7 +53,19 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...moviePages, ...cinemaPages, ...cityPages];
+  const genrePages: MetadataRoute.Sitemap = genres.map((genre) => ({
+    url: `${SITE_URL}/gatunki/${genre.id}`,
+    changeFrequency: "weekly" as const,
+    priority: 0.5,
+  }));
+
+  return [
+    ...staticPages,
+    ...moviePages,
+    ...cinemaPages,
+    ...cityPages,
+    ...genrePages,
+  ];
 };
 
 export default sitemap;

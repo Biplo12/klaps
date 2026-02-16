@@ -24,7 +24,7 @@ const CinemasPage = async () => {
 };
 
 export const metadata: Metadata = {
-  title: "Kina studyjne w Polsce — Klatka",
+  title: "Kina studyjne w Polsce — Klaps",
   description:
     "Pełna lista kin studyjnych w Polsce. Znajdź kino niezależne w swoim mieście.",
 };

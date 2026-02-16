@@ -26,7 +26,7 @@ const SECTION_IDS = [
 ] as const;
 
 const SIDEBAR_LINKS = [
-  { id: "czym-jest", label: "Czym jest Klatka?" },
+  { id: "czym-jest", label: "Czym jest Klaps?" },
   { id: "problem", label: "Problem" },
   { id: "dlaczego-kino", label: "Dlaczego kino?" },
   { id: "zakres", label: "Zakres projektu" },

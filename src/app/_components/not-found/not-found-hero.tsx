@@ -12,10 +12,10 @@ const NotFoundHero: React.FC = () => {
           Błąd 404
         </span>
         <h1 className="text-white text-3xl md:text-5xl font-bold uppercase tracking-wide">
-          Zaginiona klatka
+          Zgubiony klaps
         </h1>
         <p className="text-neutral-400 text-base md:text-lg max-w-lg leading-relaxed">
-          Ta klatka wypadła z taśmy. Strona, której szukasz, nie istnieje lub
+          Ten klaps poszedł w próżnię. Strona, której szukasz, nie istnieje lub
           została przeniesiona.
         </p>
       </div>

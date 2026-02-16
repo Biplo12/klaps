@@ -17,9 +17,9 @@ const FaqPage = () => {
 };
 
 export const metadata: Metadata = {
-  title: "FAQ - Klatka",
+  title: "FAQ - Klaps",
   description:
-    "Najczęściej zadawane pytania dotyczące serwisu Klatka. Dowiedz się więcej o seansach, repertuarze, kinach i funkcjach serwisu.",
+    "Najczęściej zadawane pytania dotyczące serwisu Klaps. Dowiedz się więcej o seansach, repertuarze, kinach i funkcjach serwisu.",
 };
 
 export default FaqPage;

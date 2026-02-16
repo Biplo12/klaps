@@ -7,11 +7,11 @@ const GeneralSection: React.FC = () => {
     <ContentSection id="postanowienia-ogolne" title="Postanowienia ogólne">
       <p>
         Niniejszy regulamin określa zasady korzystania z&nbsp;serwisu
-        internetowego Klatka, dostępnego pod adresem {SITE_DOMAIN}.
+        internetowego Klaps, dostępnego pod adresem {SITE_DOMAIN}.
       </p>
 
       <p>
-        Serwis Klatka jest projektem niezależnym, prowadzonym niekomercyjnie.
+        Serwis Klaps jest projektem niezależnym, prowadzonym niekomercyjnie.
         Jego celem jest agregowanie i&nbsp;udostępnianie informacji
         o&nbsp;seansach specjalnych, klasyce filmowej oraz retrospektywach
         organizowanych przez kina studyjne i&nbsp;wybrane kina sieciowe

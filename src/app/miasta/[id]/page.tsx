@@ -77,7 +77,7 @@ export const generateMetadata = async ({
   const { city } = await getCityById(Number(id));
 
   return {
-    title: `Kina studyjne w ${city.nameDeclinated} - Klatka`,
+    title: `Kina studyjne w ${city.nameDeclinated} - Klaps`,
     description: `Kina studyjne i aktualne seanse w ${city.nameDeclinated}. Sprawdź repertuar kin niezależnych.`,
   };
 };

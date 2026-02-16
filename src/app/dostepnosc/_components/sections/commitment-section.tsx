@@ -6,7 +6,7 @@ const CommitmentSection: React.FC = () => {
   return (
     <ContentSection id="zobowiazanie" title="Nasze zobowiązanie">
       <p>
-        Serwis Klatka, dostępny pod adresem {SITE_DOMAIN}, jest projektem
+        Serwis Klaps, dostępny pod adresem {SITE_DOMAIN}, jest projektem
         niezależnym, którego celem jest udostępnianie informacji o&nbsp;seansach
         specjalnych i&nbsp;klasyce filmowej w&nbsp;kinach studyjnych w&nbsp;Polsce.
       </p>

@@ -24,7 +24,7 @@ const CitiesPage = async () => {
 };
 
 export const metadata: Metadata = {
-  title: "Miasta - Klatka",
+  title: "Miasta - Klaps",
   description:
     "Lista miast z kinami studyjnymi w Polsce. Znajdź kino niezależne w swoim mieście i sprawdź aktualne seanse.",
 };

@@ -12,7 +12,7 @@ const UserRightsSection: React.FC = () => {
       </p>
 
       <p>
-        Ze względu na to, że serwis Klatka nie zbiera danych osobowych
+        Ze względu na to, że serwis Klaps nie zbiera danych osobowych
         umożliwiających identyfikację użytkowników, realizacja powyższych praw
         może być ograniczona. Jeśli jednak uważasz, że Twoje dane są
         przetwarzane w&nbsp;sposób niezgodny z&nbsp;prawem, masz prawo wnieść

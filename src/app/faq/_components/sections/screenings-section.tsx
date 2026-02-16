@@ -23,7 +23,7 @@ const ScreeningsSection: React.FC = () => {
 
       <FaqItem question="Czy wszystkie seanse w serwisie to seanse specjalne?">
         <p>
-          Tak. Klatka koncentruje się wyłącznie na seansach specjalnych, takich
+          Tak. Klaps koncentruje się wyłącznie na seansach specjalnych, takich
           jak pokazy klasyki filmowej, retrospektywy, pokazy z&nbsp;cykli
           tematycznych oraz inne wyjątkowe wydarzenia kinowe. Nie prezentujemy
           standardowego repertuaru komercyjnego.

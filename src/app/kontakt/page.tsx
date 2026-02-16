@@ -14,9 +14,9 @@ const ContactPage = () => {
 };
 
 export const metadata: Metadata = {
-  title: "Kontakt — Klatka",
+  title: "Kontakt — Klaps",
   description:
-    "Skontaktuj się z zespołem Klatki. Napisz w sprawie współpracy, zgłoś błąd lub podziel się opinią.",
+    "Skontaktuj się z zespołem Klaps. Napisz w sprawie współpracy, zgłoś błąd lub podziel się opinią.",
 };
 
 export default ContactPage;

@@ -5,7 +5,7 @@ import MissionContent from "./mission-content";
 const MissionText: React.FC = () => {
   return (
     <div className="flex lg:py-16 flex-col gap-10 max-w-lg">
-      <SectionHeader prefix="O projekcie" title="Klatka" />
+      <SectionHeader prefix="O projekcie" title="Klaps" />
       <MissionContent />
     </div>
   );
