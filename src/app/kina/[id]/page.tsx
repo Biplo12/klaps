@@ -21,7 +21,7 @@ const CinemaPage = async ({ params }: CinemaPageProps) => {
   ]);
 
   return (
-    <main className="bg-black min-h-screen px-8 py-32">
+    <main className="bg-black min-h-screen px-8 py-24 md:py-32">
       <div className="max-w-[1400px] mx-auto flex flex-col gap-16">
         <CinemaHeader cinema={cinema} />
         <SectionDivider />
