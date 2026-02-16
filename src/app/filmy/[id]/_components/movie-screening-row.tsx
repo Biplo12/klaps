@@ -9,6 +9,32 @@ type MovieScreeningRowProps = {
   showDate?: boolean;
 };
 
+const hasTicketUrl = (screening: IScreening): boolean =>
+  !!screening.ticketUrl && screening.ticketUrl.trim().length > 0;
+
+const ScreeningTime: React.FC<{ screening: IScreening }> = ({ screening }) => {
+  if (hasTicketUrl(screening)) {
+    return (
+      <Button variant="secondary" size="sm" asChild>
+        <Link
+          href={screening.ticketUrl!}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Kup bilet na seans o ${screening.time}`}
+        >
+          {screening.time}
+        </Link>
+      </Button>
+    );
+  }
+
+  return (
+    <span className="inline-flex items-center justify-center h-8 px-3 text-sm font-semibold uppercase tracking-[0.2em] border border-white/20 bg-white/5 text-white/80 cursor-default">
+      {screening.time}
+    </span>
+  );
+};
+
 const MovieScreeningRow: React.FC<MovieScreeningRowProps> = ({
   screenings,
   showDate = false,
@@ -61,16 +87,7 @@ const MovieScreeningRow: React.FC<MovieScreeningRowProps> = ({
 
               <div className="flex flex-wrap gap-2">
                 {groupedByDate[date]!.map((screening) => (
-                  <Button
-                    key={screening.id}
-                    variant="secondary"
-                    size="sm"
-                    asChild
-                  >
-                    <Link href={`/seanse/${screening.id}`}>
-                      {screening.time}
-                    </Link>
-                  </Button>
+                  <ScreeningTime key={screening.id} screening={screening} />
                 ))}
               </div>
             </div>
@@ -79,9 +96,7 @@ const MovieScreeningRow: React.FC<MovieScreeningRowProps> = ({
       ) : (
         <div className="flex flex-wrap gap-2">
           {sortedScreenings.map((screening) => (
-            <Button key={screening.id} variant="secondary" size="sm" asChild>
-              <Link href={`/seanse/${screening.id}`}>{screening.time}</Link>
-            </Button>
+            <ScreeningTime key={screening.id} screening={screening} />
           ))}
         </div>
       )}

@@ -1,6 +1,7 @@
 import React from "react";
 import { ICinema } from "@/interfaces/ICinema";
 import SectionHeader from "@/components/common/section-header";
+import Link from "next/link";
 
 interface CinemaHeaderProps {
   cinema: ICinema;
@@ -15,7 +16,12 @@ const CinemaHeader: React.FC<CinemaHeaderProps> = ({ cinema }) => {
         {cinema.street && (
           <span className="text-neutral-400 text-lg">{cinema.street}</span>
         )}
-        <span className="text-neutral-400 text-lg">{cinema.city.name}</span>
+        <Link
+          href={`/miasta/${cinema.city.id}`}
+          className="text-neutral-400 text-lg hover:text-blood-red transition-colors"
+        >
+          {cinema.city.name}
+        </Link>
       </div>
     </div>
   );

@@ -17,13 +17,15 @@ const MovieDetailsGroup: React.FC<MovieDetailsGroupProps> = ({
 }) => {
   if (items.length === 0) return null;
 
+  const filteredItems = items.filter((item) => item.value.trim() !== "");
+
   return (
     <div className="flex flex-col gap-6">
       <h2 className="text-white text-2xl md:text-3xl font-bold uppercase tracking-wide">
         {title}
       </h2>
       <dl className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {items.map((item) => (
+        {filteredItems.map((item) => (
           <MovieDetailsItem
             key={item.label}
             label={item.label}

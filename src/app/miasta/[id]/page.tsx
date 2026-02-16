@@ -21,12 +21,18 @@ const CityPage = async ({ params }: CityPageProps) => {
     getCinemas({ cityId: id, limit: 100 }),
   ]);
 
-  const { screenings, city } = cityData;
+  const { screenings: rawScreenings, city } = cityData;
+
+  const screenings = Array.isArray(rawScreenings)
+    ? rawScreenings
+    : [...(rawScreenings?.data ?? [])];
 
   const cinemasCount = cinemasResponse.data.flatMap((g) => g.cinemas).length;
-  const moviesCount = screenings?.length ?? 0;
-  const screeningsCount =
-    screenings?.reduce((sum, group) => sum + group.screenings.length, 0) ?? 0;
+  const moviesCount = screenings.length;
+  const screeningsCount = screenings.reduce(
+    (sum, group) => sum + group.screenings.length,
+    0
+  );
 
   return (
     <main className="bg-black min-h-screen px-8 py-24 md:py-32">

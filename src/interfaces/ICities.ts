@@ -1,4 +1,5 @@
 import { IScreeningGroup } from "./IScreenings";
+import { PaginatedResponse } from "./IMovies";
 
 export interface ICity {
   id: number;
@@ -8,5 +9,5 @@ export interface ICity {
 
 export interface ICityDetails extends ICity {
   city: ICity;
-  screenings: IScreeningGroup[];
+  screenings: IScreeningGroup[] | PaginatedResponse<IScreeningGroup>;
 }

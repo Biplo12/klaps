@@ -6,6 +6,7 @@ import EmptyState from "@/components/common/empty-state";
 import MovieScreeningRow from "./movie-screening-row";
 import { groupScreeningsByCinema } from "@/lib/screenings";
 import DateTabs from "@/components/common/date-tabs";
+import HeaderCitySelect from "@/components/layout/header/header-city-select";
 
 type MovieScreeningsProps = {
   screenings: IScreening[];
@@ -27,9 +28,12 @@ const MovieScreenings: React.FC<MovieScreeningsProps> = ({ screenings }) => {
   if (screenings.length === 0) {
     return (
       <section className="flex flex-col gap-6">
-        <h2 className="text-white text-2xl md:text-3xl font-bold uppercase tracking-wide">
-          Seanse
-        </h2>
+        <div className="flex items-center justify-between gap-4 flex-wrap">
+          <h2 className="text-white text-2xl md:text-3xl font-bold uppercase tracking-wide">
+            Seanse
+          </h2>
+          <HeaderCitySelect size="md" />
+        </div>
         <EmptyState
           headline="Brak nadchodzących seansów"
           description="Aktualnie nie ma zaplanowanych seansów dla tego filmu."
@@ -44,9 +48,12 @@ const MovieScreenings: React.FC<MovieScreeningsProps> = ({ screenings }) => {
 
   return (
     <section className="flex flex-col gap-8">
-      <h2 className="text-white text-2xl md:text-3xl font-bold uppercase tracking-wide">
-        Seanse
-      </h2>
+      <div className="flex items-center justify-between gap-4 flex-wrap">
+        <h2 className="text-white text-2xl md:text-3xl font-bold uppercase tracking-wide">
+          Seanse
+        </h2>
+        <HeaderCitySelect size="md" />
+      </div>
 
       <DateTabs
         dates={availableDates}
