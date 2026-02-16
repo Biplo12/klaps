@@ -20,7 +20,7 @@ const Hero: React.FC<HeroProps> = async ({ screening }) => {
           alt={`Plakat filmowy: ${movieTitle}`}
           width={1920}
           height={1080}
-          className="w-full h-full object-cover md:max-w-6xl md:ml-auto md:absolute md:right-0 md:top-0"
+          className="w-full h-full object-cover md:max-w-5xl md:ml-auto md:absolute md:right-0 md:top-0"
           priority
         />
         <div

@@ -46,7 +46,7 @@ const FooterNav: React.FC = () => {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-sm uppercase tracking-[0.12em] text-white/50 hover:text-white transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blood-red focus-visible:ring-offset-2 focus-visible:ring-offset-dark-ink rounded-sm"
+                  className="text-xs uppercase tracking-[0.12em] text-white/50 hover:text-white transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blood-red focus-visible:ring-offset-2 focus-visible:ring-offset-dark-ink rounded-sm"
                 >
                   {link.label}
                 </Link>
