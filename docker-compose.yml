@@ -5,5 +5,17 @@ services:
     restart: unless-stopped
     env_file:
       - .env
-    ports:
-      - "${PORT:-3000}:3000"
+    expose:
+      - "3000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.klaps-frontend-${ENV_SUFFIX:-prod}.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.klaps-frontend-${ENV_SUFFIX:-prod}.entrypoints=websecure"
+      - "traefik.http.routers.klaps-frontend-${ENV_SUFFIX:-prod}.tls.certresolver=letsencrypt"
+      - "traefik.http.services.klaps-frontend-${ENV_SUFFIX:-prod}.loadbalancer.server.port=3000"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

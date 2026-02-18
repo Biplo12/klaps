@@ -1,11 +1,11 @@
 # Stage 1: Install dependencies
-FROM node:22-alpine AS deps
+FROM oven/bun:1-alpine AS deps
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci --ignore-scripts
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile
 
 # Stage 2: Build the application
-FROM node:22-alpine AS builder
+FROM oven/bun:1-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -13,7 +13,7 @@ COPY . .
 ARG NEXT_PUBLIC_SITE_URL
 ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
 
-RUN npm run build
+RUN bun run build
 
 # Stage 3: Production runner
 FROM node:22-alpine AS runner

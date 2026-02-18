@@ -17,6 +17,7 @@ jobs:
       environment: ${{ steps.set-env.outputs.environment }}
       image_tag: ${{ steps.set-env.outputs.image_tag }}
       env_suffix: ${{ steps.set-env.outputs.env_suffix }}
+      domain: ${{ steps.set-env.outputs.domain }}
     steps:
       - name: Determine environment
         id: set-env
@@ -25,10 +26,12 @@ jobs:
             echo "environment=production" >> $GITHUB_OUTPUT
             echo "image_tag=latest" >> $GITHUB_OUTPUT
             echo "env_suffix=prod" >> $GITHUB_OUTPUT
+            echo "domain=klaps.space" >> $GITHUB_OUTPUT
           else
             echo "environment=development" >> $GITHUB_OUTPUT
             echo "image_tag=dev" >> $GITHUB_OUTPUT
             echo "env_suffix=dev" >> $GITHUB_OUTPUT
+            echo "domain=dev.klaps.space" >> $GITHUB_OUTPUT
           fi
 
   build-and-push:
@@ -65,6 +68,7 @@ jobs:
       DEPLOY_DIR: /home/deploy/projects/klaps/frontend/${{ needs.setup.outputs.env_suffix }}
       IMAGE_TAG: ${{ needs.setup.outputs.image_tag }}
       ENV_SUFFIX: ${{ needs.setup.outputs.env_suffix }}
+      DOMAIN: ${{ needs.setup.outputs.domain }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -88,16 +92,16 @@ jobs:
             mkdir -p ${{ env.DEPLOY_DIR }}
             cd ${{ env.DEPLOY_DIR }}
 
-            cat > .env << 'ENVEOF'
+            cat > .env << ENVEOF
             API_URL=${{ secrets.API_URL }}
             INTERNAL_API_KEY=${{ secrets.INTERNAL_API_KEY }}
-            PORT=${{ secrets.PORT }}
+            DOMAIN=${{ env.DOMAIN }}
             ENVEOF
 
             echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
             docker pull ghcr.io/biplo12/klatka:${{ env.IMAGE_TAG }}
 
-            ENV_SUFFIX=${{ env.ENV_SUFFIX }} IMAGE_TAG=${{ env.IMAGE_TAG }} docker compose -p klaps-frontend-${{ env.ENV_SUFFIX }} up -d --force-recreate
+            DOMAIN=${{ env.DOMAIN }} ENV_SUFFIX=${{ env.ENV_SUFFIX }} IMAGE_TAG=${{ env.IMAGE_TAG }} docker compose -p klaps-frontend-${{ env.ENV_SUFFIX }} up -d --force-recreate
 
             docker image prune -f

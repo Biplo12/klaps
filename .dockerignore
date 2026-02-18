@@ -12,4 +12,4 @@ out
 .dockerignore
 Dockerfile
 docker-compose.yml
-bun.lock
+package-lock.json
