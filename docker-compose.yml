@@ -11,7 +11,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.klaps-frontend-${ENV_SUFFIX:-prod}.rule=Host(`${DOMAIN}`)"
       - "traefik.http.routers.klaps-frontend-${ENV_SUFFIX:-prod}.entrypoints=websecure"
-      - "traefik.http.routers.klaps-frontend-${ENV_SUFFIX:-prod}.tls.certresolver=acme"
+      - "traefik.http.routers.klaps-frontend-${ENV_SUFFIX:-prod}.tls.certresolver=leresolver"
       - "traefik.http.services.klaps-frontend-${ENV_SUFFIX:-prod}.loadbalancer.server.port=3000"
     networks:
       - proxy
