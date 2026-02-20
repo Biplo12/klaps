@@ -17,7 +17,6 @@ jobs:
       environment: ${{ steps.set-env.outputs.environment }}
       image_tag: ${{ steps.set-env.outputs.image_tag }}
       env_suffix: ${{ steps.set-env.outputs.env_suffix }}
-      domain: ${{ steps.set-env.outputs.domain }}
     steps:
       - name: Determine environment
         id: set-env
@@ -26,12 +25,10 @@ jobs:
             echo "environment=production" >> $GITHUB_OUTPUT
             echo "image_tag=latest" >> $GITHUB_OUTPUT
             echo "env_suffix=prod" >> $GITHUB_OUTPUT
-            echo "domain=klaps.space" >> $GITHUB_OUTPUT
           else
             echo "environment=development" >> $GITHUB_OUTPUT
             echo "image_tag=dev" >> $GITHUB_OUTPUT
             echo "env_suffix=dev" >> $GITHUB_OUTPUT
-            echo "domain=dev.klaps.space" >> $GITHUB_OUTPUT
           fi
 
   build-and-push:
@@ -57,18 +54,18 @@ jobs:
           build-args: |
             NEXT_PUBLIC_SITE_URL=${{ vars.NEXT_PUBLIC_SITE_URL }}
           tags: |
-            ghcr.io/biplo12/klaps:${{ needs.setup.outputs.image_tag }}
-            ghcr.io/biplo12/klaps:${{ github.sha }}
+            ${{ vars.DOCKER_IMAGE }}:${{ needs.setup.outputs.image_tag }}
+            ${{ vars.DOCKER_IMAGE }}:${{ github.sha }}
 
   deploy:
     runs-on: ubuntu-latest
     needs: [setup, build-and-push]
     environment: ${{ needs.setup.outputs.environment }}
     env:
-      DEPLOY_DIR: /home/deploy/projects/klaps/frontend/${{ needs.setup.outputs.env_suffix }}
+      DEPLOY_DIR: ${{ secrets.DEPLOY_DIR }}/frontend/${{ needs.setup.outputs.env_suffix }}
       IMAGE_TAG: ${{ needs.setup.outputs.image_tag }}
       ENV_SUFFIX: ${{ needs.setup.outputs.env_suffix }}
-      DOMAIN: ${{ needs.setup.outputs.domain }}
+      DOMAIN: ${{ vars.DOMAIN }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -101,7 +98,7 @@ jobs:
 
             echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-            docker pull ghcr.io/biplo12/klaps:${{ env.IMAGE_TAG }}
+            docker pull ${{ vars.DOCKER_IMAGE }}:${{ env.IMAGE_TAG }}
 
             DOMAIN=${{ env.DOMAIN }} ENV_SUFFIX=${{ env.ENV_SUFFIX }} IMAGE_TAG=${{ env.IMAGE_TAG }} docker compose -p klaps-frontend-${{ env.ENV_SUFFIX }} up -d --force-recreate
 

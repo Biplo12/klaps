@@ -13,7 +13,7 @@ const CitiesPage = async () => {
       <div className="max-w-[1400px] mx-auto flex flex-col gap-16">
         <SectionHeader
           prefix="Miasta"
-          title="Miasta z kinami studyjnymi"
+          title="Miasta z kinami"
           description="Wybierz miasto i sprawdź, jakie seanse czekają na Ciebie w Twoim regionie."
         />
 
@@ -26,7 +26,7 @@ const CitiesPage = async () => {
 export const metadata: Metadata = {
   title: "Miasta - Klaps",
   description:
-    "Lista miast z kinami studyjnymi w Polsce. Znajdź kino niezależne w swoim mieście i sprawdź aktualne seanse.",
+    "Lista miast z kinami w Polsce. Znajdź kino niezależne w swoim mieście i sprawdź aktualne seanse.",
 };
 
 export default CitiesPage;

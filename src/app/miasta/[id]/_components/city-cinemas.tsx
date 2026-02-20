@@ -13,12 +13,12 @@ const CityCinemas: React.FC<CityCinemasProps> = ({ cinemaGroups }) => {
 
   return (
     <section className="flex flex-col gap-10">
-      <SectionHeader prefix="Kina w mieście" title="Kina studyjne" />
+      <SectionHeader prefix="Kina w mieście" title="Kina" />
 
       {cinemas.length === 0 && (
         <EmptyState
           headline="Brak kin"
-          description="Nie znaleziono kin studyjnych w tym mieście."
+          description="Nie znaleziono kin w tym mieście."
         />
       )}
 

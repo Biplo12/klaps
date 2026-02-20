@@ -69,7 +69,7 @@ const CityPage = async ({ params }: CityPageProps) => {
           <SectionHeader
             prefix="Miasto"
             title={city.name}
-            description={`Kina studyjne i aktualne seanse w ${city.nameDeclinated}.`}
+            description={`Kina i aktualne seanse w ${city.nameDeclinated}.`}
           />
 
           <CityStats

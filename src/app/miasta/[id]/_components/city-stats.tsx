@@ -12,7 +12,7 @@ const CityStats: React.FC<CityStatsProps> = ({
   screeningsCount,
 }) => {
   const stats = [
-    { label: "Kina studyjne", value: cinemasCount.toString() },
+    { label: "Kina", value: cinemasCount.toString() },
     { label: "Filmy w repertuarze", value: moviesCount.toString() },
     { label: "Zaplanowane seanse", value: screeningsCount.toString() },
   ];
