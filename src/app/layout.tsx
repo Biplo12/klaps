@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
@@ -72,6 +73,22 @@ export default async function RootLayout({
         />
         <meta name="apple-mobile-web-app-title" content="Klaps" />
         <link rel="manifest" href="/site.webmanifest" />
+        {process.env.GA_MEASUREMENT_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_MEASUREMENT_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.GA_MEASUREMENT_ID}');
+              `}
+            </Script>
+          </>
+        )}
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
