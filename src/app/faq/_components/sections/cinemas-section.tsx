@@ -1,6 +1,7 @@
 import React from "react";
 import ContentSection from "@/components/common/content-section";
 import FaqItem from "../faq-item";
+import Link from "next/link";
 
 const CinemasSection: React.FC = () => {
   return (
@@ -15,9 +16,13 @@ const CinemasSection: React.FC = () => {
 
       <FaqItem question="Czy mogę zaproponować dodanie kina do serwisu?">
         <p>
-          Tak. Jeśli znasz kino studyjne, które organizuje seanse specjalne
-          i&nbsp;nie jest jeszcze uwzględnione w&nbsp;serwisie, skontaktuj się
-          z&nbsp;nami przez stronę kontaktową. Rozpatrzymy każde zgłoszenie.
+          Tak. Jeśli znasz kino, które organizuje seanse specjalne i&nbsp;nie
+          jest jeszcze uwzględnione w&nbsp;serwisie, skontaktuj się z&nbsp;nami
+          przez{" "}
+          <Link href="/kontakt" className="text-blood-red hover:underline">
+            stronę kontaktową
+          </Link>
+          . Rozpatrzymy każde zgłoszenie.
         </p>
       </FaqItem>
 
@@ -32,7 +37,11 @@ const CinemasSection: React.FC = () => {
       <FaqItem question="Ile miast jest dostępnych w serwisie?">
         <p>
           Liczba miast stale rośnie. Aktualną listę wszystkich dostępnych miast
-          znajdziesz na stronie Miasta.
+          znajdziesz na stronie{" "}
+          <Link href="/miasta" className="text-blood-red hover:underline">
+            Miasta
+          </Link>
+          .
         </p>
       </FaqItem>
     </ContentSection>

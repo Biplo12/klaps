@@ -8,16 +8,16 @@ const ScreeningsSection: React.FC = () => {
       <FaqItem question="Skąd pochodzą informacje o seansach?">
         <p>
           Informacje o&nbsp;seansach są pozyskiwane automatycznie
-          z&nbsp;publicznie dostępnych źródeł, takich jak strony internetowe kin
-          studyjnych. Dane są regularnie aktualizowane, aby zapewnić jak
-          największą dokładność.
+          z&nbsp;publicznie dostępnych źródeł kin. Dane są regularnie
+          aktualizowane, aby zapewnić jak największą dokładność.
         </p>
       </FaqItem>
 
       <FaqItem question="Jak często aktualizowany jest repertuar?">
         <p>
-          Repertuar jest aktualizowany codziennie. Częstotliwość aktualizacji
-          zależy od tego, kiedy poszczególne kina publikują swoje repertuary.
+          Repertuar jest aktualizowany regularnie, mniej więcej raz
+          w&nbsp;tygodniu. Częstotliwość zależy od tego, kiedy poszczególne kina
+          publikują swoje repertuary.
         </p>
       </FaqItem>
 

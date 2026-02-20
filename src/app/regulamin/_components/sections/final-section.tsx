@@ -12,7 +12,14 @@ const FinalSection: React.FC = () => {
 
       <p>
         Wszelkie pytania, uwagi oraz zgłoszenia dotyczące regulaminu lub
-        działania serwisu prosimy kierować na adres e-mail: {CONTACT_EMAIL}.
+        działania serwisu prosimy kierować na adres e-mail:{" "}
+        <a
+          href={`mailto:${CONTACT_EMAIL}`}
+          className="text-blood-red hover:underline"
+        >
+          {CONTACT_EMAIL}
+        </a>
+        .
       </p>
 
       <p>Regulamin obowiązuje od dnia jego opublikowania na stronie serwisu.</p>

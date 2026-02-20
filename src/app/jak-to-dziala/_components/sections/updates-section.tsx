@@ -13,7 +13,7 @@ const UpdatesSection: React.FC = () => {
 
       <p>
         Mimo regularnych aktualizacji mogą zdarzyć się rozbieżności między
-        danymi w&nbsp;Klatce a&nbsp;aktualnym repertuarem kina. Zawsze
+        danymi w&nbsp;Klapsie a&nbsp;aktualnym repertuarem kina. Zawsze
         rekomendujemy sprawdzenie szczegółów seansu bezpośrednio na stronie kina
         przed wizytą.
       </p>

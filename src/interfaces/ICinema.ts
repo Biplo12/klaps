@@ -14,7 +14,7 @@ export interface ICinema {
   city: ICity;
   latitude: number | null;
   longitude: number | null;
-  filmwebUrl: string;
+  sourceUrl: string;
 }
 
 export interface ICinemaGroup {

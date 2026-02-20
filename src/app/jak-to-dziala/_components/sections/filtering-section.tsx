@@ -20,7 +20,7 @@ const FilteringSection: React.FC = () => {
 
       <p>
         Filtrowanie odbywa się na podstawie typu seansu, kategorii filmu
-        i&nbsp;charakteru wydarzenia. Nie stosujemy algorytmów rekomendacyjnych
+        i&nbsp;charakteru wydarzenia. Nie stosujemy algorytmów rekomendacyjnych.
         Pokazujemy wszystko, co spełnia nasze kryteria, bez subiektywnego
         rankingu.
       </p>

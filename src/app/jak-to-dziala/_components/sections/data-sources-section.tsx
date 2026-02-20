@@ -6,10 +6,9 @@ const DataSourcesSection: React.FC = () => {
   return (
     <ContentSection id="zrodla-danych" title="Skąd bierzemy dane?">
       <p>
-        Repertuar pozyskujemy z&nbsp;publicznie dostępnych źródeł, przede
-        wszystkim ze stron internetowych kin studyjnych oraz wybranych kin
-        sieciowych, które regularnie organizują pokazy specjalne, retrospektywy
-        lub wznowienia klasyków.
+        Repertuar pozyskujemy z&nbsp;publicznie dostępnych źródeł kin, które
+        regularnie organizują pokazy specjalne, retrospektywy lub wznowienia
+        klasyków.
       </p>
 
       <p>

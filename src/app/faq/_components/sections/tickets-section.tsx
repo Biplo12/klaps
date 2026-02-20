@@ -15,9 +15,9 @@ const TicketsSection: React.FC = () => {
 
       <FaqItem question="Jak mogę kupić bilet na seans?">
         <p>
-          Przy każdym seansie, dla którego dostępny jest link do zakupu, znajduje
-          się przycisk przekierowujący bezpośrednio na stronę kina lub systemu
-          biletowego. Zakup biletu odbywa się wyłącznie między Tobą a&nbsp;kinem.
+          Klaps nie umożliwia zakupu biletów. Aby kupić bilet, sprawdź
+          szczegóły seansu bezpośrednio na stronie danego kina. Zakup odbywa
+          się wyłącznie między Tobą a&nbsp;kinem.
         </p>
       </FaqItem>
 

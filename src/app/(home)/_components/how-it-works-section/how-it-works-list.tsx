@@ -6,7 +6,7 @@ const STEPS = [
     number: "01",
     title: "Zbieramy repertuar",
     description:
-      "Dane pobieramy z publicznych źródeł kin studyjnych i wybranych sieci kinowych w całej Polsce. Aktualizujemy je regularnie.",
+      "Dane pobieramy z publicznych źródeł kin w całej Polsce. Aktualizujemy je regularnie.",
   },
   {
     number: "02",

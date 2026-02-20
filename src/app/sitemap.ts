@@ -4,16 +4,19 @@ import { getMovies } from "@/lib/movies";
 import { getCinemas } from "@/lib/cinemas";
 import { getCities } from "@/lib/cities";
 import { getGenres } from "@/lib/genres";
+import { getScreenings } from "@/lib/screenings";
 
 export const dynamic = "force-dynamic";
 
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
-  const [moviesResponse, cinemasResponse, cities, genres] = await Promise.all([
-    getMovies({ page: 1, limit: 1000 }),
-    getCinemas({ limit: 1000 }),
-    getCities(),
-    getGenres(),
-  ]);
+  const [moviesResponse, cinemasResponse, cities, genres, screeningGroups] =
+    await Promise.all([
+      getMovies({ page: 1, limit: 1000 }),
+      getCinemas({ limit: 1000 }),
+      getCities(),
+      getGenres(),
+      getScreenings({ limit: 1000 }),
+    ]);
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: SITE_URL, changeFrequency: "daily", priority: 1 },
@@ -61,12 +64,22 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     priority: 0.5,
   }));
 
+  const screeningPages: MetadataRoute.Sitemap = screeningGroups.flatMap(
+    (group) =>
+      group.screenings.map((screening) => ({
+        url: `${SITE_URL}/seanse/${screening.id}`,
+        changeFrequency: "daily" as const,
+        priority: 0.6,
+      }))
+  );
+
   return [
     ...staticPages,
     ...moviePages,
     ...cinemaPages,
     ...cityPages,
     ...genrePages,
+    ...screeningPages,
   ];
 };
 

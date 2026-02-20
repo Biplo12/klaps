@@ -62,7 +62,7 @@ const GoalsSection: React.FC = () => {
           <AboutDetailItem
             key="development"
             title="Rozwój projektu"
-            description="Rozwój Klatki jako niezależnego narzędzia wspierającego kulturę filmową."
+            description="Rozwój Klapsa jako niezależnego narzędzia wspierającego kulturę filmową."
           />,
         ]}
       />

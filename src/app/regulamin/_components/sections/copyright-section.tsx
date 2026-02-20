@@ -10,10 +10,9 @@ const CopyrightSection: React.FC = () => {
       </p>
 
       <p>
-        Plakaty filmowe, opisy filmów oraz inne materiały związane
-        z&nbsp;produkcjami filmowymi prezentowanymi w&nbsp;serwisie stanowią
-        własność ich odpowiednich właścicieli. Serwis wykorzystuje je wyłącznie
-        w&nbsp;celach informacyjnych.
+        Informacje o&nbsp;filmach prezentowane w&nbsp;serwisie, w&nbsp;tym opisy
+        i&nbsp;plakaty, stanowią własność ich odpowiednich właścicieli i&nbsp;są
+        wykorzystywane wyłącznie w&nbsp;celach informacyjnych.
       </p>
 
       <p>

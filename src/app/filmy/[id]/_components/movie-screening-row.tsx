@@ -13,21 +13,6 @@ const hasTicketUrl = (screening: IScreening): boolean =>
   !!screening.ticketUrl && screening.ticketUrl.trim().length > 0;
 
 const ScreeningTime: React.FC<{ screening: IScreening }> = ({ screening }) => {
-  if (hasTicketUrl(screening)) {
-    return (
-      <Button variant="secondary" size="sm" asChild>
-        <Link
-          href={screening.ticketUrl!}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`Kup bilet na seans o ${screening.time}`}
-        >
-          {screening.time}
-        </Link>
-      </Button>
-    );
-  }
-
   return (
     <span className="inline-flex items-center justify-center h-8 px-3 text-sm font-semibold uppercase tracking-[0.2em] border border-white/20 bg-white/5 text-white/80 cursor-default">
       {screening.time}
@@ -44,7 +29,7 @@ const MovieScreeningRow: React.FC<MovieScreeningRowProps> = ({
   if (!firstScreening) return null;
 
   const sortedScreenings = [...screenings].sort((a, b) =>
-    a.dateTime.localeCompare(b.dateTime),
+    a.dateTime.localeCompare(b.dateTime)
   );
 
   const groupedByDate = showDate
@@ -58,7 +43,7 @@ const MovieScreeningRow: React.FC<MovieScreeningRowProps> = ({
 
   return (
     <div className="flex flex-col gap-4 py-6 border-b border-white/10 last:border-b-0">
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 max-w-fit">
         <span className="text-blood-red text-sm uppercase tracking-widest font-semibold">
           {firstScreening.cinema.city.name}
         </span>

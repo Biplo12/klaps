@@ -12,10 +12,11 @@ const CinemaHeader: React.FC<CinemaHeaderProps> = ({ cinema }) => {
     <div className="flex flex-col gap-6">
       <SectionHeader title={cinema.name} />
 
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 max-w-fit">
         {cinema.street && (
           <span className="text-neutral-400 text-lg">{cinema.street}</span>
         )}
+
         <Link
           href={`/miasta/${cinema.city.id}`}
           className="text-neutral-400 text-lg hover:text-blood-red transition-colors"

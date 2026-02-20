@@ -18,7 +18,7 @@ const ContactSection: React.FC = () => {
       </p>
 
       <p>
-        Każde zgłoszenie jest dla nas cenne i&nbsp;pomoże nam uczynić Klatkę
+        Każde zgłoszenie jest dla nas cenne i&nbsp;pomoże nam uczynić Klaps
         bardziej dostępną dla wszystkich.
       </p>
     </ContentSection>

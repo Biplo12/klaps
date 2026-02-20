@@ -12,7 +12,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   description,
 }) => {
   return (
-    <h2 className="flex flex-col gap-1">
+    <h2 className="flex flex-col gap-1 max-w-fit">
       <span className="text-blood-red text-sm uppercase tracking-widest">
         {prefix}
       </span>

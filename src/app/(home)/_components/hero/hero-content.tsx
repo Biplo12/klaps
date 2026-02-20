@@ -16,7 +16,7 @@ const CTA_PRIMARY = "ZOBACZ SEANSE";
 const CTA_SECONDARY = "SZCZEGÓŁY FILMU";
 const SCREENINGS_SECTION_ID = "#seanse";
 const TRUST_LINE =
-  "Aktualne seanse z kin studyjnych w Polsce. Dane z publicznych źródeł.";
+  "Aktualne seanse z kin w całej Polsce. Dane z publicznych źródeł.";
 
 const HeroContent: React.FC<HeroContentProps> = ({ screening }) => {
   const movieDetailsHref = `/filmy/${screening.movie.id}`;

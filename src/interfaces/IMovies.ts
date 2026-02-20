@@ -5,7 +5,7 @@ export interface IGenre {
 
 export interface IMoviePerson {
   id?: number;
-  filmwebId?: number;
+  sourceId?: number;
   name: string;
   url?: string;
 }
@@ -55,7 +55,7 @@ export interface IMovie {
     users: { score: number; votes: number } | null;
     critics: { score: number; votes: number } | null;
   };
-  filmwebUrl: string;
+  sourceUrl: string;
 }
 
 export interface IMultiCityMovie {
