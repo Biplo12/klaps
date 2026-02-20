@@ -21,18 +21,18 @@ Klaps is a Polish nationwide guide to special screenings, classic cinema, and re
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Framework | [Next.js 16](https://nextjs.org) (App Router, RSC) |
-| UI Library | [React 19](https://react.dev) with [React Compiler](https://react.dev/learn/react-compiler) |
-| Language | [TypeScript 5](https://www.typescriptlang.org) |
-| Styling | [Tailwind CSS 4](https://tailwindcss.com) |
-| Components | [Shadcn/ui](https://ui.shadcn.com) (new-york), [Radix UI](https://www.radix-ui.com), [Base UI](https://base-ui.com) |
-| Icons | [Lucide](https://lucide.dev) |
-| Maps | [Leaflet](https://leafletjs.com) + [React Leaflet](https://react-leaflet.js.org) |
-| Package Manager | [Bun](https://bun.sh) |
-| Runtime | [Node.js 22](https://nodejs.org) |
-| Deployment | Docker (standalone) via GitHub Actions to GHCR |
+| Layer           | Technology                                                                                                          |
+| --------------- | ------------------------------------------------------------------------------------------------------------------- |
+| Framework       | [Next.js 16](https://nextjs.org) (App Router, RSC)                                                                  |
+| UI Library      | [React 19](https://react.dev) with [React Compiler](https://react.dev/learn/react-compiler)                         |
+| Language        | [TypeScript 5](https://www.typescriptlang.org)                                                                      |
+| Styling         | [Tailwind CSS 4](https://tailwindcss.com)                                                                           |
+| Components      | [Shadcn/ui](https://ui.shadcn.com) (new-york), [Radix UI](https://www.radix-ui.com), [Base UI](https://base-ui.com) |
+| Icons           | [Lucide](https://lucide.dev)                                                                                        |
+| Maps            | [Leaflet](https://leafletjs.com) + [React Leaflet](https://react-leaflet.js.org)                                    |
+| Package Manager | [Bun](https://bun.sh)                                                                                               |
+| Runtime         | [Node.js 22](https://nodejs.org)                                                                                    |
+| Deployment      | Docker (standalone) via GitHub Actions to GHCR                                                                      |
 
 ## Features
 
@@ -82,27 +82,27 @@ src/
 
 ## Pages & Routes
 
-| Route | Description |
-|-------|-------------|
-| `/` | Home — hero with random screening, screening listings, how it works, mission, cinemas, multi-city movies |
-| `/seanse` | All screenings with filters (city, genre, date, search) and pagination |
-| `/seanse/[id]` | Screening detail — movie info, screening time, cinema, ticket link |
-| `/filmy` | Movie catalog with search, genre filter, and pagination |
-| `/filmy/[id]` | Movie detail — description, cast, directors, ratings, trailer, screenings |
-| `/kina` | Cinema directory grouped by city |
-| `/kina/[id]` | Cinema detail — info, interactive map, current screenings |
-| `/miasta` | Cities list with cinema counts |
-| `/miasta/[id]` | City detail — stats, cinemas, screenings |
-| `/gatunki` | Genre list |
-| `/gatunki/[id]` | Genre detail — paginated movie collection |
-| `/faq` | Frequently asked questions |
-| `/o-projekcie` | About the project |
-| `/jak-to-dziala` | How it works |
-| `/kontakt` | Contact page |
-| `/regulamin` | Terms of service |
-| `/polityka-prywatnosci` | Privacy policy |
-| `/dostepnosc` | Accessibility statement |
-| `/mapa-witryny` | HTML sitemap |
+| Route                   | Description                                                                                              |
+| ----------------------- | -------------------------------------------------------------------------------------------------------- |
+| `/`                     | Home — hero with random screening, screening listings, how it works, mission, cinemas, multi-city movies |
+| `/seanse`               | All screenings with filters (city, genre, date, search) and pagination                                   |
+| `/seanse/[id]`          | Screening detail — movie info, screening time, cinema, ticket link                                       |
+| `/filmy`                | Movie catalog with search, genre filter, and pagination                                                  |
+| `/filmy/[id]`           | Movie detail — description, cast, directors, ratings, trailer, screenings                                |
+| `/kina`                 | Cinema directory grouped by city                                                                         |
+| `/kina/[id]`            | Cinema detail — info, interactive map, current screenings                                                |
+| `/miasta`               | Cities list with cinema counts                                                                           |
+| `/miasta/[id]`          | City detail — stats, cinemas, screenings                                                                 |
+| `/gatunki`              | Genre list                                                                                               |
+| `/gatunki/[id]`         | Genre detail — paginated movie collection                                                                |
+| `/faq`                  | Frequently asked questions                                                                               |
+| `/o-projekcie`          | About the project                                                                                        |
+| `/jak-to-dziala`        | How it works                                                                                             |
+| `/kontakt`              | Contact page                                                                                             |
+| `/regulamin`            | Terms of service                                                                                         |
+| `/polityka-prywatnosci` | Privacy policy                                                                                           |
+| `/dostepnosc`           | Accessibility statement                                                                                  |
+| `/mapa-witryny`         | HTML sitemap                                                                                             |
 
 ## Getting Started
 
@@ -180,10 +180,10 @@ The compose file expects a `.env` file and an external `proxy` network for Traef
 
 The project uses **GitHub Actions** for CI/CD (`.github/workflows/deploy.yml`):
 
-| Branch | Environment | Domain | Image Tag |
-|--------|-------------|--------|-----------|
-| `main` | Production | `klaps.space` | `latest` |
-| `dev` | Development | `dev.klaps.space` | `dev` |
+| Branch | Environment | Domain            | Image Tag |
+| ------ | ----------- | ----------------- | --------- |
+| `main` | Production  | `klaps.space`     | `latest`  |
+| `dev`  | Development | `dev.klaps.space` | `dev`     |
 
 **Pipeline steps:**
 
@@ -194,31 +194,33 @@ The project uses **GitHub Actions** for CI/CD (`.github/workflows/deploy.yml`):
 
 **Required GitHub Secrets:**
 
-| Secret | Description |
-|--------|-------------|
-| `SERVER_IP` | Deployment server IP |
-| `SERVER_USER` | SSH user |
-| `SERVER_SSH_KEY` | SSH private key |
-| `API_URL` | Backend API URL |
-| `INTERNAL_API_KEY` | API authentication key |
-| `GHCR_PAT` | GitHub Container Registry token |
+| Secret              | Description                     |
+| ------------------- | ------------------------------- |
+| `SERVER_IP`         | Deployment server IP            |
+| `SERVER_USER`       | SSH user                        |
+| `SERVER_SSH_KEY`    | SSH private key                 |
+| `API_URL`           | Backend API URL                 |
+| `INTERNAL_API_KEY`  | API authentication key          |
+| `GA_MEASUREMENT_ID` | Google Analytics measurement ID |
+| `GHCR_PAT`          | GitHub Container Registry token |
 
 ## Environment Variables
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `NEXT_PUBLIC_SITE_URL` | Yes | Public site URL (e.g. `https://klaps.space`) |
-| `API_URL` | Yes | Backend API base URL |
-| `INTERNAL_API_KEY` | Yes | Key for authenticating API requests |
+| Variable               | Required | Description                                  |
+| ---------------------- | -------- | -------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL` | Yes      | Public site URL (e.g. `https://klaps.space`) |
+| `API_URL`              | Yes      | Backend API base URL                         |
+| `INTERNAL_API_KEY`     | Yes      | Key for authenticating API requests          |
+| `GA_MEASUREMENT_ID`    | Yes      | Google Analytics measurement ID              |
 
 ## Open Source
 
 Klaps is an open-source project. The source code is publicly available on GitHub:
 
-| Component | Repository |
-|-----------|-----------|
-| **Frontend** (Next.js) | [github.com/Biplo12/klaps](https://github.com/Biplo12/klaps) |
-| **Backend** (NestJS) | [github.com/Biplo12/klaps-nest-backend](https://github.com/Biplo12/klaps-nest-backend) |
+| Component              | Repository                                                                             |
+| ---------------------- | -------------------------------------------------------------------------------------- |
+| **Frontend** (Next.js) | [github.com/Biplo12/klaps](https://github.com/Biplo12/klaps)                           |
+| **Backend** (NestJS)   | [github.com/Biplo12/klaps-nest-backend](https://github.com/Biplo12/klaps-nest-backend) |
 
 > The scrapper responsible for collecting screening data is not publicly available for legal reasons.
 

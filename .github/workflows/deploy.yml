@@ -95,6 +95,7 @@ jobs:
             cat > .env << ENVEOF
             API_URL=${{ secrets.API_URL }}
             INTERNAL_API_KEY=${{ secrets.INTERNAL_API_KEY }}
+            GA_MEASUREMENT_ID=${{ secrets.GA_MEASUREMENT_ID }}
             DOMAIN=${{ env.DOMAIN }}
             ENVEOF
 
