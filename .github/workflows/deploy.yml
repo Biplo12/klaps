@@ -54,8 +54,8 @@ jobs:
           build-args: |
             NEXT_PUBLIC_SITE_URL=${{ vars.NEXT_PUBLIC_SITE_URL }}
           tags: |
-            ${{ vars.DOCKER_IMAGE }}:${{ needs.setup.outputs.image_tag }}
-            ${{ vars.DOCKER_IMAGE }}:${{ github.sha }}
+            ${{ secrets.DOCKER_IMAGE }}:${{ needs.setup.outputs.image_tag }}
+            ${{ secrets.DOCKER_IMAGE }}:${{ github.sha }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -65,7 +65,7 @@ jobs:
       DEPLOY_DIR: ${{ secrets.DEPLOY_DIR }}/frontend/${{ needs.setup.outputs.env_suffix }}
       IMAGE_TAG: ${{ needs.setup.outputs.image_tag }}
       ENV_SUFFIX: ${{ needs.setup.outputs.env_suffix }}
-      DOMAIN: ${{ vars.DOMAIN }}
+      DOMAIN: ${{ secrets.DOMAIN }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -98,7 +98,7 @@ jobs:
 
             echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-            docker pull ${{ vars.DOCKER_IMAGE }}:${{ env.IMAGE_TAG }}
+            docker pull ${{ secrets.DOCKER_IMAGE }}:${{ env.IMAGE_TAG }}
 
             DOMAIN=${{ env.DOMAIN }} ENV_SUFFIX=${{ env.ENV_SUFFIX }} IMAGE_TAG=${{ env.IMAGE_TAG }} docker compose -p klaps-frontend-${{ env.ENV_SUFFIX }} up -d --force-recreate
 
