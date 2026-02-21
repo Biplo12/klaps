@@ -18,7 +18,7 @@ const STATIC_GROUPS: SitemapGroup[] = [
     heading: "Nawigacja",
     links: [
       { href: "/", label: "Strona główna" },
-      { href: "/screenings", label: "Seanse" },
+      { href: "/seanse", label: "Seanse" },
       { href: "/filmy", label: "Filmy" },
       { href: "/kina", label: "Kina" },
       { href: "/miasta", label: "Miasta" },

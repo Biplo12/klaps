@@ -28,7 +28,7 @@ interface GetMovieScreeningsParams {
 }
 
 export const getScreenings = async (
-  params: GetScreeningsParams = {},
+  params: GetScreeningsParams = {}
 ): Promise<IScreeningGroup[]> => {
   const response = await apiFetch<
     IScreeningGroup[] | PaginatedResponse<IScreeningGroup>
@@ -48,23 +48,24 @@ export const getScreenings = async (
 };
 
 export const getMovieScreenings = async (
-  params: GetMovieScreeningsParams,
+  params: GetMovieScreeningsParams
 ): Promise<IScreening[]> => {
-  const response = await apiFetch<
-    IScreening[] | PaginatedResponse<IScreening>
-  >("/screenings", {
-    params: {
-      movieId: params.movieId,
-      cityId: params.cityId ?? "",
-      limit: params.limit?.toString() ?? "100",
-    },
-  });
+  const response = await apiFetch<IScreening[] | PaginatedResponse<IScreening>>(
+    "/screenings",
+    {
+      params: {
+        movieId: params.movieId,
+        cityId: params.cityId ?? "",
+        limit: params.limit?.toString() ?? "100",
+      },
+    }
+  );
 
   return Array.isArray(response) ? response : [...response.data];
 };
 
 export const getPaginatedScreenings = async (
-  params: GetPaginatedScreeningsParams = {},
+  params: GetPaginatedScreeningsParams = {}
 ): Promise<PaginatedResponse<IScreeningGroup> | IScreeningGroup[]> => {
   const response = await apiFetch<
     PaginatedResponse<IScreeningGroup> | IScreeningGroup[]
@@ -85,7 +86,7 @@ export const getPaginatedScreenings = async (
 };
 
 export const getScreeningById = async (
-  id: number,
+  id: number
 ): Promise<IScreeningDetail> => {
   const screening = await apiFetch<IScreeningDetail>(`/screenings/${id}`);
   return screening;
@@ -93,7 +94,7 @@ export const getScreeningById = async (
 
 export const getRandomScreening = async (): Promise<IRandomScreening> => {
   const screening = await apiFetch<IRandomScreening>(
-    "/screenings/random-screening",
+    "/screenings/random-screening"
   );
 
   if (!screening) {
@@ -104,7 +105,7 @@ export const getRandomScreening = async (): Promise<IRandomScreening> => {
 };
 
 export const groupScreeningsByCinema = (
-  screenings: IScreening[],
+  screenings: IScreening[]
 ): IScreening[][] => {
   const grouped = new Map<number, IScreening[]>();
 
